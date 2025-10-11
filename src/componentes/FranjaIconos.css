@@ -1,0 +1,39 @@
+
+.franja-iconos-container {
+  background-color: #2CB7A6; /* Color de fondo verde azulado */
+  display: flex;
+  justify-content: center; /* Centra los items en lugar de espaciarlos */
+  gap: 60px; /* Añade un espacio fijo entre los items */
+  padding: 40px 20px; /* Espaciado interno (vertical y horizontal) reducido */
+  color: #fff; /* Color del texto blanco */
+  text-align: center; /* Centra el texto de los items */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  flex-wrap: wrap; /* Permite que los items pasen a la siguiente línea en pantallas pequeñas */
+}
+
+.icono-item {
+  max-width: 280px; /* Ancho máximo para cada item, ligeramente reducido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.icono {
+  font-size: 80px; /* Tamaño de los íconos, ligeramente reducido */
+  margin-bottom: 0; /* Espacio debajo del ícono eliminado */
+  padding-bottom: 0;
+}
+
+h4 {
+  font-size: 22px; /* Tamaño del título de cada item */
+  font-weight: bold;
+  margin-bottom: 0; /* Espacio debajo del título eliminado */
+}
+
+p {
+  font-size: 16px; /* Tamaño del texto de párrafo */
+  line-height: 1.5; /* Altura de línea para mejor legibilidad */
+  margin-top: 5px; /* Agregamos un pequeño margen superior para que no se pegue al título */
+}
