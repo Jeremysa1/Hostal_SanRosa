@@ -1,0 +1,159 @@
+.hostel-description-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  gap: 30px; max-width: 1200px; 
+  margin: 40px auto; 
+  padding: 20px;
+  width: 100%;  
+  overflow: hidden;
+  
+}
+
+.hostel-image {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hostel-image img {
+  width: 100%;
+  height: auto;
+  display: flex;
+  border-radius: 12px;
+}
+
+.hostel-text {
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+  color: rgb(0, 0, 0);
+}
+
+.hostel-text h2 {
+  font-size: 30px;
+  color: #2CB7A6;
+  margin-bottom: 10px;
+}
+
+.hostel-text h2 strong {
+  font-weight: bold;
+}
+
+.hostel-text p {
+  font-size: 25px;
+  line-height: 1.6;
+  color: #666;
+}
+/* HostelDescription.css */
+
+/* CRÍTICO: El div 'mapa' debe tener una altura definida */
+.mapa {
+  flex: 1; /* Ocupa una columna */
+  min-width: 300px; 
+  height: 500px; /* ¡ALTURA CRÍTICA para que el mapa se vea! */
+  border-radius: 12px;
+  overflow: hidden; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* El componente MapContainer también debe heredar el 100% de esa altura */
+.mapa-leaflet {
+  height: 100%;
+  padding: 20px;
+}
+.mapa-info {
+  display: flex;
+  gap: 30px; 
+  
+  /* CRÍTICO: Reintroduce max-width para centrar el contenido */
+  max-width: 1200px; /* Define el ancho del contenido centrado */
+  
+  /* CRÍTICO: Centra el contenido dentro de la banda de color */
+  margin: 0 auto; 
+  
+  /* Asegúrate de que no haya un margin vertical que rompa el padding del padre */
+  /* Reemplaza: margin: 40px 0; */
+  margin: 0 auto; /* Margin sólo vertical, el horizontal lo hace 'auto' */
+
+  width: 100%; /* Permite que ocupe el espacio */
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+.info {
+  flex: 1; /* Ocupa la otra columna */
+  min-width: 300px; 
+  padding: 0 0 0 10px;
+}
+.ubi {
+  /* Estilo de la etiqueta de fondo blanco */
+  display: inline-flex; 
+  align-items: center; 
+  padding: 8px 15px; 
+  border-radius: 20px;
+  background-color: white; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px; 
+  
+}
+.ubi i {
+  color: #2CB7A6; /* Color del ícono */
+  font-size: 1.5rem; 
+  margin-right: 10px; 
+  padding-left: 20px;
+}
+.ubi h2 {
+  margin: 0; 
+  font-size: 30px;
+  font-weight: 700;
+  color: #2CB7A6; 
+  
+}
+.departamento {
+  color: #2CB7A6;
+  margin: 0 0 0 0;
+  font-size: 30px;
+  padding-left: 20px;
+  
+}
+.municipio {
+  color: #2CB7A6;
+  margin: 0 0 5px 0;
+  font-size: 30px;
+  padding-left: 20px;
+  
+}
+@media (max-width: 768px) {
+  .mapa-info {
+    flex-direction: column; 
+    gap: 20px; 
+  }
+  .mapa {
+    width: 100%;
+    height: 300px;
+    
+  } 
+}
+.info p {
+  
+  font-size: 25px;
+}
+.cuadro {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  
+}
+.btnubi {
+  display: flex;
+  
+  font-size: 30px;
+}
+
+.mapa-fondo {
+  background-color: #45acac1e; 
+  padding: 40px 0; 
+  width: 100%; 
+  margin: 0; 
+}
