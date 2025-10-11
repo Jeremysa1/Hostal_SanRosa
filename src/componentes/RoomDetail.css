@@ -1,0 +1,43 @@
+/* DIALOG Y CONTENEDOR PRINCIPAL */
+.room-detail-dialog .p-dialog-content { padding: 0; border-radius: 20px; overflow: hidden; background: #ffffff; max-width: 900px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+.room-detail-container { position: relative; }
+.room-detail-image { width: 100%; display: block; }
+
+/* BOTÓN DE CIERRE (X) */
+.close-button { position: absolute !important; top: 20px; right: 20px; background-color: #ffffff !important; border-radius: 50% !important; width: 44px !important; height: 44px !important; border: none !important; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; display: flex !important; justify-content: center !important; align-items: center !important; }
+.close-button .pi-times { color: #1abc9c !important; font-size: 1.5rem !important; font-weight: 600 !important; }
+
+/* ÁREA DE CONTENIDO GENERAL */
+.room-detail-content { padding: 2.5rem; }
+
+/* === PANEL IZQUIERDO === */
+.room-detail-title { color: #1abc9c; font-weight: 800; font-size: 1.5rem; margin-top: 0; margin-bottom: 2.5rem; letter-spacing: 0.5px; }
+.info-item { display: flex; align-items: flex-start; margin-bottom: 2rem; }
+.info-item .icon { font-size: 1.75rem; margin-right: 1rem; color: #868e96; margin-top: 0.1rem; }
+.info-item .text-content p { margin: 0; line-height: 1.5; font-size: 1rem; color: #6c757d; }
+.info-item .text-content p b { font-weight: 700; color: #495057; margin-right: 0.5rem; }
+.info-item .light-text { font-weight: 400; color: #6c757d; margin-top: 0.25rem; display: block; }
+
+/* === PANEL DERECHO === */
+.detail-right-panel { padding-left: 2.5rem !important; border-left: 1px solid #dee2e6; display: flex; flex-direction: column; }
+
+/* PARTE 1: Servicios (Grid de 3x2) */
+.amenities-grid { margin-bottom: 1.5rem; }
+.amenities-grid .amenity-item { color: #6c757d; font-size: 0.9rem; margin-bottom: 0.8rem; display: flex; align-items: center; padding: 0 !important; }
+.amenities-grid .amenity-item .pi { margin-right: 8px; font-size: 1rem; }
+
+/* PARTE 2 y 3: Sección inferior */
+.bottom-section { margin-top: auto; padding-top: 0.1rem; }
+
+/* Columna Check-in/out */
+.check-in-out-section { padding: 0 !important; display: flex; flex-direction: column; justify-content: flex-end; }
+.check-in-out-item { margin-bottom: 1rem; }
+.check-in-out-item:last-child { margin-bottom: 0; }
+.check-in-out-label { font-weight: 700; color: #495057; font-size: 0.9rem; margin: 0 0 0.1rem 0; }
+.check-in-out-item .light-text { color: #6c757d; font-size: 0.9rem; margin: 0; }
+
+/* Columna Precio/Reserva */
+.price-reserve-section { text-align: right; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 !important; }
+.price-label { font-size: 1rem; font-weight: 500; margin: 0; color: #495057; }
+.room-detail-price { font-size: 2rem; font-weight: 700; color: #343a40; margin: 0.1rem 0 0.75rem 0; }
+.reserve-button { background-color: #1abc9c !important; border: none !important; color: white !important; font-weight: 700 !important; border-radius: 50px !important; padding: 0.8rem 1.5rem !important; font-size: 1rem !important; letter-spacing: 0.5px; align-self: flex-end; }
