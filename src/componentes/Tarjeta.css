@@ -1,0 +1,96 @@
+/* src/componentes/Tarjeta.css */
+.tarjetas-container {
+  font-family: sans-serif;
+  background-color: #f0f4f8;
+}
+
+.header {
+  background-color: #2CB7A6;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header .subtitle {
+  display: inline-block; /* Hace que el fondo se ajuste al texto */
+  color: #2CB7A6;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background-color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem; /* Redondea las esquinas */
+}
+
+.header .title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.tarjetas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.tarjeta {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta-imagen {
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta-contenido {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tarjeta-titulo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2CB7A6;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.tarjeta-descripcion {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  flex-grow: 1;
+  text-align: justify;
+}
+
+.tarjeta-boton {
+  background-color: #2CB7A6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.tarjeta-boton:hover {
+  background-color: #38857c;
+}

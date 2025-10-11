@@ -1,0 +1,44 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.menu-right {
+    display: flex;
+    align-items: center;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.logo {
+  width: 200px; 
+}
+          
+.menu-item a {
+  color: #2CB7A6;
+  text-decoration: none;
+}
+
+.menu-item a:hover {
+  color: #2b776e ;
+}
+
+.reservar-btn {
+  background-color: #2CB7A6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.reservar-btn:hover {
+  background-color: #2b776e;
+}
