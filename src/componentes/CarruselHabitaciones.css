@@ -5,6 +5,8 @@
   margin: 0 auto; /* Centra el contenedor horizontalmente */
   padding: 60px 0; /* Espaciado vertical para separar la sección de otros elementos */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal para el componente */
+  position: relative; /* Clave: Crea un contexto de posicionamiento para las flechas */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 /* Contenedor para el encabezado o título de la sección */
@@ -36,7 +38,7 @@
 
 /* Contenedor que react-slick añade a cada slide. */
 .slick-slide > div {
-  padding: 20px; /* Añade espaciado alrededor de cada tarjeta para separarlas */
+  padding: 10px; /* Reduce el espaciado entre tarjetas para hacerlas más compactas */
 }
 
 /* Estilos para cada tarjeta individual de habitación */
@@ -124,25 +126,29 @@ h3 {
 /* Estilos para las flechas de navegación del carrusel */
 .slick-prev,
 .slick-next {
-  font-size: 30px; /* Tamaño de las flechas */
-  z-index: 1; /* Asegura que las flechas estén por encima de las tarjetas */
-}
-
-/* Color para los iconos de las flechas */
-.slick-prev:before,
-.slick-next:before {
-  color: #2CB7A6;
+    font-size: 2rem; /* Aumentado para un icono más grande */
+    color: #fff !important; /* Color blanco para el icono */
+    z-index: 10; /* Asegura que las flechas estén sobre las tarjetas */
+    width: 48px; /* Aumentado */
+    height: 48px; /* Aumentado */
+    background: #2CB7A6 !important; /* Fondo con el color principal */
+    border-radius: 50%; /* Hace que el contenedor sea un círculo */
+    display: flex !important; /* Usamos flexbox para centrar el icono dentro del círculo */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease; /* Transición suave para todos los cambios */
 }
 
 /* Posición de la flecha "Anterior" */
 .slick-prev {
-  left: -40px; /* La mueve hacia la izquierda, fuera del contenedor del carrusel */
+    left: 25px; /* Posiciona la flecha DENTRO del carrusel, a 25px de la izquierda */
 }
 
 /* Posición de la flecha "Siguiente" */
 .slick-next {
-  right: -40px; /* La mueve hacia la derecha, fuera del contenedor del carrusel */
+    right: 25px; /* Posiciona la flecha DENTRO del carrusel, a 25px de la derecha */
 }
+
 
 /* Contenedor para el botón "Ver más habitaciones" */
 .ver-mas-container {
@@ -170,51 +176,24 @@ h3 {
 
 /* Media Queries */
 
-@media (max-width: 1360px) {
-  .carrusel-habitaciones-container {
-    width: 95%;
-  }
-  .slick-prev {
-    left: -20px;
-  }
-  .slick-next {
-    right: -20px;
-  }
-}
-
 @media (max-width: 1024px) {
   .carrusel-habitaciones-container {
-    padding: 40px 0;
+    width: 100%;
+    padding: 60px 40px; /* Restaurado el padding vertical y mantenido el horizontal */
   }
-  .carrusel-title-button {
-    font-size: 20px;
-    padding: 8px 25px;
+
+  /* Ajusta la posición de las flechas para que se sienten dentro del nuevo padding */
+  .slick-prev {
+    left: -5px; /* La mueve ligeramente hacia el área de padding */
   }
-  .habitacion-card img {
-    height: 200px;
-  }
-  .habitacion-info {
-    padding: 15px;
-  }
-  h3 {
-    font-size: 16px;
-  }
-  .reservar-button {
-    padding: 6px 20px;
-    font-size: 13px;
-  }
-  .ver-mas-button {
-    padding: 10px 35px;
-    font-size: 16px;
+  .slick-next {
+    right: -5px; /* La mueve ligeramente hacia el área de padding */
   }
 }
 
 @media (max-width: 768px) {
-  .slick-slide > div {
-    padding: 10px;
-  }
   .slick-prev, .slick-next {
-    display: none !important; /* Oculta las flechas en pantallas muy pequeñas */
+    display: none !important; /* Oculta las flechas en pantallas pequeñas, donde se usa el tacto */
   }
   .habitacion-card:hover {
     transform: none;
@@ -223,21 +202,7 @@ h3 {
   .ver-mas-container {
     margin-top: 20px;
   }
-}
-
-@media (max-width: 480px) {
   .carrusel-habitaciones-container {
-    width: 100%;
-    padding: 20px 0;
-  }
-  .carrusel-title-button {
-    font-size: 18px;
-    padding: 6px 20px;
-  }
-  .habitacion-card img {
-    height: 180px;
-  }
-  h3 {
-    font-size: 15px;
+    padding: 40px 20px; /* Reduce un poco el padding en móviles para dar más espacio */
   }
 }

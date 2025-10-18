@@ -9,8 +9,14 @@ import './CarruselHabitaciones.css'; // Estilos específicos para este component
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Definición de la interfaz para las props de las flechas personalizadas
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+
 // Array de objetos que contiene la información de cada habitación.
-// Estos datos simulan lo que vendría de una base de datos o una API.
 const habitaciones = [
   {
     imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
@@ -45,7 +51,7 @@ const habitaciones = [
 ];
 
 // Componente personalizado para la flecha de navegación "Anterior" del carrusel.
-const PrevArrow = (props) => {
+const PrevArrow = (props: ArrowProps) => {
   const { className, style, onClick } = props;
   return (
     <div className={className} style={{ ...style }} onClick={onClick}>
@@ -55,7 +61,7 @@ const PrevArrow = (props) => {
 };
 
 // Componente personalizado para la flecha de navegación "Siguiente" del carrusel.
-const NextArrow = (props) => {
+const NextArrow = (props: ArrowProps) => {
   const { className, style, onClick } = props;
   return (
     <div className={className} style={{ ...style }} onClick={onClick}>
@@ -71,10 +77,26 @@ const CarruselHabitaciones: React.FC = () => {
     dots: false, // No mostrar los puntos de navegación.
     infinite: true, // Hacer el carrusel infinito.
     speed: 500, // Velocidad de la transición en milisegundos.
-    slidesToShow: 3, // Número de tarjetas a mostrar a la vez.
+    slidesToShow: 3, // Número de tarjetas a mostrar a la vez en escritorio.
     slidesToScroll: 1, // Número de tarjetas a desplazar al hacer clic en las flechas.
     prevArrow: <PrevArrow />, // Usar el componente personalizado para la flecha anterior.
     nextArrow: <NextArrow />, // Usar el componente personalizado para la flecha siguiente.
+    responsive: [ // **ESTA ES LA PARTE QUE FALTABA**
+      {
+        breakpoint: 1024, // Para pantallas de 1024px o menos...
+        settings: {
+          slidesToShow: 2, // ...mostrar 2 tarjetas.
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768, // Para pantallas de 768px o menos...
+        settings: {
+          slidesToShow: 1, // ...mostrar 1 sola tarjeta.
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
 
   // Renderizado del componente.

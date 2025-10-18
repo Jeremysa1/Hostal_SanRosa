@@ -1,10 +1,10 @@
 .menu {
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #f8f8f8;
-  border-bottom: 1px solid #ddd;
   position: relative; /* Añadido para el posicionamiento del menú hamburguesa */
 }
 
@@ -22,6 +22,13 @@
   border: none;
   cursor: pointer;
   color: #2CB7A6; /* Color del icono de hamburguesa */
+  padding: 5px; /* Añade un poco de espacio para el contorno */
+}
+
+/* Estilo para cuando el botón de hamburguesa está seleccionado (focus) */
+.menu-toggle:focus {
+  outline: 1px solid #ccc; /* Contorno gris claro y sutil */
+  border-radius: 5px;
 }
 
 .menu-right {
@@ -37,15 +44,19 @@
 }
 
 .menu-item {
-  margin: 20px;
+  margin: 0 20px; /* Margen para separar los items en escritorio */
 }
 
 .menu-item a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #2CB7A6;
-  font-weight: bold;
+  color: #bebebe;
+  transition: color 0.3s; /* Transición solo para el color */
+}
+
+.menu-item a:hover {
+  color: #2CB7A6; /* Un tono más oscuro del color base */
 }
 
 .menu-item a span {
@@ -58,9 +69,14 @@
   background-color: #2CB7A6;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+.reservar-btn:hover {
+  background-color: #218377; /* Oscurece el botón al pasar el mouse */
 }
 
 @media (max-width: 768px) {
@@ -103,9 +119,11 @@
   
   .menu-item a {
     justify-content: flex-end; /* Alinea el contenido a la derecha */
-    padding: 20px 40px; /* Añade padding para separar el texto del borde */
+    padding: 20px 40px; /* El padding es necesario para el espaciado en móvil */
     box-sizing: border-box;
   }
+  
+  /* El :hover definido arriba se aplicará aquí también, cambiando solo el color del texto */
 
   .reservar-btn {
     margin: 30px 40px 0 0;
