@@ -1,0 +1,39 @@
+
+.termales-container {
+  font-family: sans-serif;
+  text-align: left;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.termales-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #20c997;
+  margin: 0;
+}
+
+.termales-subtitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: #20c997;
+  margin: 0;
+}
+
+.termales-description {
+  font-size: 16px;
+  color: #6c757d;
+  margin: 20px 0;
+}
+
+.reserva-button {
+  background-color: #20c997;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
