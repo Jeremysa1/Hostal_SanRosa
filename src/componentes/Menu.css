@@ -1,0 +1,55 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  background-color: #f8f8f8;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+
+.logo {
+  width: 200px;
+  display: block; 
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item a {
+  color: #2CB7A6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+}
+
+.menu-item a:hover {
+  color: #2b776e;
+}
+
+.reservar-btn {
+  background-color: #2CB7A6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-left: 3rem; 
+  border-radius: 5px; 
+}
+
+.reservar-btn:hover {
+  background-color: #2b776e;
+}

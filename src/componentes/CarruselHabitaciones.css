@@ -54,7 +54,7 @@
 /* Efecto al pasar el mouse sobre una tarjeta */
 .habitacion-card:hover {
   transform: scale(1.05); /* Agranda ligeramente la tarjeta */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
   z-index: 10; /* Trae la tarjeta al frente para que no sea tapada por otras */
 }
 
