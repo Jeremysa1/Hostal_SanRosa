@@ -125,8 +125,13 @@ h3 {
 .slick-prev,
 .slick-next {
   font-size: 30px; /* Tamaño de las flechas */
-  color: #2CB7A6; /* Color de las flechas */
   z-index: 1; /* Asegura que las flechas estén por encima de las tarjetas */
+}
+
+/* Color para los iconos de las flechas */
+.slick-prev:before,
+.slick-next:before {
+  color: #2CB7A6;
 }
 
 /* Posición de la flecha "Anterior" */
@@ -161,4 +166,78 @@ h3 {
 /* Efecto al pasar el mouse sobre el botón "Ver más habitaciones" */
 .ver-mas-button:hover {
   background-color: #218377; /* Oscurece ligeramente el botón */
+}
+
+/* Media Queries */
+
+@media (max-width: 1360px) {
+  .carrusel-habitaciones-container {
+    width: 95%;
+  }
+  .slick-prev {
+    left: -20px;
+  }
+  .slick-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carrusel-habitaciones-container {
+    padding: 40px 0;
+  }
+  .carrusel-title-button {
+    font-size: 20px;
+    padding: 8px 25px;
+  }
+  .habitacion-card img {
+    height: 200px;
+  }
+  .habitacion-info {
+    padding: 15px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .reservar-button {
+    padding: 6px 20px;
+    font-size: 13px;
+  }
+  .ver-mas-button {
+    padding: 10px 35px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slick-slide > div {
+    padding: 10px;
+  }
+  .slick-prev, .slick-next {
+    display: none !important; /* Oculta las flechas en pantallas muy pequeñas */
+  }
+  .habitacion-card:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .ver-mas-container {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrusel-habitaciones-container {
+    width: 100%;
+    padding: 20px 0;
+  }
+  .carrusel-title-button {
+    font-size: 18px;
+    padding: 6px 20px;
+  }
+  .habitacion-card img {
+    height: 180px;
+  }
+  h3 {
+    font-size: 15px;
+  }
 }

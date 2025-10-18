@@ -14,11 +14,29 @@
 }
 
 .copyright-text {
-  color: #000000;
+  color: #666;
 }
 
 .social-icons a {
   margin: 0 10px;
-  color: #008080; /* Teal color */
+  color: #2CB7A6; /* Teal color */
   font-size: 24px;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  .copyright-text {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons a {
+    font-size: 20px;
+    margin: 0 8px;
+  }
 }

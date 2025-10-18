@@ -19,7 +19,7 @@
   .descripcion-texto h2 {
     font-size: 24px;
     font-weight: normal;
-    color: #009688;
+    color: #2CB7A6;
   }
   
   .descripcion-texto h2 strong {
@@ -29,6 +29,57 @@
   .descripcion-texto p {
     font-size: 16px;
     line-height: 1.6;
-    color: #555;
+    color: #666;
   }
   
+
+  /* Media Queries */
+
+@media (max-width: 1360px) {
+  .descripcion-imagen img {
+    width: 350px;
+  }
+  .descripcion-texto h2 {
+    font-size: 22px;
+  }
+  .descripcion-texto p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .descripcion-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .descripcion-imagen img {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  .descripcion-texto {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .descripcion-container {
+    margin: 10px;
+    padding: 10px;
+  }
+  .descripcion-texto h2 {
+    font-size: 20px;
+  }
+  .descripcion-texto p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .descripcion-texto h2 {
+    font-size: 18px;
+  }
+  .descripcion-texto p {
+    font-size: 13px;
+  }
+}
