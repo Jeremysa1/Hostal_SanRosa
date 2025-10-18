@@ -5,10 +5,10 @@ import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <>
       <Menu />
       <Tarjetas />
-    </div>
+    </>
   );
 };
 

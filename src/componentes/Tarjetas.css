@@ -1,0 +1,7 @@
+.tarjetas-container {
+  /* padding: 0 4rem; <-- This will be removed */
+}
+
+.tarjetas-list {
+    padding: 0 4rem;
+}

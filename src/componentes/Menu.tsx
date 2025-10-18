@@ -1,36 +1,28 @@
 import React from 'react';
 import './Menu.css';
-import logo from '../assets/logo.svg';
+import logo from '../assets/LOGO-HOSTAL.svg';
+import { FaBed, FaMapMarkedAlt } from 'react-icons/fa';
 
 const Menu: React.FC = () => {
-  const menuStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem 0',
-    width: '100%',
-    backgroundColor: '#f8f8f8',
-  };
-
-  const logoContainerStyle: React.CSSProperties = {
-    marginRight: '1cm',
-  };
-
-  const menuRightStyle: React.CSSProperties = {
-    marginRight: '1cm',
-    display: 'flex',
-    alignItems: 'center',
-  };
-
   return (
-    <nav style={menuStyle}>
-      <div style={logoContainerStyle}>
+    <nav className="menu">
+      <div className="logo-container">
         <img src={logo} alt="logo" className="logo" />
       </div>
-      <div style={menuRightStyle}>
+      <div className="menu-right">
         <ul className="menu-list">
-          <li className="menu-item"><a href="/habitaciones">Habitaciones</a></li>
-          <li className="menu-item"><a href="/turismo">Turismo</a></li>
+          <li className="menu-item">
+            <a href="/habitaciones">
+              <FaBed size={30} />
+              <span>Habitaciones</span>
+            </a>
+          </li>
+          <li className="menu-item">
+            <a href="/turismo">
+              <FaMapMarkedAlt size={30} />
+              <span>Turismo</span>
+            </a>
+          </li>
         </ul>
         <button className="reservar-btn">Reservar Ya</button>
       </div>
