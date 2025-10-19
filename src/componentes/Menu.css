@@ -131,3 +131,9 @@
     box-sizing: border-box;
   }
 }
+
+@media (max-width: 320px) {
+  .logo {
+      width: 150px;
+    }
+}

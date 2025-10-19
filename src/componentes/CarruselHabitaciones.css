@@ -4,7 +4,6 @@
   max-width: 1200px; /* Ancho máximo para evitar que se estire demasiado en pantallas grandes */
   margin: 0 auto; /* Centra el contenedor horizontalmente */
   padding: 60px 0; /* Espaciado vertical para separar la sección de otros elementos */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal para el componente */
   position: relative; /* Clave: Crea un contexto de posicionamiento para las flechas */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
