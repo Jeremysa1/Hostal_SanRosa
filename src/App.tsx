@@ -1,6 +1,7 @@
 import React from 'react';
 import Tarjetas from './componentes/Tarjetas';
 import Menu from './componentes/Menu';
+import Footer from './componentes/Footer';
 import './App.css';
 
 const App: React.FC = () => {
@@ -8,6 +9,7 @@ const App: React.FC = () => {
     <>
       <Menu />
       <Tarjetas />
+      <Footer />
     </>
   );
 };
