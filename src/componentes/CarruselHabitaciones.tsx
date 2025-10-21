@@ -19,32 +19,32 @@ interface ArrowProps {
 // Array de objetos que contiene la información de cada habitación.
 const habitaciones = [
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_9_mhcbqn.png',
     titulo: 'Habitación DOBLE',
     rating: 4.0,
   },
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_8_r3raa1.png',
     titulo: 'Habitación TRIPLE',
     rating: 4.5,
   },
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_4_xxw1ne.png',
     titulo: 'Habitación PARA 5',
     rating: 5.0,
   },
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_2_vatjj0.png',
     titulo: 'Habitación FAMILIAR',
     rating: 4.8,
   },
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760066812/habitacion_11_b4afjs.png',
     titulo: 'SUITE DE LUJO',
     rating: 5.0,
   },
   {
-    imagen: 'https://image-tc.galaxy.tf/wijpeg-5srw8mjtza6abfwrpha1r5lmg/habitacion-special-double_standard.jpg?crop=107%2C0%2C1707%2C1280',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_8_r3raa1.png',
     titulo: 'Habitación INDIVIDUAL',
     rating: 4.2,
   },
