@@ -6,7 +6,7 @@
   padding: 40px 20px; /* Espaciado interno (vertical y horizontal) reducido */
   color: #fff; /* Color del texto blanco */
   text-align: center; /* Centra el texto de los items */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif; /* Cambio a Poppins */
   flex-wrap: wrap; /* Permite que los items pasen a la siguiente línea en pantallas pequeñas */
 }
 
@@ -20,7 +20,7 @@
 }
 
 .icono {
-  font-size: 80px; /* Tamaño de los íconos, ligeramente reducido */
+  font-size: 60px; /* Tamaño de los íconos, ligeramente reducido */
   margin-bottom: 0; /* Espacio debajo del ícono eliminado */
   padding-bottom: 0;
 }
@@ -28,7 +28,7 @@
 h4 {
   font-size: 22px; /* Tamaño del título de cada item */
   font-weight: bold;
-  margin-bottom: 0; /* Espacio debajo del título eliminado */
+  margin: 10px 0px 0px 0px; /* Espacio debajo del título eliminado */
 }
 
 p {
@@ -64,7 +64,7 @@ p {
     padding: 25px 10px;
   }
   .icono-item {
-    max-width: 220px;
+    max-width: 200px;
   }
   .icono {
     font-size: 60px;
