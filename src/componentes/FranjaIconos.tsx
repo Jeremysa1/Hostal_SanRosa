@@ -1,27 +1,33 @@
 
 import React from 'react';
-import { PiPlantLight } from "react-icons/pi";
-import { GoSmiley } from "react-icons/go";
-import { BsHouseHeart } from "react-icons/bs";
+import { FaBed, FaUtensils, FaCouch, FaRestroom } from 'react-icons/fa';
 import './FranjaIconos.css';
 
 const FranjaIconos: React.FC = () => {
   return (
     <div className="franja-iconos-container">
-      <div className="icono-item">
-        <GoSmiley className="icono" />
-        <h4>Ambiente sano</h4>
-        <p>Un espacio libre de humo y excesos, ideal para descansar.</p>
+      <div className="habitaciones-button">
+        <FaBed className="habitaciones-icon" />
+        <span>HABITACIONES</span>
       </div>
-      <div className="icono-item">
-        <BsHouseHeart className="icono" />
-        <h4>Hogar familiar</h4>
-        <p>La calidez de sentirse como en casa, en un entorno acogedor.</p>
-      </div>
-      <div className="icono-item">
-        <PiPlantLight className="icono" />
-        <h4>Entorno ecológico</h4>
-        <p>Un lugar limpio y consciente para disfrutar con tranquilidad.</p>
+      <h2 className="titulo-principal">COMPARTE, DESCANSA Y DISFRUTA</h2>
+      <h3 className="subtitulo">en nuestros espacios comunes</h3>
+      <div className="iconos-wrapper">
+        <div className="icono-item">
+          <FaUtensils className="icono" />
+          <h4>Cocina compartida</h4>
+          <p>Equipada para que prepares tus comidas.</p>
+        </div>
+        <div className="icono-item">
+          <FaCouch className="icono" />
+          <h4>Sala común</h4>
+          <p>Un espacio para descansar y compartir.</p>
+        </div>
+        <div className="icono-item">
+          <FaRestroom className="icono" />
+          <h4>Baños compartidos</h4>
+          <p>Cómodos y limpios para todos los huéspedes.</p>
+        </div>
       </div>
     </div>
   );

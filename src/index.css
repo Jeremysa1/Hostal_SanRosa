@@ -1,3 +1,4 @@
+
 /* --- ESTILOS GENERALES --- */
 /* Define las propiedades raíz que se aplican a toda la aplicación. */
 :root {
@@ -28,10 +29,9 @@
 body {
   /* Elimina el margen por defecto. */
   margin: 0;
-  /* Usa flexbox para centrar el contenido. */
-  display: flex;
-  /* Centra el contenido en el medio de la página. */
-  place-items: center;
+  /* Se eliminan las propiedades flex para permitir contenido de ancho completo */
+  /* display: flex; */
+  /* place-items: center; */
   /* Define el ancho mínimo. */
   min-width: 320px;
   /* Define la altura mínima para que ocupe toda la pantalla. */
