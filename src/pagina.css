@@ -1,0 +1,66 @@
+.Pagina-imagen img {
+    height: 750px;
+    width: 100%;
+}
+
+.titulo {
+    background-color: #ffffff;
+}
+
+.texto {
+    background-color: #ffffff;
+    padding: 0px 20px;
+    margin: 20px;
+    font-size: 16px;
+}
+
+.titulo {
+    color: #2CB7A6;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 40px;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.subtitulo {
+    font-size: 2rem;
+    color: #2CB7A6;
+    line-height: 1.5;
+    flex-grow: 1;
+    text-align: justify;
+    margin: 0;
+}
+h1{
+    margin: 20px 0px 0px;
+
+}
+.boton {
+    /* 🎨 Color y Forma */
+    background-color: #2CB7A6;
+    color: #ffffff; /* Mueve el color del texto aquí */
+    border-radius: 15px; /* Aumentamos el radio para esas esquinas más curvas */
+    border: none;
+    cursor: pointer;
+    
+    /* 📏 Dimensiones y Centrado */
+    /* El padding (relleno) define el tamaño del botón alrededor del texto */
+    padding: 5px 10px; 
+    margin: 0px;
+    /* El display: inline-block asegura que el botón solo ocupe el espacio necesario */
+    display: inline-block; 
+   
+    /* ⚙️ Tipografía */
+    font-size: 16px; /* Aumentamos el tamaño para que se vea como en la imagen */
+    font-weight: bold; /* Usamos font-weight en lugar de font-style: bold */
+    text-transform: uppercase; /* Para que el texto esté en mayúsculas */
+    text-align: center;
+    text-decoration: none; /* Útil si es un enlace <a> */
+}
+.boton:hover{
+    background-color: #1c7c71;
+}
+.boton:focus {
+    outline: none;
+    background-color: #1c7c71;
+}

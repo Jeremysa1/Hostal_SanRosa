@@ -12,7 +12,7 @@ import shadow from 'leaflet/dist/images/marker-shadow.png';
 
 
 // TUS COORDENADAS CORREGIDAS
-const DEFAULT_COORDS: [number, number] = [4.86652, -75.62385];
+const DEFAULT_COORDS: [number, number] = [4.83925, -75.54924];
 const DEFAULT_ZOOM: number = 17; // Zoom alto para ver la calle
 
 // Solución para que el ícono de marcador se vea correctamente
