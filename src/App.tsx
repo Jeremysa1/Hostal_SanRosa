@@ -3,6 +3,9 @@ import './App.css';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { CustomCard } from './componentes/CustomCard.tsx';
 import { RoomDetail } from './componentes/RoomDetail.tsx';
+import Menu from './componentes/Menu.tsx';
+import FranjaIconos from './componentes/FranjaIconos.tsx';
+import Footer from './componentes/Footer.tsx';
 
 function App() {
     // --- ESTADO DEL COMPONENTE ---
@@ -66,22 +69,27 @@ function App() {
 
     // --- RENDERIZADO DEL COMPONENTE ---
     return (
-      // Contenedor principal con una cuadrícula (grid) y un padding.
-      <div className="grid p-5">
-        {/* Mapea los datos de las tarjetas para renderizar cada componente Card. */}
-        {cardData.map((data, index) => (
-          // Define el tamaño de la columna en la cuadrícula.
-          <div key={index} className="col-12 md:col-6 lg:col-4">
-            {/* Renderiza el componente Card con los datos y la función para manejar el clic. */}
-            <CustomCard {...data} onCardClick={() => setSelectedRoom(data)} />
-          </div>
-        ))}
+      <>
+        <Menu />
+        <FranjaIconos />
+        {/* Contenedor principal con una cuadrícula (grid) y un padding. */}
+        <div className="grid p-5">
+          {/* Mapea los datos de las tarjetas para renderizar cada componente Card. */}
+          {cardData.map((data, index) => (
+            // Define el tamaño de la columna en la cuadrícula.
+            <div key={index} className="col-12 md:col-6 lg:col-4">
+              {/* Renderiza el componente Card con los datos y la función para manejar el clic. */}
+              <CustomCard {...data} onCardClick={() => setSelectedRoom(data)} />
+            </div>
+          ))}
 
-        {/* Renderiza la ventana emergente (RoomDetail) solo si hay una habitación seleccionada. */}
-        {selectedRoom && (
-          <RoomDetail room={selectedRoom} visible={selectedRoom !== null} onHide={() => setSelectedRoom(null)} />
-        )}
-      </div>
+          {/* Renderiza la ventana emergente (RoomDetail) solo si hay una habitación seleccionada. */}
+          {selectedRoom && (
+            <RoomDetail room={selectedRoom} visible={selectedRoom !== null} onHide={() => setSelectedRoom(null)} />
+          )}
+        </div>
+        <Footer />
+      </>
     );
 }
 
