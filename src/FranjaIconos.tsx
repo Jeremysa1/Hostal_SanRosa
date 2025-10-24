@@ -12,19 +12,19 @@ const FranjaIconos: React.FC = () => {
       <div className="icono-item">
         <IoLocationOutline className="icono" />
         <h4>Ubicación</h4>
-        <p>A 15 minutos en carro desde
+        <p className='i1'>A 15 minutos en carro desde
         Turquesa Hostel.</p>
       </div>
       <div className="icono-item">
         <IoCameraOutline className="icono" />
         <h4>Actividades</h4>
-        <p>Baños termales, caminatas
+        <p className='i1'>Baños termales, caminatas
         cortas, fotografía.</p>
       </div>
       <div className="icono-item">
         <HiOutlineLightBulb className="icono" />
         <h4>Tips</h4>
-        <p>Lleva traje de baño, sandalias
+        <p className='i1'>Lleva traje de baño, sandalias
         y una muda extra de ropa.</p>
       </div>
     </div>

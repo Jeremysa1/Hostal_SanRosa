@@ -105,6 +105,13 @@
     }
     p {
       font-size: 13px;
+      padding: 0;
+      text-align: left;
+    }
+    .i1{
+      font-size: 13px;
+      padding: 0;
+      text-align: center;
     }
   }
   

@@ -7,44 +7,7 @@
   padding: 20px;
   width: 100%;  
   overflow: hidden;
-  
 }
-
-.hostel-image {
-  flex: 1;
-  max-width: 600px;
-}
-
-.hostel-image img {
-  width: 100%;
-  height: auto;
-  display: flex;
-  border-radius: 12px;
-}
-
-.hostel-text {
-  flex: 1;
-  padding: 20px;
-  max-width: 600px;
-  color: rgb(0, 0, 0);
-}
-
-.hostel-text h2 {
-  font-size: 30px;
-  color: #2CB7A6;
-  margin-bottom: 10px;
-}
-
-.hostel-text h2 strong {
-  font-weight: bold;
-}
-
-.hostel-text p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
-}
-/* HostelDescription.css */
 
 /* CRÍTICO: El div 'mapa' debe tener una altura definida */
 .mapa {
@@ -55,28 +18,21 @@
   overflow: hidden; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin: 40px;
-  
 }
 
-/* El componente MapContainer también debe heredar el 100% de esa altura */
 .mapa-leaflet {
   height: 100%;
   padding: 20px;
+  
 }
 .mapa-info {
   display: flex;
   gap: 30px; 
+  justify-content: center;
   
   /* CRÍTICO: Reintroduce max-width para centrar el contenido */
-  max-width: 1200px; /* Define el ancho del contenido centrado */
-  
-  /* CRÍTICO: Centra el contenido dentro de la banda de color */
-  margin: 0 auto; 
-  
-  /* Asegúrate de que no haya un margin vertical que rompa el padding del padre */
-  /* Reemplaza: margin: 40px 0; */
-  margin: 0 auto; /* Margin sólo vertical, el horizontal lo hace 'auto' */
-
+  max-width: 1000px; /* Define el ancho del contenido centrado */
+  margin: 0;
   width: 100%; /* Permite que ocupe el espacio */
   padding: 0 20px;
   flex-wrap: wrap;
@@ -121,20 +77,8 @@
   color: #2CB7A6;
   margin: 0 0 5px 0;
   font-size: 30px;
-  
-  
 }
-@media (max-width: 768px) {
-  .mapa-info {
-    flex-direction: column; 
-    gap: 20px; 
-  }
-  .mapa {
-    width: 100%;
-    height: 300px;
-    
-  } 
-}
+
 .info p {
   
   font-size: 16px;
@@ -142,13 +86,10 @@
 .cuadro {
   display: flex;
   align-items: center;
-  gap: 30px;
   width: 100%;
-  
 }
 .btnubi {
   display: flex;
-  
   font-size: 30px;
 }
 
@@ -157,4 +98,48 @@
   padding: 40px 0; 
   width: 100%; 
   margin: 0; 
+  justify-content: center;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hostel-description-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .mapa {
+        width: 100%;
+        margin: 0;
+
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .hostel-description-container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 20px;
+    }
+
+    .mapa {
+        height: 300px;
+     
+  margin: 0px 20px;
+
+    }
+
+    .info {
+        padding: 0;
+    }
+
+    .ubi h2,
+    .departamento,
+    .municipio {
+        font-size: 24px;
+    }
+
+    .info p {
+        font-size: 14px;
+        text-align: justify;
+    }
 }

@@ -1,5 +1,5 @@
-.Pagina-imagen img {
-    height: 750px;
+ .Pagina-imagen img {
+    height: 500px;
     width: 100%;
 }
 
@@ -12,17 +12,16 @@
     padding: 0px 300px;
     margin: 20px;
     font-size: 16px;
-    text-align: center;
-    
+    text-align: center;   
 }
 
 .titulo {
     color: #2CB7A6;
     font-size: 16px;
     font-weight: bold;
-    margin-left: 40px;
     text-align: center;
     margin-bottom: 0;
+    width: 100%;
 }
 
 .subtitulo {
@@ -35,7 +34,6 @@
 }
 h1{
     margin: 20px 0px 0px;
-
 }
 .boton {
     /* 🎨 Color y Forma */
@@ -65,4 +63,102 @@ h1{
 .boton:focus {
     outline: none;
     background-color: #1c7c71;
+}
+
+@media (max-width: 360px) {
+    .titulo {
+        justify-content: center;
+    }
+}
+
+@media  (max-width: 1360px) {
+    .Pagina-imagen img {
+        height: 500px;
+    }
+    .subtitulo {
+        font-size: 1.5rem;
+    }
+.boton{
+    padding: 5px 10px; 
+    margin: 0px;
+    /* El display: inline-block asegura que el botón solo ocupe el espacio necesario */
+    display: inline-block; 
+    justify-content: center;
+}
+    .texto {
+        font-size: 14px;
+        margin: 4px 0px 4px 0px;
+        padding: 0px 40px;
+        text-align: justify;
+    }
+
+    .titulo {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titulo strong {
+        display: contents;
+    }
+}
+
+@media  (max-width: 768px) {
+    .Pagina-imagen img {
+        height: 300px;
+    }
+
+    .subtitulo {
+        font-size: 1.5rem;
+    }
+
+    .texto {
+        font-size: 14px;
+        margin: 4px 0px 4px 0px;
+        padding: 0px 20px;
+    }
+
+    .titulo {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titulo strong {
+        display: contents;
+    }
+
+    .imagen-escritorio {
+        display: none; /* Oculta la imagen de escritorio */
+    }
+
+    .imagen-movil {
+        display: block; /* Muestra la imagen de móvil */
+        max-width: 100%;
+        height: auto;
+    }
+    
+    
+}
+.imagen-movil {
+    display: none; /* Oculta la imagen de móvil por defecto */
+}
+
+.imagen-escritorio {
+    display: block; /* Muestra la imagen de escritorio por defecto */
+    max-width: 100%;
+    height: auto;
+}
+@media  (max-width: 480px){
+    .imagen-escritorio {
+        display: none; /* Oculta la imagen de escritorio */
+    }
+
+    .imagen-movil {
+        display: block; /* Muestra la imagen de móvil */
+        max-width: 100%;
+        height: auto;
+    }
 }
