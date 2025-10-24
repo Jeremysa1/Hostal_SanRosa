@@ -1,5 +1,11 @@
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { LuShowerHead } from "react-icons/lu";
+import { BsDashLg } from "react-icons/bs";
+import { BiCloset } from "react-icons/bi";
+import { LiaCouchSolid } from "react-icons/lia";
+import { MdOutlineTableRestaurant } from "react-icons/md";
+import { FaWifi, FaTv, FaCheck, FaUserFriends, FaInbox, FaTimes, } from 'react-icons/fa';
 import './RoomDetail.css';
 
 interface RoomDetailProps {
@@ -8,11 +14,33 @@ interface RoomDetailProps {
     room: {
         detailImageUrl: string;
         subtitle: string;
+        services: string[];
     };
 }
 
 export const RoomDetail = (props: RoomDetailProps) => {
     if (!props.room) return null;
+
+    const getServiceIcon = (service: string) => {
+        switch (service) {
+            case "Wi-Fi":
+                return <FaWifi />;
+            case "Televisión":
+                return <FaTv />;
+            case "Repisa":
+                return <BsDashLg />;
+            case "Closet":
+                return <BiCloset />;
+            case "Sofá cama":
+                return <LiaCouchSolid />;
+            case "Agua caliente":
+                return <LuShowerHead />;
+            case "Mesa de trabajo":
+                return <MdOutlineTableRestaurant />;
+            default:
+                return <FaCheck />;
+        }
+    };
 
     return (
         <Dialog 
@@ -24,20 +52,20 @@ export const RoomDetail = (props: RoomDetailProps) => {
         >
             <div className="room-detail-container">
                 <img src={props.room.detailImageUrl} alt={`Habitación ${props.room.subtitle}`} className="room-detail-image" />
-                <Button icon="pi pi-times" className="p-button-rounded close-button" onClick={props.onHide} />
+                <Button icon={<FaTimes />} className="p-button-rounded close-button" onClick={props.onHide} />
 
                 <div className="room-detail-content grid">
                     {/* ========= PANEL IZQUIERDO ========= */}
                     <div className="col-6">
                         <h1 className="room-detail-title">HABITACIÓN {props.room.subtitle}</h1>
                         <div className="info-item">
-                            <i className="pi pi-users icon"></i>
+                            <FaUserFriends className="icon" />
                             <div className="text-content">
                                 <p><b>Capacidad:</b> 5 personas</p>
                             </div>
                         </div>
                         <div className="info-item">
-                            <i className="pi pi-inbox icon"></i>
+                            <FaInbox className="icon" />
                             <div className="text-content">
                                 <p><b>Camas:</b></p>
                                 <p className="light-text">1 camas dobles</p>
@@ -50,8 +78,12 @@ export const RoomDetail = (props: RoomDetailProps) => {
                     <div className="col-6 detail-right-panel">
                         {/* --- Servicios (3 columnas x 2 filas) --- */}
                         <div className="amenities-grid grid">
-                            <div className="col-4 amenity-item"><i className="pi pi-wifi"></i>Wifi</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-desktop"></i>Agua caliente</div>
+                            {props.room.services && props.room.services.map((service, index) => (
+                                <div key={index} className="col-4 amenity-item">
+                                    {getServiceIcon(service)}
+                                    <span>{service}</span>
+                                </div>
+                            ))}
                         </div>
 
                         {/* --- Sección inferior combinada --- */}
