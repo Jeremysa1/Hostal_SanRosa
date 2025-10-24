@@ -15,49 +15,49 @@ function App() {
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_9_mhcbqn.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068145/pop_9_ilwxua.png",
-        title: "Habitación",
-        subtitle: "DOBLE",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        title: "01. Habitación",
+        subtitle: "FAMILIAR",
+        description: "Perfecta para familias o grupos pequeños.",
         rating: 3
       },
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_3_tyjjyj.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068140/pop_3_xpdf6d.png",
-        title: "Habitación",
-        subtitle: "PARA 3",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        title: "02. Habitación",
+        subtitle: "DOBLE",
+        description: "Diseñada para parejas o viajeros que buscan comodidad.",
         rating: 4
       },
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_4_xxw1ne.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068141/pop_4_rmiegd.png",
-        title: "Habitación",
-        subtitle: "PARA 4",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        title: "03. Habitación",
+        subtitle: "FAMILIAR",
+        description: "Amplia y cómoda, ideal para grupos grandes.",
         rating: 2
       },
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_1_c2dcmu.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068139/pop_1_y8szeq.png",
-        title: "Habitación",
-        subtitle: "PARA 5",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        title: "04. Habitación",
+        subtitle: "TRIPLE",
+        description: "Espacio funcional y tranquilo, ideal para amigos o familias pequeñas.",
         rating: 3
       },
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_5_jb3zxx.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068142/pop_6_oepcso.png", 
-        title: "Habitación",
-        subtitle: "PARA 6",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        title: "05. Habitación",
+        subtitle: "DOBLE",
+        description: "Acogedora y práctica, perfecta para descansar después de un día de viaje.",
         rating: 4
       },
       {
         imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_7_onpc4d.png",
         detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760068143/pop_7_wnj3v0.png",
-        title: "Habitación",
+        title: "06. Habitación",
         subtitle: "SUITE",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.",
+        description: "Nuestra habitación más completa, ideal para quienes buscan mayor confort.",
         rating: 5
       }
     ];

@@ -33,15 +33,15 @@ export const RoomDetail = (props: RoomDetailProps) => {
                         <div className="info-item">
                             <i className="pi pi-users icon"></i>
                             <div className="text-content">
-                                <p><b>Capacidad:</b> 6 Personas</p>
+                                <p><b>Capacidad:</b> 5 personas</p>
                             </div>
                         </div>
                         <div className="info-item">
                             <i className="pi pi-inbox icon"></i>
                             <div className="text-content">
                                 <p><b>Camas:</b></p>
-                                <p className="light-text">2 camas dobles</p>
-                                <p className="light-text">2 camas individuales</p>
+                                <p className="light-text">1 camas dobles</p>
+                                <p className="light-text">3 camas individuales</p>
                             </div>
                         </div>
                     </div>
@@ -50,12 +50,8 @@ export const RoomDetail = (props: RoomDetailProps) => {
                     <div className="col-6 detail-right-panel">
                         {/* --- Servicios (3 columnas x 2 filas) --- */}
                         <div className="amenities-grid grid">
-                            <div className="col-4 amenity-item"><i className="pi pi-wifi"></i>WIFI</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-desktop"></i>TV</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-key"></i>Closet</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-shopping-cart"></i>Servicio de lavandería</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-sun"></i>Se permiten mascotas</div>
-                            <div className="col-4 amenity-item"><i className="pi pi-car"></i>Estacionamiento gratuito</div>
+                            <div className="col-4 amenity-item"><i className="pi pi-wifi"></i>Wifi</div>
+                            <div className="col-4 amenity-item"><i className="pi pi-desktop"></i>Agua caliente</div>
                         </div>
 
                         {/* --- Sección inferior combinada --- */}
@@ -68,7 +64,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                                 </div>
                                 <div className="check-in-out-item">
                                     <p className="check-in-out-label">Check-out:</p>
-                                    <p className="light-text">Antes de las 11:00 am</p>
+                                    <p className="light-text">Antes de las 12:00 am</p>
                                 </div>
                             </div>
 
@@ -76,7 +72,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                             <div className="col-5 price-reserve-section">
                                 <div className="price-section">
                                     <p className="price-label">Precio:</p>
-                                    <p className="room-detail-price">$500.000</p>
+                                    <p className="room-detail-price">$35.000</p>
                                 </div>
                                 <Button label="RESERVA" className="reserve-button" />
                             </div>
