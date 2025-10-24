@@ -1,30 +1,34 @@
 
 import React from 'react';
-import { FaBed, FaUtensils, FaCouch, FaRestroom } from 'react-icons/fa';
+import { LiaToiletSolid } from "react-icons/lia";
+import { PiCouch } from "react-icons/pi";
+import { IoBedOutline } from "react-icons/io5";
+import { TbToolsKitchen2 } from "react-icons/tb";
 import './FranjaIconos.css';
+
 
 const FranjaIconos: React.FC = () => {
   return (
     <div className="franja-iconos-container">
       <div className="habitaciones-button">
-        <FaBed className="habitaciones-icon" />
+        <IoBedOutline className="habitaciones-icon" />
         <span>HABITACIONES</span>
       </div>
       <h2 className="titulo-principal">COMPARTE, DESCANSA Y DISFRUTA</h2>
       <h3 className="subtitulo">en nuestros espacios comunes</h3>
       <div className="iconos-wrapper">
         <div className="icono-item">
-          <FaUtensils className="icono" />
+          <TbToolsKitchen2 className="icono" />
           <h4>Cocina compartida</h4>
           <p>Equipada para que prepares tus comidas.</p>
         </div>
         <div className="icono-item">
-          <FaCouch className="icono" />
+          <PiCouch  className="icono" />
           <h4>Sala común</h4>
           <p>Un espacio para descansar y compartir.</p>
         </div>
         <div className="icono-item">
-          <FaRestroom className="icono" />
+          <LiaToiletSolid className="icono" />
           <h4>Baños compartidos</h4>
           <p>Cómodos y limpios para todos los huéspedes.</p>
         </div>
