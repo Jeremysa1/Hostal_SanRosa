@@ -1,117 +1,144 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 .franja-iconos-container {
-    background-color: #ffffff; /* Color de fondo verde azulado */
-    display: flex;
-    justify-content: center; /* Centra los items en lugar de espaciarlos */
-    gap: 60px; /* Añade un espacio fijo entre los items */
-    padding: 40px 20px; /* Espaciado interno (vertical y horizontal) reducido */
-    color: #2CB7A6; /* Color del texto blanco */
-    text-align: center; /* Centra el texto de los items */
-    font-family: 'Poppins', sans-serif;
-    flex-wrap: wrap; /* Permite que los items pasen a la siguiente línea en pantallas pequeñas */
+  background-color: #ffffff;
+  /* Color de fondo verde azulado */
+  display: flex;
+  justify-content: center;
+  /* Centra los items en lugar de espaciarlos */
+  gap: 60px;
+  /* Añade un espacio fijo entre los items */
+  padding: 40px 20px;
+  /* Espaciado interno (vertical y horizontal) reducido */
+  color: #2CB7A6;
+  /* Color del texto blanco */
+  text-align: center;
+  /* Centra el texto de los items */
+  font-family: 'Poppins', sans-serif;
+  flex-wrap: wrap;
+  /* Permite que los items pasen a la siguiente línea en pantallas pequeñas */
+}
+
+.icono-item {
+  max-width: 280px;
+  /* Ancho máximo para cada item, ligeramente reducido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.icono {
+  font-size: 80px;
+  /* Tamaño de los íconos, ligeramente reducido */
+  margin-bottom: 0;
+  /* Espacio debajo del ícono eliminado */
+  padding-bottom: 0;
+}
+
+h4 {
+  font-size: 22px;
+  /* Tamaño del título de cada item */
+  font-weight: bold;
+  margin-bottom: 0;
+  /* Espacio debajo del título eliminado */
+  color: #666;
+}
+
+p {
+  font-size: 16px;
+  /* Tamaño del texto de párrafo */
+  line-height: 1.5;
+  /* Altura de línea para mejor legibilidad */
+  margin-top: 5px;
+  /* Agregamos un pequeño margen superior para que no se pegue al título */
+  color: #666;
+}
+
+/* Media Queries */
+
+@media (max-width: 1360px) {
+  .franja-iconos-container {
+    gap: 40px;
+    padding: 30px 15px;
   }
-  
+
   .icono-item {
-    max-width: 280px; /* Ancho máximo para cada item, ligeramente reducido */
-    display: flex;
+    max-width: 250px;
+  }
+
+  .icono {
+    font-size: 70px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .franja-iconos-container {
+    gap: 30px;
+    padding: 25px 10px;
+  }
+
+  .icono-item {
+    max-width: 220px;
+  }
+
+  .icono {
+    font-size: 60px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .franja-iconos-container {
     flex-direction: column;
     align-items: center;
-    padding-bottom: 0;
-    margin-bottom: 0;
+    gap: 20px;
+    padding: 20px;
   }
-  
+
+  .icono-item {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .franja-iconos-container {
+    padding: 15px;
+  }
+
   .icono {
-    font-size: 80px; /* Tamaño de los íconos, ligeramente reducido */
-    margin-bottom: 0; /* Espacio debajo del ícono eliminado */
-    padding-bottom: 0;
+    font-size: 50px;
   }
-  
+
   h4 {
-    font-size: 22px; /* Tamaño del título de cada item */
-    font-weight: bold;
-    margin-bottom: 0; /* Espacio debajo del título eliminado */
-    color:#666;
+    font-size: 16px;
   }
-  
+
   p {
-    font-size: 16px; /* Tamaño del texto de párrafo */
-    line-height: 1.5; /* Altura de línea para mejor legibilidad */
-    margin-top: 5px; /* Agregamos un pequeño margen superior para que no se pegue al título */
-    color:#666;
+    font-size: 13px;
+    padding: 0;
+    text-align: left;
   }
-  
-  /* Media Queries */
-  
-  @media (max-width: 1360px) {
-    .franja-iconos-container {
-      gap: 40px;
-      padding: 30px 15px;
-    }
-    .icono-item {
-      max-width: 250px;
-    }
-    .icono {
-      font-size: 70px;
-    }
-    h4 {
-      font-size: 20px;
-    }
-    p {
-      font-size: 15px;
-    }
+
+  .i1 {
+    font-size: 13px;
+    padding: 0;
+    text-align: center;
   }
-  
-  @media (max-width: 1024px) {
-    .franja-iconos-container {
-      gap: 30px;
-      padding: 25px 10px;
-    }
-    .icono-item {
-      max-width: 220px;
-    }
-    .icono {
-      font-size: 60px;
-    }
-    h4 {
-      font-size: 18px;
-    }
-    p {
-      font-size: 14px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .franja-iconos-container {
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-    }
-    .icono-item {
-      max-width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .franja-iconos-container {
-      padding: 15px;
-    }
-    .icono {
-      font-size: 50px;
-    }
-    h4 {
-      font-size: 16px;
-    }
-    p {
-      font-size: 13px;
-      padding: 0;
-      text-align: left;
-    }
-    .i1{
-      font-size: 13px;
-      padding: 0;
-      text-align: center;
-    }
-  }
-  
+}

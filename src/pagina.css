@@ -1,125 +1,139 @@
        .Pagina-imagen img {
-          height: 50vh;
-          width: 100%;
-          object-fit: cover;
-      }
-      
-      .titulo {
-          background-color: #ffffff;
-      }
-      
-      .texto {
-          background-color: #ffffff;
-          padding: 0px 300px;
-          margin: 20px;
-          font-size: 16px;
-          text-align: center;   
-      }
-      
-      .titulo {
-          color: #2CB7A6;
-          font-size: 16px;
-          font-weight: bold;
-          text-align: center;
-          margin-bottom: 0;
-          width: 100%;
-      }
-      
-      .subtitulo {
-          font-size: 2rem;
-          color: #2CB7A6;
-          line-height: 1.5;
-          flex-grow: 1;
-          text-align: center;
-          margin: 0;
-      }
-      h1{
-          margin: 20px 0px 0px;
-      }
-      .boton {
-          /* 🎨 Color y Forma */
-          background-color: #2CB7A6;
-          color: #ffffff; /* Mueve el color del texto aquí */
-          border-radius: 15px; /* Aumentamos el radio para esas esquinas más curvas */
-          border: none;
-          padding: 10px 20px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      
-      .boton:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
-      
-      @media (max-width: 1360px) {
-          .texto {
-              padding: 0 150px;
-          }
-      }
-      
-      @media (max-width: 1024px) {
-          .texto {
-              padding: 0 50px;
-          }
-      }
-      
-      @media (max-width: 768px) {
-          .texto {
-              padding: 0 20px;
-              margin: 10px;
-          }
-      
-          .subtitulo {
-              font-size: 1.8rem;
-          }
-      
-          .boton {
-              padding: 8px 16px;
-              font-size: 14px;
-          }
-          .titulo {
-              margin-left: 0;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-          }
-      
-          .titulo strong {
-              display: contents;
-          }
-      
-          .imagen-escritorio {
-              display: none; /* Oculta la imagen de escritorio */
-          }
-      
-          .imagen-movil {
-              display: block; /* Muestra la imagen de móvil */
-              max-width: 100%;
-              height: auto;
-          }
-          
-          
-      }
-      .imagen-movil {
-          display: none; /* Oculta la imagen de móvil por defecto */
-      }
-      
-      .imagen-escritorio {
-          display: block; /* Muestra la imagen de escritorio por defecto */
-          max-width: 100%;
-          height: auto;
-      }
-      @media  (max-width: 480px){
-          .imagen-escritorio {
-              display: none; /* Oculta la imagen de escritorio */
-          }
-      
-          .imagen-movil {
-              display: block; /* Muestra la imagen de móvil */
-              max-width: 100%;
-              height: auto;
-          }
-      }
+           height: 50vh;
+           width: 100%;
+           object-fit: cover;
+       }
+
+       .titulo {
+           background-color: #ffffff;
+       }
+
+       .texto {
+           background-color: #ffffff;
+           padding: 0px 300px;
+           margin: 20px;
+           font-size: 16px;
+           text-align: center;
+       }
+
+       .titulo {
+           color: #2CB7A6;
+           font-size: 16px;
+           font-weight: bold;
+           text-align: center;
+           margin-bottom: 0;
+           width: 100%;
+       }
+
+       .subtitulo {
+           font-size: 2rem;
+           color: #2CB7A6;
+           line-height: 1.5;
+           flex-grow: 1;
+           text-align: center;
+           margin: 0;
+       }
+
+       h1 {
+           margin: 20px 0px 0px;
+       }
+
+       .boton {
+           /* 🎨 Color y Forma */
+           background-color: #2CB7A6;
+           color: #ffffff;
+           /* Mueve el color del texto aquí */
+           border-radius: 15px;
+           /* Aumentamos el radio para esas esquinas más curvas */
+           border: none;
+           padding: 10px 20px;
+           font-size: 16px;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       }
+
+       .boton:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+       }
+
+       @media (max-width: 1360px) {
+           .texto {
+               padding: 0 150px;
+           }
+       }
+
+       @media (max-width: 1024px) {
+           .texto {
+               padding: 0 50px;
+           }
+       }
+
+       @media (max-width: 768px) {
+           .texto {
+               padding: 0 20px;
+               margin: 10px;
+           }
+
+           .subtitulo {
+               font-size: 1.8rem;
+           }
+
+           .boton {
+               padding: 8px 16px;
+               font-size: 14px;
+           }
+
+           .titulo {
+               margin-left: 0;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+           }
+
+           .titulo strong {
+               display: contents;
+           }
+
+           .imagen-escritorio {
+               display: none;
+               /* Oculta la imagen de escritorio */
+           }
+
+           .imagen-movil {
+               display: block;
+               /* Muestra la imagen de móvil */
+               max-width: 100%;
+               height: auto;
+           }
+
+
+       }
+
+       @media (max-width: 480px) {
+           .imagen-escritorio {
+               display: none;
+               /* Oculta la imagen de escritorio */
+           }
+
+           .imagen-movil {
+               display: block;
+               /* Muestra la imagen de móvil */
+               max-width: 100%;
+               height: auto;
+           }
+       }
+
+
+       .imagen-movil {
+           display: none;
+           /* Oculta la imagen de móvil por defecto */
+       }
+
+       .imagen-escritorio {
+           display: block;
+           /* Muestra la imagen de escritorio por defecto */
+           max-width: 100%;
+           height: auto;
+       }

@@ -114,32 +114,32 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
-    .hostel-description-container {
-        flex-direction: column;
-        padding: 10px;
-        gap: 20px;
-    }
+@media (max-width: 480px) {
+  .hostel-description-container {
+      flex-direction: column;
+      padding: 10px;
+      gap: 20px;
+  }
 
-    .mapa {
-        height: 300px;
-     
-  margin: 0px 20px;
+  .mapa {
+      height: 300px;
+   
+margin: 0px 20px;
 
-    }
+  }
 
-    .info {
-        padding: 0;
-    }
+  .info {
+      padding: 0;
+  }
 
-    .ubi h2,
-    .departamento,
-    .municipio {
-        font-size: 24px;
-    }
+  .ubi h2,
+  .departamento,
+  .municipio {
+      font-size: 24px;
+  }
 
-    .info p {
-        font-size: 14px;
-        text-align: justify;
-    }
+  .info p {
+      font-size: 14px;
+      text-align: justify;
+  }
 }
