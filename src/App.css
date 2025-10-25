@@ -15,10 +15,22 @@
   box-sizing: border-box;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 250px;
+  margin-bottom: 0%;
+}
+
 .booking-form h1 {
   text-align: center;
   margin-bottom: 1rem;
-  color: #26a69a;
+  color: #2CB7A6;
   font-weight: 500;
 }
 
@@ -29,7 +41,7 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #26a69a;
+  color: #2CB7A6;
   font-weight: 500;
 }
 
@@ -37,12 +49,12 @@
 .form-group select {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #26a69a;
+  border: 1px solid #2CB7A6;
   border-radius: 2rem;
   font-size: 1rem;
   color: #343a40;
   box-sizing: border-box; 
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition: border-color 0.3s;
 }
 
@@ -50,7 +62,7 @@
   -webkit-appearance: none; /* For Safari */
   -moz-appearance: none; /* For Firefox */
   appearance: none; /* For modern browsers */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%2326a69a" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%232CB7A6" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
   background-repeat: no-repeat;
   background-position: right 1rem center;
 }
@@ -59,7 +71,7 @@
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #26a69a;
+  border-color: #2CB7A6;
 }
 
 .form-group input.error,
@@ -73,16 +85,16 @@ button[type="submit"] {
   padding: 0.75rem;
   border: none;
   border-radius: 2rem;
-  background-color: #26a69a;
+  background-color: #2CB7A6;
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition: background-color 0.3s;
 }
 
 button[type="submit"]:hover {
-  background-color: #00796b;
+  background-color: #208e81;
 }
 
 button:focus,

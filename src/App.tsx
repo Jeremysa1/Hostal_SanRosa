@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import './App.css';
-
+import logo from './assets/LOGO-HOSTAL.svg' 
 interface Errors {
   guestName?: boolean;
   numberOfPeople?: boolean;
@@ -48,7 +48,10 @@ function App() {
   return (
     <div className="App">
       <form className="booking-form" onSubmit={handleSubmit} noValidate>
-        <h1>Pre - reserva</h1>
+        <div className="title-container">
+          <img src={logo} alt="Turquesa Hostal Logo" className="logo" />
+          <h1>Pre - reserva</h1>
+        </div>
         <div className="form-group">
           <label htmlFor="guestName">Nombre y apellido:</label>
           <input
