@@ -79,10 +79,10 @@ export const RoomDetail = (props: RoomDetailProps) => {
 
                     {/* ========= PANEL DERECHO ========= */}
                     <div className="col-12 md:col-6 detail-right-panel">
-                        {/* --- Servicios (3 columnas x 2 filas) --- */}
+                        {/* --- Servicios --- */}
                         <div className="amenities-grid grid">
                             {props.room.services && props.room.services.map((service, index) => (
-                                <div key={index} className="col-4 amenity-item">
+                                <div key={index} className="col-12 md:col-6 amenity-item">
                                     {getServiceIcon(service)}
                                     <span>{service}</span>
                                 </div>
@@ -92,7 +92,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                         {/* --- Sección inferior combinada --- */}
                         <div className="bottom-section grid">
                             {/* Columna de Check-in/out */}
-                            <div className="col-7 check-in-out-section">
+                            <div className="col-12 lg:col-7 check-in-out-section">
                                 <div className="check-in-out-item">
                                     <p className="check-in-out-label">Check-in:</p>
                                     <p className="light-text">A partir de las 3:00 pm</p>
@@ -104,7 +104,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                             </div>
 
                             {/* Columna de Precio/Reserva */}
-                            <div className="col-5 price-reserve-section">
+                            <div className="col-12 lg:col-5 price-reserve-section">
                                 <div className="price-section">
                                     <p className="price-label">Precio:</p>
                                     <p className="room-detail-price">$35.000</p>

@@ -1,165 +1,123 @@
 /* Contenedor principal de la franja de iconos */
 .franja-iconos-container {
-  /* Color de fondo de la franja */
   background-color: #2CB7A6;
-  /* Color del texto */
   color: #fff;
-  /* Alineación del texto al centro */
   text-align: center;
-  /* Relleno interior (40px arriba/abajo, 20px izquierda/derecha) */
   padding: 40px 5px;
-  /* Fuente principal para el texto */
   font-family: 'Poppins', sans-serif;
-  /* Habilita Flexbox para el layout */
   display: flex;
-  /* Apila los elementos verticalmente */
   flex-direction: column;
-  /* Centra los elementos horizontalmente */
   align-items: center;
 }
 
 /* Estilos para el botón 'Ver Habitaciones' */
 .habitaciones-button {
-  /* Color de fondo del botón */
   background-color: #fff;
-  /* Color del texto del botón */
   color: #2CB7A6;
-  /* Sin borde */
   border: none;
-  /* Bordes redondeados */
   border-radius: 20px;
-  /* Relleno interior del botón */
   padding: 10px 20px;
-  /* Tamaño de la fuente */
   font-size: 16px;
-  /* Grosor de la fuente (negrita) */
   font-weight: bold;
-  /* Habilita Flexbox para alinear el icono y el texto */
   display: flex;
-  /* Centra los elementos verticalmente */
   align-items: center;
-  /* Espacio entre el icono y el texto */
   gap: 10px;
-  /* Margen inferior */
   margin-bottom: 20px;
-  /* Cambia el cursor a una mano para indicar que es clickeable */
   cursor: pointer;
-  /* Sombra suave para dar profundidad */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el icono dentro del botón */
 .habitaciones-icon {
-  /* Tamaño del icono */
   font-size: 30px;
 }
 
-/* Título principal de la sección */
 .titulo-principal {
-  /* Tamaño de la fuente */
   font-size: 32px;
-  /* Grosor de la fuente (negrita) */
   font-weight: bold;
-  /* Sin margen */
   margin: 0;
 }
 
-/* Subtítulo de la sección */
 .subtitulo {
-  /* Tamaño de la fuente */
   font-size: 24px;
-  /* Grosor de la fuente (normal) */
   font-weight: normal;
-  /* Margen (0 arriba, 0 izquierda/derecha, 30px abajo) */
   margin: 0 0 30px 0;
 }
 
-/* Contenedor de los iconos individuales */
 .iconos-wrapper {
-  /* Habilita Flexbox para el layout */
   display: flex;
-  /* Centra los iconos horizontalmente */
   justify-content: center;
-  /* Espacio entre los iconos */
   gap: 20px;
-  /* Ancho completo */
   width: 100%;
-  /* Ancho máximo para el contenedor de iconos */
   max-width: 900px;
-  /* Permite que los iconos se envuelvan a la siguiente línea si no hay espacio */
   flex-wrap: wrap;
-  /* Hace que todos los items tengan la misma altura */
   align-items: stretch;
 }
 
-/* Estilos para cada item de icono */
 .icono-item {
-  /* Ancho base para cada item */
   flex-basis: 280px;
-  /* Permite que los items crezcan para ocupar el espacio disponible */
   flex-grow: 1;
-  /* Habilita Flexbox para alinear el contenido del item */
   display: flex;
-  /* Apila el contenido verticalmente */
   flex-direction: column;
-  /* Centra el contenido horizontalmente */
   align-items: center;
-  /* Margen (20px arriba/abajo, 0 izquierda/derecha) */
   margin: 20px 0;
 }
 
-/* Estilos para el icono grande */
 .icono {
-  /* Tamaño del icono */
   font-size: 60px;
-  /* Margen inferior */
   margin-bottom: 10px;
 }
 
-/* Estilos para el título de cada icono (<h4>) */
 h4 {
-  /* Tamaño de la fuente */
   font-size: 20px;
-  /* Grosor de la fuente (negrita) */
   font-weight: bold;
-  /* Margen (10px arriba, 0 izquierda/derecha, 2px abajo) */
   margin: 10px 0 2px 0;
 }
 
-/* Estilos para el párrafo de descripción de cada icono */
-.icono-item p { /* Target p inside icono-item */
-  /* Tamaño de la fuente */
+.icono-item p {
   font-size: 16px;
-  /* Altura de línea para mejorar la legibilidad */
   line-height: 1.5;
-  /* Altura mínima para asegurar la alineación vertical de los párrafos */
   min-height: 50px;
-  /* Eliminamos el margen superior por defecto del párrafo */
   margin-top: 0;
 }
 
 /* Media query para pantallas con un ancho máximo de 768px (tablets y móviles) */
 @media (max-width: 768px) {
-  /* Ajusta el contenedor de iconos para que se muestre en una sola columna */
-  .iconos-wrapper {
-    /* Apila los iconos verticalmente */
-    flex-direction: column;
-    /* Centra los iconos horizontalmente */
-    align-items: center;
+  .franja-iconos-container {
+    padding: 20px 10px;
   }
-  
-  /* Reduce el tamaño del título principal en pantallas pequeñas */
+
+  .iconos-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* ÚNICA propiedad que controla el espacio. Mínima. */
+  }
+
+  .icono-item {
+    margin: 0; /* CERO margen */
+    padding: 0; /* CERO padding */
+  }
+
   .titulo-principal {
     font-size: 28px;
   }
 
-  /* Reduce el tamaño del subtítulo en pantallas pequeñas */
   .subtitulo {
     font-size: 20px;
+    margin-bottom: 20px;
   }
 
-  /* Resetea la altura mínima del párrafo para el layout apilado */
+  /* Compactar el contenido de cada ítem */
+  .icono {
+    font-size: 48px;
+    margin-bottom: 2px; /* Margen mínimo */
+  }
+
+  h4 {
+    margin: 2px 0 2px 0; /* Margen mínimo */
+  }
+
   .icono-item p {
-    min-height: auto; /* Reset min-height for stacked layout */
+    min-height: auto;
+    margin-bottom: 0;
   }
 }
