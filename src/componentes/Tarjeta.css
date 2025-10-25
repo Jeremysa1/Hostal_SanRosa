@@ -33,14 +33,14 @@
   font-size: 2.5rem;
   font-weight: bold;
   color: white;
-  margin-bottom: 1rem;
+  margin: 0px 0px;
 }
 
 .header .title2 {
   font-size: 2.5rem;
   font-weight: lighter;
   color: white;
-  margin-top: 0rem;
+  margin: 0;
 }
 
 .tarjetas-list {
@@ -114,7 +114,7 @@
 .tarjetas-list {
   padding: 0 4rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 910px) {
   .header .subtitle {
     padding: 0.5rem 1.25rem;
     font-size: 1rem;
@@ -165,7 +165,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 679px) {
   .header .subtitle {
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
@@ -204,6 +204,7 @@
   }
   .tarjeta-descripcion {
     font-size: 16px;
+    text-align: left;
   }
   .tarjeta-boton {
     width: 100%;
