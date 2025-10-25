@@ -101,3 +101,57 @@ button:focus,
 button:focus-visible {
   outline: none;
 }
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+  .booking-form {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .booking-form h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+  .App {
+    padding: 1rem;
+  }
+
+  .booking-form {
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .booking-form h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
