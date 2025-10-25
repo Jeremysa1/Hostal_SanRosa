@@ -22,7 +22,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 80%;
   height: 100%;
   background: linear-gradient(to right, #1cb4a7, transparent);
   z-index: 1;
@@ -121,4 +121,110 @@
 
 .dot.active {
     background-color: white;
+}
+
+/* Media Queries */
+
+/* For 1360x768 */
+@media (max-width: 1360px) {
+    .slide-title {
+        font-size: 3.5rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* For 768x1025 (Tablet Portrait) */
+@media (max-width: 768px) {
+    .carrusel-container {
+        height: 60vh;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(to right, #1cb4a7, transparent);
+      z-index: 1;
+    }
+
+    .slide-content {
+        margin-left: 10%;
+        padding-left: 5%;
+        max-width: 80%;
+    }
+
+    .slide-title {
+        font-size: 3rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1rem;
+        width: 80%;
+    }
+
+    .reserva-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .carrusel-button {
+        font-size: 2.5rem;
+    }
+}
+
+/* For 320x480 (Mobile Portrait) */
+@media (max-width: 480px) {
+    .carrusel-container {
+        height: 50vh;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, #1cb4a7, transparent);
+      z-index: 1;
+    }
+    
+    .slide-content {
+        margin-left: 0;
+        padding: 0 10%;
+        max-width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .slide-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .slide-subtitle {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .reserva-button {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .carrusel-button {
+        font-size: 2rem;
+    }
+    
+    .prev-button {
+        left: 1%;
+    }
+    
+    .next-button {
+        right: 1%;
+    }
 }
