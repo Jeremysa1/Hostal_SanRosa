@@ -1,178 +1,140 @@
+/* src/index.css */
 
 /* --- ESTILOS GENERALES --- */
-/* Define las propiedades raíz que se aplican a toda la aplicación. */
 :root {
-  /* Cambia aquí la fuente principal de la aplicación. */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  /* Define la altura de línea para el texto. */
   line-height: 1.5;
-  /* Define el grosor de la fuente. */
   font-weight: 400;
-  /* Establece el esquema de color (claro u oscuro). */
   color-scheme: light;
-  /* Cambia aquí el color principal del texto de la aplicación. */
   color: #212529;
-  /* Cambia aquí el color de fondo principal de la aplicación. */
   background-color: #ffffff;
-  /* Evita que el navegador sintetice fuentes. */
   font-synthesis: none;
-  /* Optimiza el renderizado del texto para que sea más legible. */
   text-rendering: optimizeLegibility;
-  /* Suaviza los bordes de las fuentes en navegadores WebKit. */
   -webkit-font-smoothing: antialiased;
-  /* Suaviza los bordes de las fuentes en navegadores Mozilla. */
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- ESTILOS DEL CUERPO (BODY) --- */
-/* Se aplican al cuerpo principal de la página. */
 body {
-  /* Elimina el margen por defecto. */
   margin: 0;
-  /* Se eliminan las propiedades flex para permitir contenido de ancho completo */
-  /* display: flex; */
-  /* place-items: center; */
-  /* Define el ancho mínimo. */
   min-width: 320px;
-  /* Define la altura mínima para que ocupe toda la pantalla. */
   min-height: 100vh;
 }
 
 /* --- CONTENEDOR DE LA TARJETA --- */
-/* Estilos para el contenedor que envuelve cada tarjeta. */
 .card-container {
-  /* Cambia aquí el color del borde de la tarjeta (actualmente es blanco). */
   border: 1px solid #ffffff;
-  /* Redondea las esquinas del contenedor. */
   border-radius: 20px;
-  /* Añade un espacio interno. */
   padding: 0.5rem;
-  /* Cambia aquí el color de fondo del contenedor. */
   background-color: #ffffff;
-  /* Cambia el cursor a una mano al pasar sobre la tarjeta. */
   cursor: pointer;
-  /* Anima la transición de los estilos. */
   transition: all 0.2s ease-in-out;
 }
 
 /* --- ESTILOS DE LA TARJETA SELECCIONADA --- */
-/* Se aplican cuando una tarjeta tiene la clase 'selected'. */
 .selected .card-container {
-  /* Cambia aquí el color del borde de la tarjeta seleccionada. */
   border: 1px solid #dee2e6;
-  /* Añade una sombra para dar un efecto de "elevación". */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* --- TARJETA DE PRIMEREACT --- */
-/* Resetea los estilos por defecto de la tarjeta de PrimeReact. */
 .p-card {
   border: none !important;
   box-shadow: none !important;
-  /* Cambia aquí el color de fondo de la tarjeta. */
   background-color: #ffffff !important;
 }
 
 /* --- ENCABEZADO DE LA TARJETA --- */
-/* Estilos para la imagen en el encabezado. */
 .p-card .p-card-header img {
-  /* Redondea las esquinas de la imagen. */
   border-radius: 15px;
 }
 
 /* --- TÍTULO DE LA TARJETA --- */
 .p-card .p-card-title {
-  /* Cambia aquí el tamaño del texto del título (ej: 'Habitación'). */
   font-size: 2rem;
-  /* Define el grosor de la fuente del título. */
   font-weight: 700;
-  /* Cambia aquí el color del texto del título. */
   color: #2cb7a6;
-  /* Elimina el margen inferior para juntarlo con el subtítulo. */
   margin-bottom: 0;
-  /* Ajusta la altura de línea para que el texto esté más compacto. */
   line-height: 1;
 }
 
 /* --- SUBTÍTULO DE LA TARJETA --- */
 .p-card .p-card-subtitle {
-  /* Cambia aquí el tamaño del texto del subtítulo (ej: 'PARA 5'). */
   font-size: 1.5rem;
-  /* Define el grosor de la fuente del subtítulo. */
   font-weight: 900;
-  /* Cambia aquí el color del texto del subtítulo. */
   color: #2cb7a6 !important;
-  /* Elimina el margen superior para juntarlo con el título. */
   margin-top: 0;
-  /* Ajusta la altura de línea para que el texto esté más compacto. */
   line-height: 1.2;
 }
 
 /* --- CONTENIDO DE LA TARJETA --- */
-/* Elimina el padding por defecto del contenido. */
 .p-card .p-card-content {
   padding: 0 !important;
 }
 
 /* --- DESCRIPCIÓN DE LA TARJETA --- */
 .p-card .m-0 {
-  /* Cambia aquí el color del texto de la descripción. */
   color: #6c757d;
-  /* Añade un espacio superior. */
   padding-top: 1rem;
 }
 
 /* --- ESTILOS DE LA CALIFICACIÓN --- */
 .rating-container {
-  /* Añade un espacio debajo de la calificación. */
   margin-bottom: 0.5rem;
 }
 
-/* Estilos para los iconos de estrellas. */
 .p-rating .p-rating-icon {
-  /* Cambia aquí el color de las estrellas de la calificación. */
   color: #ffb74d !important;
 }
 
-/* Estilos para el número de la calificación. */
 .rating-number {
-  /* Cambia aquí el color del número de la calificación (ej: '3.0'). */
   color: #cccccc;
-  /* Define el grosor de la fuente. */
   font-weight: bold;
-  /* Cambia aquí el tamaño del texto del número de la calificación. */
   font-size: 1.2rem;
 }
 
 /* --- ESTILOS DE LOS BOTONES --- */
-/* Estilos para todos los botones. */
 .p-button {
-  /* Cambia aquí el color de fondo del botón principal. */
   background-color: #2cb7a6 !important;
-  /* Cambia aquí el color del borde del botón principal. */
   border-color: #2cb7a6 !important;
-  /* Redondea las esquinas para dar una forma más cuadrada. */
   border-radius: 15px !important;
-  /* Define el grosor de la fuente del texto del botón. */
   font-weight: 700 !important;
-  /* Cambia aquí el tamaño del texto del botón. */
   font-size: 1.2rem !important;
-  /* Añade espacio interno para que el botón sea más grande. */
   padding: 0.75rem 1.5rem !important;
 }
 
-/* Estilos para el botón principal ("Reservar"). */
 .p-button:not(.p-button-outlined) {
-    /* Cambia aquí el color del texto del botón principal. */
     color: #ffffff !important;
 }
 
-/* Estilos para el botón secundario (contorno). */
 .p-button.p-button-outlined.p-button-secondary {
-  /* Fondo transparente para el botón secundario. */
   background-color: transparent !important;
-  /* Cambia aquí el color del texto y del borde del botón secundario. */
   color: #2cb7a6 !important;
-  /* Define el grosor del borde. */
   border-width: 2px !important;
+}
+
+/* Media Query for 1360px */
+@media (max-width: 1360px) {
+  .p-card .p-card-title { font-size: 1.8rem; }
+  .p-card .p-card-subtitle { font-size: 1.3rem; }
+  .p-button { font-size: 1.1rem !important; padding: 0.7rem 1.4rem !important; }
+}
+
+/* Media Query for Tablets (768x1024) */
+@media (max-width: 768px) {
+  .p-card .p-card-title { font-size: 1.5rem; }
+  .p-card .p-card-subtitle { font-size: 1.1rem; }
+  .p-button { font-size: 1rem !important; padding: 0.6rem 1.2rem !important; }
+}
+
+/* Media Query for Mobile (320x480) */
+@media (max-width: 480px) {
+  body { min-width: 100%; }
+  .card-container { border-radius: 10px; padding: 0.25rem; }
+  .p-card .p-card-header img { border-radius: 10px; }
+  .p-card .p-card-title { font-size: 1.2rem; }
+  .p-card .p-card-subtitle { font-size: 1rem; }
+  .p-card .m-0 { font-size: 0.9rem; padding-top: 0.5rem; }
+  .rating-number { font-size: 1rem; }
+  .p-button { font-size: 0.9rem !important; padding: 0.5rem 1rem !important; border-radius: 10px !important; }
 }

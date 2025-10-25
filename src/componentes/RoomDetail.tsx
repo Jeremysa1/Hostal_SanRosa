@@ -3,9 +3,10 @@ import { Dialog } from 'primereact/dialog';
 import { LuShowerHead } from "react-icons/lu";
 import { BsDashLg } from "react-icons/bs";
 import { BiCloset } from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
 import { LiaCouchSolid } from "react-icons/lia";
 import { MdOutlineTableRestaurant } from "react-icons/md";
-import { FaWifi, FaTv, FaCheck, FaUserFriends, FaInbox, FaTimes, } from 'react-icons/fa';
+import { FaWifi, FaTv, FaCheck, FaUserFriends, FaInbox } from 'react-icons/fa';
 import './RoomDetail.css';
 
 interface RoomDetailProps {
@@ -43,20 +44,22 @@ export const RoomDetail = (props: RoomDetailProps) => {
     };
 
     return (
-        <Dialog 
-            visible={props.visible} 
-            onHide={props.onHide} 
-            showHeader={false} 
-            modal 
+        <Dialog
+            visible={props.visible}
+            onHide={props.onHide}
+            showHeader={false}
+            modal
             className="room-detail-dialog"
         >
             <div className="room-detail-container">
                 <img src={props.room.detailImageUrl} alt={`Habitación ${props.room.subtitle}`} className="room-detail-image" />
-                <Button icon={<FaTimes />} className="p-button-rounded close-button" onClick={props.onHide} />
+                <button onClick={props.onHide} className="close-button">
+                    <IoClose />
+                </button>
 
                 <div className="room-detail-content grid">
                     {/* ========= PANEL IZQUIERDO ========= */}
-                    <div className="col-6">
+                    <div className="col-12 md:col-6">
                         <h1 className="room-detail-title">HABITACIÓN {props.room.subtitle}</h1>
                         <div className="info-item">
                             <FaUserFriends className="icon" />
@@ -75,7 +78,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                     </div>
 
                     {/* ========= PANEL DERECHO ========= */}
-                    <div className="col-6 detail-right-panel">
+                    <div className="col-12 md:col-6 detail-right-panel">
                         {/* --- Servicios (3 columnas x 2 filas) --- */}
                         <div className="amenities-grid grid">
                             {props.room.services && props.room.services.map((service, index) => (

@@ -1,14 +1,12 @@
-
+/* src/App.css */
 #root {
-  /* Remove max-width and margin to allow full-width components */
-  /* text-align is also removed to let components decide their alignment */
+  /* Permite que los componentes ocupen todo el ancho */
 }
 
 .content-wrapper {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  /* text-align: center; We can add this back if needed, but it's better to be specific */
 }
 
 .logo {
@@ -17,9 +15,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -45,4 +45,30 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Media Query for 1360px */
+@media (max-width: 1360px) {
+  .content-wrapper {
+    padding: 1.5rem;
+  }
+}
+
+/* Media Query for Tablets (768x1024) */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+}
+
+/* Media Query for Mobile (320x480) */
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 0.5rem;
+  }
+
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
 }

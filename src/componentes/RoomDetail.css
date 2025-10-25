@@ -4,8 +4,28 @@
 .room-detail-image { width: 100%; display: block; }
 
 /* BOTÓN DE CIERRE (X) */
-.close-button { position: absolute !important; top: 20px; right: 20px; background-color: #ffffff !important; border-radius: 50% !important; width: 44px !important; height: 44px !important; border: none !important; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; display: flex !important; justify-content: center !important; align-items: center !important; }
-.close-button .pi-times { color: #1abc9c !important; font-size: 1.5rem !important; font-weight: 600 !important; }
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-button svg {
+    color: #1abc9c;
+    width: 1.5rem;
+    height: 1.5rem;
+}
 
 /* ÁREA DE CONTENIDO GENERAL */
 .room-detail-content { padding: 2.5rem; }
@@ -41,3 +61,40 @@
 .price-label { font-size: 1rem; font-weight: 500; margin: 0; color: #495057; }
 .room-detail-price { font-size: 2rem; font-weight: 700; color: #343a40; margin: 0.1rem 0 0.75rem 0; }
 .reserve-button { background-color: #1abc9c !important; border: none !important; color: white !important; font-weight: 700 !important; border-radius: 50px !important; padding: 0.8rem 1.5rem !important; font-size: 1rem !important; letter-spacing: 0.5px; align-self: flex-end; }
+
+/* Media Query for 1360px */
+@media (max-width: 1360px) {
+    .room-detail-dialog .p-dialog-content { max-width: 800px; }
+    .room-detail-content { padding: 2rem; }
+    .room-detail-title { font-size: 1.4rem; }
+    .info-item .icon { font-size: 1.6rem; }
+    .detail-right-panel { padding-left: 2rem !important; }
+}
+
+/* Media Query for Tablets (768x1024) */
+@media (max-width: 768px) {
+    .room-detail-dialog .p-dialog-content { max-width: 95%; margin: 0 auto; }
+    .room-detail-content { padding: 1.5rem; }
+    .detail-right-panel { border-left: none; padding-left: 0 !important; margin-top: 2rem; }
+    .room-detail-title { text-align: center; }
+    .price-reserve-section { text-align: center; }
+    .reserve-button { align-self: center; }
+}
+
+/* Media Query for Mobile (320x480) */
+@media (max-width: 480px) {
+    .room-detail-dialog .p-dialog-content { border-radius: 0; height: 100vh; }
+    .room-detail-content { padding: 1rem; }
+    .room-detail-title { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .info-item { margin-bottom: 1rem; }
+    .info-item .icon { font-size: 1.4rem; }
+    .info-item .text-content p { font-size: 0.9rem; }
+    .detail-right-panel { margin-top: 1.5rem; }
+    .amenities-grid .amenity-item { font-size: 0.8rem; }
+    .check-in-out-label, .check-in-out-item .light-text { font-size: 0.8rem; }
+    .price-label { font-size: 0.9rem; }
+    .room-detail-price { font-size: 1.5rem; }
+    .reserve-button { width: 100%; padding: 0.75rem; font-size: 0.9rem; }
+    .close-button { top: 10px; right: 10px; width: 36px; height: 36px; }
+    .close-button svg { width: 1.2rem; height: 1.2rem; }
+}
