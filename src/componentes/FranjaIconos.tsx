@@ -12,7 +12,7 @@ const FranjaIconos: React.FC = () => {
       <div className="carrusel-header">
             <div className="carrusel-title-button">
               <FaBed />
-              <span>HABITACI-NES</span>
+              <span>HABITACIONES</span>
             </div>
           </div>
       <div className="main-title">
