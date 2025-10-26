@@ -6,7 +6,7 @@ import { BiCloset } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { LiaCouchSolid } from "react-icons/lia";
 import { MdOutlineTableRestaurant } from "react-icons/md";
-import { FaWifi, FaTv, FaCheck, FaUserFriends, FaInbox } from 'react-icons/fa';
+import { FaWifi, FaTv, FaCheck, FaUserFriends, FaBed } from 'react-icons/fa';
 import './RoomDetail.css';
 
 interface RoomDetailProps {
@@ -68,7 +68,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                             </div>
                         </div>
                         <div className="info-item">
-                            <FaInbox className="icon" />
+                            <FaBed className="icon" />
                             <div className="text-content">
                                 <p><b>Camas:</b></p>
                                 <p className="light-text">1 camas dobles</p>
