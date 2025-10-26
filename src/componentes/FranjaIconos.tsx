@@ -2,20 +2,23 @@
 import React from 'react';
 import { LiaToiletSolid } from "react-icons/lia";
 import { PiCouch } from "react-icons/pi";
-import { IoBedOutline } from "react-icons/io5";
+import { FaBed } from 'react-icons/fa';
 import { TbToolsKitchen2 } from "react-icons/tb";
 import './FranjaIconos.css';
-
 
 const FranjaIconos: React.FC = () => {
   return (
     <div className="franja-iconos-container">
-      <div className="habitaciones-button">
-        <IoBedOutline className="habitaciones-icon" />
-        <span>HABITACIONES</span>
+      <div className="carrusel-header">
+            <div className="carrusel-title-button">
+              <FaBed />
+              <span>HABITACI-NES</span>
+            </div>
+          </div>
+      <div className="main-title">
+        <h2>COMPARTE, DESCANSA Y DISFRUTA</h2>
+        <h3>en nuestros espacios comunes</h3>
       </div>
-      <h2 className="titulo-principal">COMPARTE, DESCANSA Y DISFRUTA</h2>
-      <h3 className="subtitulo">en nuestros espacios comunes</h3>
       <div className="iconos-wrapper">
         <div className="icono-item">
           <TbToolsKitchen2 className="icono" />
@@ -23,7 +26,7 @@ const FranjaIconos: React.FC = () => {
           <p>Equipada para que prepares tus comidas.</p>
         </div>
         <div className="icono-item">
-          <PiCouch  className="icono" />
+          <PiCouch className="icono" />
           <h4>Sala común</h4>
           <p>Un espacio para descansar y compartir.</p>
         </div>
