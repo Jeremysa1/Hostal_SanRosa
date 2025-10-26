@@ -16,6 +16,7 @@ interface RoomDetailProps {
         detailImageUrl: string;
         subtitle: string;
         services: string[];
+        price: number;
     };
 }
 
@@ -106,8 +107,8 @@ export const RoomDetail = (props: RoomDetailProps) => {
                             {/* Columna de Precio/Reserva */}
                             <div className="col-12 lg:col-5 price-reserve-section">
                                 <div className="price-section">
-                                    <p className="price-label">Precio:</p>
-                                    <p className="room-detail-price">$35.000</p>
+                                    <p className="price-label">Precio por persona:</p>
+                                    <p className="room-detail-price">${props.room.price.toLocaleString('es-CO')}</p>
                                 </div>
                                 <Button label="RESERVA" className="reserve-button" />
                             </div>

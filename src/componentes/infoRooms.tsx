@@ -6,7 +6,8 @@ export const cardData = [
       subtitle: "FAMILIAR",
       description: "Perfecta para familias o grupos pequeños.",
       rating: 3,
-      services: ["Wi-Fi", "Agua caliente"]
+      services: ["Wi-Fi", "Agua caliente"],
+      price: 35000
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_3_tyjjyj.png",
@@ -15,7 +16,8 @@ export const cardData = [
       subtitle: "DOBLE",
       description: "Diseñada para parejas o viajeros que buscan comodidad.",
       rating: 4,
-      services: ["Wi-Fi", "Agua caliente", "Televisión", "Mesa de trabajo"]
+      services: ["Wi-Fi", "Agua caliente", "Televisión", "Mesa de trabajo"],
+      price: 45000
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_4_xxw1ne.png",
@@ -24,7 +26,8 @@ export const cardData = [
       subtitle: "FAMILIAR",
       description: "Amplia y cómoda, ideal para grupos grandes.",
       rating: 2,
-      services: ["Wi-Fi", "Agua caliente", "Sofá cama", "Closet" ]
+      services: ["Wi-Fi", "Agua caliente", "Sofá cama", "Closet" ],
+      price: 40000
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_1_c2dcmu.png",
@@ -33,7 +36,8 @@ export const cardData = [
       subtitle: "TRIPLE",
       description: "Espacio funcional y tranquilo, ideal para amigos o familias pequeñas.",
       rating: 3,
-      services: ["Wi-Fi", "Agua caliente" ]
+      services: ["Wi-Fi", "Agua caliente" ],
+      price: 40000
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_5_jb3zxx.png",
@@ -42,7 +46,8 @@ export const cardData = [
       subtitle: "DOBLE",
       description: "Acogedora y práctica, perfecta para descansar después de un día de viaje.",
       rating: 4,
-      services: ["Wi-Fi", "Agua caliente" ]
+      services: ["Wi-Fi", "Agua caliente" ],
+      price: 45000
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_7_onpc4d.png",
@@ -51,6 +56,7 @@ export const cardData = [
       subtitle: "SUITE",
       description: "Nuestra habitación más completa, ideal para quienes buscan mayor confort.",
       rating: 5,
-      services: ["Wi-Fi", "Sofá cama", "Agua caliente", "Repisa", "Televisión", "Mesa de trabajo" ]
+      services: ["Wi-Fi", "Sofá cama", "Agua caliente", "Repisa", "Televisión", "Mesa de trabajo" ],
+      price: 250000
     }
   ];
