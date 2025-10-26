@@ -6,7 +6,7 @@ import { RoomDetail } from './componentes/RoomDetail.tsx';
 import Menu from './componentes/Menu.tsx';
 import FranjaIconos from './componentes/FranjaIconos.tsx';
 import Footer from './componentes/Footer.tsx';
-import { cardData } from './data/rooms.ts';
+import { cardData } from './componentes/infoRooms.tsx';
 
 function App() {
     const [selectedRoom, setSelectedRoom] = useState<any>(null);
