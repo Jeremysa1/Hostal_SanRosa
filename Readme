@@ -1,0 +1,157 @@
+
+# 📡 API Documentation - Hostal Santa Rosa de Cabal
+
+## Base URL
+```
+http://localhost:8000/api/
+```
+
+## Endpoints Disponibles
+
+### 🏨 Habitaciones
+
+#### Listar habitaciones disponibles
+```
+GET /api/habitaciones/
+```
+**Response:**
+```json
+{
+  "count": 2,
+  "results": [
+    {
+      "id": 1,
+      "nombre": "Habitación Doble",
+      "tipo": "doble",
+      "capacidad": 2,
+      "precio": "150000.00",
+      "descripcion": "...",
+      "disponible": true,
+      "imagen": "/media/habitaciones/foto.jpg",
+      "wifi": true,
+      "tv": true,
+      ...
+    }
+  ]
+}
+```
+
+#### Detalle de habitación
+```
+GET /api/habitaciones/{id}/
+```
+
+#### Verificar disponibilidad
+```
+GET /api/habitaciones/{id}/disponibilidad/?fecha_entrada=2025-10-15&fecha_salida=2025-10-17
+```
+**Response:**
+```json
+{
+  "disponible": true,
+  "habitacion": "Habitación Doble",
+  "fecha_entrada": "2025-10-15",
+  "fecha_salida": "2025-10-17",
+  "reservas_conflicto": 0
+}
+```
+
+---
+
+### 📝 Reservas
+
+#### Crear reserva
+```
+POST /api/reservas/
+Content-Type: application/json
+```
+**Body:**
+```json
+{
+  "habitacion": 1,
+  "fecha_entrada": "2025-10-15",
+  "fecha_salida": "2025-10-17",
+  "numero_personas": 2,
+  "mensaje": "Comentario opcional",
+  "precio_total": 300000,
+  "cliente_nombre": "Juan Pérez",
+  "cliente_email": "juan@email.com",
+  "cliente_telefono": "3001234567"
+}
+```
+**Response:**
+```json
+{
+  "reserva": { ... },
+  "whatsapp_url": "https://wa.me/573242989045?text=...",
+  "mensaje": "Reserva creada exitosamente"
+}
+```
+
+#### Listar reservas
+```
+GET /api/reservas/
+```
+
+---
+
+### 🔐 Autenticación (JWT)
+
+#### Obtener token
+```
+POST /api/token/
+Content-Type: application/json
+```
+**Body:**
+```json
+{
+  "username": "jeremy",
+  "password": "barcelonax17"
+}
+```
+**Response:**
+```json
+{
+  "access": "eyJ0eXAiOiJKV1Q...",
+  "refresh": "eyJ0eXAiOiJKV1Q..."
+}
+```
+
+#### Refrescar token
+```
+POST /api/token/refresh/
+Content-Type: application/json
+```
+**Body:**
+```json
+{
+  "refresh": "eyJ0eXAiOiJKV1Q..."
+}
+```
+
+---
+
+## 🖼️ Archivos Media
+
+Las imágenes están disponibles en:
+```
+http://localhost:8000/media/habitaciones/nombre_imagen.jpg
+```
+
+---
+
+## 🚀 Para el equipo de Frontend (React)
+
+1. **Listar habitaciones en la home:** `GET /api/habitaciones/`
+2. **Mostrar detalle de habitación:** `GET /api/habitaciones/{id}/`
+3. **Verificar disponibilidad:** `GET /api/habitaciones/{id}/disponibilidad/?fecha_entrada=...&fecha_salida=...`
+4. **Crear reserva:** `POST /api/reservas/` (devuelve URL de WhatsApp)
+5. **Redirigir a WhatsApp:** Usar el `whatsapp_url` de la respuesta
+
+---
+
+## ⚙️ CORS
+
+El backend acepta peticiones desde:
+- `http://localhost:3000` (Create React App)
+- `http://localhost:5173` (Vite)
