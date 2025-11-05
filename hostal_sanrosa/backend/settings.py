@@ -1,6 +1,7 @@
 
 
 
+
 from pathlib import Path
 from decouple import config, Csv
 from datetime import timedelta
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'corsheaders',
+    'drf_spectacular',
     
     # Local apps
     'reservas',
@@ -60,7 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # Debe ir antes de CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -175,8 +177,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/hour',  # Usuarios anónimos: 100 peticiones por hora
-        'user': '1000/hour'  # Usuarios autenticados: 1000 peticiones por hora
+        'anon': '100/hour',
+        'user': '1000/hour'
     },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -184,6 +186,23 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    # Configuración de Swagger
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # ← NUEVO
+}
+
+# Configuración de drf-spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Hostal Santa Rosa API',
+    'DESCRIPTION': 'API REST para gestión de reservas del Hostal Santa Rosa de Cabal',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'CONTACT': {
+        'name': 'Equipo Hostal Santa Rosa',
+        'email': 'yeremisanchezarias@gmail.com',
+    },
+    'LICENSE': {
+        'name': 'Privado',
+    },
 }
 
 # Configuración JWT
@@ -242,7 +261,7 @@ CORS_ALLOW_HEADERS = [
 # Configuración para producción
 
 
-# Si está en Railway, usar su base de datos
+# Configuración de la base de datos para producción
 if not DEBUG:
     DATABASES['default'] = dj_database_url.config(
         default=config('DATABASE_URL'),
