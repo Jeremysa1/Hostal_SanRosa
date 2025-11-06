@@ -1,2 +1,2 @@
 
-web: gunicorn backend.wsgi:application --log-file -
+web: gunicorn hostal_sanrosa.backend.wsgi --log-file -
