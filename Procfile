@@ -1,4 +1,5 @@
 
 
-web: gunicorn hostal_sanrosa.backend.wsgi --log-file -
+web: gunicorn backend.wsgi:application --chdir hostal_sanrosa
+
 
