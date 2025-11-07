@@ -1,24 +1,28 @@
-import CarruselHabitaciones from './componentes/CarruselHabitaciones';
-import FranjaIconos from './componentes/FranjaIconos';
-import Menu from './componentes/Menu';
-import Descripcion from './componentes/Descripcion';
-import Footer from './componentes/Footer';
-import Mapa from './componentes/Mapa';
-import CarruselInicio from './componentes/CarruselInicio';
 import './App.css';
+import Menu from './componentes/Menu';
+import Footer from './componentes/Footer';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import Home from './pages/Home';
+import Habitaciones from './pages/Habitaciones';
+import Contacto from './pages/Contacto';
 
+const Layout = () => (
+  <div className="App">
+    <Menu />
+    <Outlet />
+    <Footer />
+  </div>
+);
 
 function App() {
   return (
-    <div className="App">
-      <Menu />
-      <CarruselInicio />
-      <Descripcion />
-      <FranjaIconos />
-      <CarruselHabitaciones />
-      <Mapa />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="habitaciones" element={<Habitaciones />} />
+        <Route path="contacto" element={<Contacto />} />
+      </Route>
+    </Routes>
   );
 }
 

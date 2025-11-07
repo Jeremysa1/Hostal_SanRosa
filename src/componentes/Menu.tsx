@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Menu.css';
 import logo from '../assets/LOGO-HOSTAL.svg';
 import { FaBed, FaMapMarkedAlt, FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Menu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,16 +22,12 @@ const Menu: React.FC = () => {
       <div className={`menu-right ${isMenuOpen ? 'active' : ''}`}>
         <ul className="menu-list">
           <li className="menu-item">
-            <a href="/habitaciones">
               <FaBed size={30} />
-              <span>Habitaciones</span>
-            </a>
+              <Link to="/habitaciones">Habitaciones</Link>
           </li>
           <li className="menu-item">
-            <a href="/turismo">
               <FaMapMarkedAlt size={30} />
-              <span>Turismo</span>
-            </a>
+              <Link to="/turismo">Turismo</Link>
           </li>
         </ul>
         <button className="reservar-btn">Reservar Ya</button>

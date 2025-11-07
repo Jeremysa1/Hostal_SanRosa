@@ -56,7 +56,7 @@ const CarruselInicio: React.FC = () => {
         <IoIosArrowForward />
       </button>
       <div className='dots-container'>
-        {slides.map((slide, slideIndex) => (
+        {slides.map((_, slideIndex) => (
             <div key={slideIndex} className={`dot ${slideIndex === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(slideIndex)}></div>
         ))}
       </div>
