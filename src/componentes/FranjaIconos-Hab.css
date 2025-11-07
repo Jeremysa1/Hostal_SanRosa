@@ -1,0 +1,195 @@
+.caja-titulo {
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.iconos-todos {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.carrusel-title-button {
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: none;
+}
+
+.carrusel-title-button span {
+  margin-left: 8px;
+}
+
+.franja-iconos-container-hab {
+  background-color: #2CB7A6;
+  /* Color de fondo verde azulado */
+  flex-direction: column;
+  gap: 60px;
+  /* Añade un espacio fijo entre los items */
+  padding: 40px 20px;
+  /* Espaciado interno (vertical y horizontal) reducido */
+  color: #fff;
+  /* Color del texto blanco */
+  text-align: center;
+  /* Centra el texto de los items */
+  font-family: 'Poppins', sans-serif;
+  /* Cambio a Poppins */
+  flex-wrap: wrap;
+  /* Permite que los items pasen a la siguiente línea en pantallas pequeñas */
+}
+
+.icono-item {
+  max-width: 280px;
+  /* Ancho máximo para cada item, ligeramente reducido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.icono {
+  font-size: 60px;
+  /* Tamaño de los íconos, ligeramente reducido */
+  margin-bottom: 0;
+  /* Espacio debajo del ícono eliminado */
+  padding-bottom: 0;
+}
+
+.main-title h4 {
+  font-size: 22px;
+  /* Tamaño del título de cada item */
+  font-weight: bold;
+  margin: 5px 0px 0px 0px;
+  /* Espacio debajo del título eliminado */
+}
+
+
+.main-title h2 {
+  margin: 20px 0px 0px 0px;
+  font-size: 30px;
+}
+
+.main-title h3 {
+  font-size: 25px;
+  font-weight: normal;
+  margin: 0PX;
+  color: #fff;
+}
+
+p {
+  font-size: 16px;
+  /* Tamaño del texto de párrafo */
+  line-height: 1.5;
+  /* Altura de línea para mejor legibilidad */
+  margin-top: 5px;
+  /* Agregamos un pequeño margen superior para que no se pegue al título */
+}
+
+/* Media Queries */
+
+@media (max-width: 1360px) {
+  .franja-iconos-container {
+    gap: 40px;
+    padding: 30px 15px;
+  }
+
+  .icono-item {
+    max-width: 250px;
+  }
+
+  .icono {
+    font-size: 70px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .franja-iconos-container {
+    gap: 30px;
+    padding: 25px 10px;
+  }
+
+  .icono-item {
+    max-width: 200px;
+  }
+
+  .icono {
+    font-size: 60px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .franja-iconos-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .iconos-todos {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .icono-item {
+    max-width: 100%;
+  }
+
+  .main-title h2 {
+    font-size: 25px;
+  }
+
+  .main-title h3 {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .franja-iconos-container {
+    padding: 15px;
+  }
+
+  .icono {
+    font-size: 50px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  .main-title h2 {
+    font-size: 18px;
+  }
+
+  .main-title h3 {
+    font-size: 16px;
+  }
+
+
+}

@@ -4,7 +4,8 @@ import Footer from './componentes/Footer';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home';
 import Habitaciones from './pages/Habitaciones';
-import Contacto from './pages/Contacto';
+import Turismo from './pages/Turismo';
+// Home-specific components were moved into the Home page so they don't render on every route
 
 const Layout = () => (
   <div className="App">
@@ -18,9 +19,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route path="home" element={<Home />} />
         <Route path="habitaciones" element={<Habitaciones />} />
-        <Route path="contacto" element={<Contacto />} />
+        <Route path="turismo" element={<Turismo />} />
       </Route>
     </Routes>
   );

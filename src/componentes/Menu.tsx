@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Menu.css';
 import logo from '../assets/LOGO-HOSTAL.svg';
-import { FaBed, FaMapMarkedAlt, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBed, FaMapMarkedAlt, FaBars, FaTimes, FaHome } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Menu: React.FC = () => {
@@ -22,12 +22,13 @@ const Menu: React.FC = () => {
       <div className={`menu-right ${isMenuOpen ? 'active' : ''}`}>
         <ul className="menu-list">
           <li className="menu-item">
-              <FaBed size={30} />
-              <Link to="/habitaciones">Habitaciones</Link>
+            <Link to="/home"><FaHome size={30} />Inicio</Link>
           </li>
           <li className="menu-item">
-              <FaMapMarkedAlt size={30} />
-              <Link to="/turismo">Turismo</Link>
+            <Link to="/habitaciones"><FaBed size={30} />Habitaciones</Link>
+          </li>
+          <li className="menu-item">
+            <Link to="/turismo"><FaMapMarkedAlt size={30} />Turismo</Link>
           </li>
         </ul>
         <button className="reservar-btn">Reservar Ya</button>

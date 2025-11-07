@@ -1,0 +1,117 @@
+/* --- CONTENEDOR DE LA TARJETA --- */
+.card-container {
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* --- ESTILOS DE LA TARJETA SELECCIONADA --- */
+.selected .card-container {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- TARJETA DE PRIMEREACT --- */
+.p-card {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #ffffff !important;
+}
+
+/* --- ENCABEZADO DE LA TARJETA --- */
+.p-card .p-card-header img {
+  border-radius: 15px;
+}
+
+/* --- TÍTULO DE LA TARJETA --- */
+.p-card .p-card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2cb7a6;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+/* --- SUBTÍTULO DE LA TARJETA --- */
+.p-card .p-card-subtitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #2cb7a6 !important;
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+/* --- CONTENIDO DE LA TARJETA --- */
+.p-card .p-card-content {
+  padding: 0 !important;
+}
+
+/* --- DESCRIPCIÓN DE LA TARJETA --- */
+.p-card .m-0 {
+  color: #6c757d;
+  padding-top: 1rem;
+}
+
+/* --- ESTILOS DE LA CALIFICACIÓN --- */
+.rating-container {
+  margin-bottom: 0.5rem;
+}
+
+.p-rating .p-rating-icon {
+  color: #ffb74d !important;
+}
+
+.rating-number {
+  color: #cccccc;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* --- ESTILOS DE LOS BOTONES --- */
+.p-button {
+  background-color: #2cb7a6 !important;
+  border-color: #2cb7a6 !important;
+  border-radius: 15px !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  padding: 0.75rem 1.5rem !important;
+}
+
+.p-button:not(.p-button-outlined) {
+    color: #ffffff !important;
+}
+
+.p-button.p-button-outlined.p-button-secondary {
+  background-color: transparent !important;
+  color: #2cb7a6 !important;
+  border-width: 2px !important;
+}
+
+/* Media Query for 1360px */
+@media (max-width: 1360px) {
+  .p-card .p-card-title { font-size: 1.8rem; }
+  .p-card .p-card-subtitle { font-size: 1.3rem; }
+  .p-button { font-size: 1.1rem !important; padding: 0.7rem 1.4rem !important; }
+}
+
+/* Media Query for Tablets (768x1024) */
+@media (max-width: 768px) {
+  .p-card .p-card-title { font-size: 1.5rem; }
+  .p-card .p-card-subtitle { font-size: 1.1rem; }
+  .p-button { font-size: 1rem !important; padding: 0.6rem 1.2rem !important; }
+}
+
+/* Media Query for Mobile (320x480) */
+@media (max-width: 480px) {
+  body { min-width: 100%; }
+  .card-container { border-radius: 10px; padding: 0.25rem; }
+  .p-card .p-card-header img { border-radius: 10px; }
+  .p-card .p-card-title { font-size: 1.2rem; }
+  .p-card .p-card-subtitle { font-size: 1rem; }
+  .p-card .m-0 { font-size: 0.9rem; padding-top: 0.5rem; }
+  .rating-number { font-size: 1rem; }
+  .p-button { font-size: 0.9rem !important; padding: 0.5rem 1rem !important; border-radius: 10px !important; }
+}
