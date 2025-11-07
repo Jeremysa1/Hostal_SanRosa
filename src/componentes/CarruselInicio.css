@@ -1,0 +1,230 @@
+
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  height: 80vh; 
+  overflow: hidden;
+  font-family: poppins;
+}
+
+.carrusel-slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(to right, #1cb4a7, transparent);
+  z-index: 1;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin-left: 10%;
+  padding-left: 5%;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.slide-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.slide-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  text-align: left;
+}
+
+.reserva-button {
+  background-color: white;
+  color: #1cb4a7;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.carrusel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 3rem;
+  z-index: 3;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrusel-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.carrusel-button:focus,
+.carrusel-button:focus-visible {
+  outline: none;
+}
+
+.prev-button {
+  left: 2%;
+}
+
+.next-button {
+  right: 2%;
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 3;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: white;
+}
+
+/* Media Queries */
+
+/* For 1360x768 */
+@media (max-width: 1360px) {
+    .slide-title {
+        font-size: 3.5rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* For 768x1025 (Tablet Portrait) */
+@media (max-width: 768px) {
+    .carrusel-container {
+        height: 60vh;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(to right, #1cb4a7, transparent);
+      z-index: 1;
+    }
+
+    .slide-content {
+        margin-left: 10%;
+        padding-left: 5%;
+        max-width: 80%;
+    }
+
+    .slide-title {
+        font-size: 3rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1rem;
+        width: 80%;
+    }
+
+    .reserva-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .carrusel-button {
+        font-size: 2.5rem;
+    }
+}
+
+/* For 320x480 (Mobile Portrait) */
+@media (max-width: 480px) {
+    .carrusel-container {
+        height: 50vh;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, #1cb4a7, transparent);
+      z-index: 1;
+    }
+    
+    .slide-content {
+        margin-left: 0;
+        padding: 0 10%;
+        max-width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .slide-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .slide-subtitle {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .reserva-button {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .carrusel-button {
+        font-size: 2rem;
+    }
+    
+    .prev-button {
+        left: 1%;
+    }
+    
+    .next-button {
+        right: 1%;
+    }
+}

@@ -1,0 +1,138 @@
+/* Contenedor principal con fondo de color */
+.mapa-fondo {
+  background-color: #f7fdfc; /* Un color de fondo suave */
+  padding: 30px 30px; /* Padding vertical y horizontal */
+  width: 100%;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+}
+
+/* Contenedor flex para el mapa y la información */
+.mapa-info {
+  display: flex;
+  flex-direction: row; /* Por defecto, en fila para escritorio */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el contenedor */
+  align-items: center; /* Centra los items verticalmente */
+}
+
+/* Columna del mapa */
+.mapa {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  min-width: 300px; /* Ancho mínimo */
+  height: 400px; /* Altura fija para el mapa */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Columna de la información */
+.info {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  min-width: 300px; /* Ancho mínimo */
+  /* Para prevenir desbordamiento de texto */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Estilos para el componente de mapa de Leaflet que está dentro de MapaHostal.tsx */
+.mapa-leaflet {
+  height: 100%;
+  width: 100%;
+}
+
+/* Estilos para el bloque de "UBICACIÓN" */
+.ubi {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.icono-ubi {
+  color: #2CB7A6;
+  font-size: 1.5rem;
+}
+
+.ubi h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2CB7A6;
+}
+
+/* Títulos de municipio y departamento */
+.municipio, .departamento {
+  color: #2CB7A6;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.departamento {
+  margin-bottom: 15px;
+}
+
+/* Párrafo de descripción */
+.info p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+
+/* Para tablets (1024px) y dispositivos más pequeños */
+@media (max-width: 1024px) {
+  .mapa-info {
+    flex-direction: column; /* Cambia la dirección a columna */
+  }
+
+  .mapa {
+    width: 90%; /* El mapa ocupa todo el ancho */
+    height: 400px; /* Altura ajustada */
+    flex: none; /* Resetea el flex-grow */
+  }
+
+  .info {
+    width: 100%; /* La info ocupa todo el ancho */
+    flex: none; /* Resetea el flex-grow */
+    text-align: center; /* Centra el texto */
+  }
+
+  .ubi {
+    margin-left: auto;
+    margin-right: auto; /* Centra el botón de ubicación */
+  }
+
+  .info p {
+    margin: 0px 20px;
+  }
+
+
+}
+
+/* Para teléfonos móviles (480px) y dispositivos más pequeños */
+@media (max-width: 480px) {
+  .mapa-fondo {
+    padding: 20px 15px; /* Menos padding */
+  }
+  
+  .mapa {
+    height: 300px; /* Altura más reducida */
+  }
+
+  .municipio, .departamento {
+    font-size: 1.8rem;
+  }
+
+  .info p {
+    margin: 0px 20px;
+    font-size: 0.95rem;
+  }
+}
