@@ -6,8 +6,6 @@ import Footer from './componentes/Footer';
 import Mapa from './componentes/Mapa';
 import CarruselInicio from './componentes/CarruselInicio';
 import './App.css';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {
