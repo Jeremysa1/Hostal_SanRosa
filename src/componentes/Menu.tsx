@@ -31,7 +31,9 @@ const Menu: React.FC = () => {
             <Link to="/turismo"><FaMapMarkedAlt size={30} />Turismo</Link>
           </li>
         </ul>
-        <button className="reservar-btn">Reservar Ya</button>
+        <Link to="/pagformulario">
+          <button className="reservar-btn">Reservar Ya</button>
+        </Link>
       </div>
     </nav>
   );

@@ -1,5 +1,5 @@
 
-// Importaciones necesarias de React y otras bibliotecas
+import { Link } from 'react-router-dom';
 import React from 'react';
 import Slider from 'react-slick'; // Componente principal para el carrusel
 import { FaChevronLeft, FaChevronRight, FaStar, FaBed } from 'react-icons/fa'; // Iconos para la interfaz
@@ -130,14 +130,14 @@ const CarruselHabitaciones: React.FC = () => {
           </div>
         ))}
       </Slider>
-      
-      {/* Contenedor para el botón "Ver más habitaciones" */}
+
       <div className="ver-mas-container">
-        <button className="ver-mas-button">Ver más habitaciones</button>
+        <Link to="/habitaciones">
+          <button className="ver-mas-button">Ver más habitaciones</button>
+        </Link>
       </div>
     </div>
   );
 };
 
-// Exportar el componente para que pueda ser utilizado en otras partes de la aplicación.
 export default CarruselHabitaciones;

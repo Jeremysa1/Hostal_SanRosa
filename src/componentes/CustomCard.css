@@ -52,7 +52,8 @@
 /* --- DESCRIPCIÓN DE LA TARJETA --- */
 .p-card .m-0 {
   color: #6c757d;
-  padding-top: 1rem;
+  padding-top: 0px;
+  font-size: 14px;
 }
 
 /* --- ESTILOS DE LA CALIFICACIÓN --- */

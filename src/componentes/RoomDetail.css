@@ -51,9 +51,7 @@
 .room-detail-price { font-size: 2rem; font-weight: 700; color: #343a40; margin: 0.1rem 0 0.75rem 0; }
 .reserve-button { background-color: #1abc9c !important; border: none !important; color: white !important; font-weight: 700 !important; border-radius: 50px !important; padding: 0.8rem 1.5rem !important; font-size: 1rem !important; letter-spacing: 0.5px; align-self: flex-end; }
 
-/* ========================================= */
-/* === VISTA MÓVIL (TABLET Y VERTICAL) === */
-/* ========================================= */
+
 @media (max-width: 768px) {
     /* --- El Dialog ocupa toda la pantalla --- */
     .room-detail-dialog.p-dialog {
