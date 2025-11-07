@@ -67,6 +67,10 @@ INSTALLED_APPS = [
 
     # Local apps
     'reservas',
+
+    #cloudinary apps para manejo de imagenes media en la nube
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -154,8 +158,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = None  # esto fuerza que se suban los archivos media a cloudinary en producción
 
+# Configuración de Cloudinary para archivos media en producción usando variables de entorno
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # ==============================================================================
 # DEFAULT PRIMARY KEY FIELD TYPE
 # ==============================================================================
@@ -176,7 +188,7 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle',
     ],
-    'DEFAULT_THROTTLE_RATES': {'anon': '100/hour', 'user': '1000/hour'},
+    'DEFAULT_THROTTLE_RATES': {'anon': '5000/hour', 'user': '10000/hour'},
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_RENDERER_CLASSES': [
