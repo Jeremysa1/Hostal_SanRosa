@@ -1,139 +1,138 @@
 .menu {
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  position: relative; /* Añadido para el posicionamiento del menú hamburguesa */
-}
-
-.logo-container {
-  flex-shrink: 0;
-}
-
-.logo {
-  width: 200px;
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #2CB7A6; /* Color del icono de hamburguesa */
-  padding: 5px; /* Añade un poco de espacio para el contorno */
-}
-
-/* Estilo para cuando el botón de hamburguesa está seleccionado (focus) */
-.menu-toggle:focus {
-  outline: 1px solid #ccc; /* Contorno gris claro y sutil */
-  border-radius: 5px;
-}
-
-.menu-right {
-  display: flex;
-  align-items: center;
-}
-
-.menu-list {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu-item {
-  margin: 0 20px; /* Margen para separar los items en escritorio */
-}
-
-.menu-item a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #bebebe;
-  transition: color 0.3s; /* Transición solo para el color */
-}
-
-.menu-item a:hover {
-  color: #2CB7A6; /* Un tono más oscuro del color base */
-}
-
-.menu-item a span {
-  margin-left: 8px;
-}
-
-.reservar-btn {
-  margin-left: 20px;
-  padding: 10px 20px;
-  background-color: #2CB7A6;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s; /* Transición suave para el fondo */
-}
-
-.reservar-btn:hover {
-  background-color: #218377; /* Oscurece el botón al pasar el mouse */
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1001;
-  }
-
-  .menu-right {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f8f8f8;
-    padding-top: 120px;
-    z-index: 1000;
-    box-sizing: border-box;
-  }
-
-  .menu-right.active {
+    height: 100px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    position: relative; /* Añadido para el posicionamiento del menú hamburguesa */
   }
-
+  
+  .logo-container {
+    flex-shrink: 0;
+  }
+  
+  .logo {
+    width: 200px;
+  }
+  
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2CB7A6; /* Color del icono de hamburguesa */
+    padding: 5px; /* Añade un poco de espacio para el contorno */
+  }
+  
+  /* Estilo para cuando el botón de hamburguesa está seleccionado (focus) */
+  .menu-toggle:focus {
+    outline: 1px solid #ccc; /* Contorno gris claro y sutil */
+    border-radius: 5px;
+  }
+  
+  .menu-right {
+    display: flex;
+    align-items: center;
+  }
+  
   .menu-list {
-    flex-direction: column;
-    width: 100%; /* La lista ocupa todo el ancho */
-  }
-
-  .menu-item {
+    display: flex;
+    list-style-type: none;
     margin: 0;
-    border-bottom: 1px solid #eee; /* La línea ahora es de ancho completo */
+    padding: 0;
+  }
+  
+  .menu-item {
+    margin: 0 20px; /* Margen para separar los items en escritorio */
   }
   
   .menu-item a {
-    justify-content: flex-end; /* Alinea el contenido a la derecha */
-    padding: 20px 40px; /* El padding es necesario para el espaciado en móvil */
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #bebebe;
+    transition: color 0.3s; /* Transición solo para el color */
   }
   
-  /* El :hover definido arriba se aplicará aquí también, cambiando solo el color del texto */
-
-  .reservar-btn {
-    margin: 30px 40px 0 0;
-    align-self: flex-end; /* Se alinea a la derecha del contenedor */
-    box-sizing: border-box;
+  .menu-item a:hover {
+    color: #2CB7A6; /* Un tono más oscuro del color base */
   }
-}
-
-@media (max-width: 320px) {
-  .logo {
-      width: 150px;
+  
+  .menu-item a span {
+    margin-left: 8px;
+  }
+  
+  .reservar-btn {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background-color: #2CB7A6;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+  }
+  
+  .reservar-btn:hover {
+    background-color: #218377; /* Oscurece el botón al pasar el mouse */
+  }
+  
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1001;
     }
+  
+    .menu-right {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f8f8f8;
+      padding-top: 120px;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+  
+    .menu-right.active {
+      display: flex;
+    }
+  
+    .menu-list {
+      flex-direction: column;
+      width: 100%; /* La lista ocupa todo el ancho */
+    }
+  
+    .menu-item {
+      margin: 0;
+      border-bottom: 1px solid #eee; /* La línea ahora es de ancho completo */
+    }
+    
+    .menu-item a {
+      justify-content: flex-end; /* Alinea el contenido a la derecha */
+      padding: 20px 40px; /* El padding es necesario para el espaciado en móvil */
+      box-sizing: border-box;
+    }
+    
+    /* El :hover definido arriba se aplicará aquí también, cambiando solo el color del texto */
+  
+    .reservar-btn {
+      margin: 30px 40px 0 0;
+      align-self: flex-end; /* Se alinea a la derecha del contenedor */
+      box-sizing: border-box;
+    }
+  }
+  @media (max-width: 320px) {
+    .logo {
+        width: 150px;
+      }
 }
