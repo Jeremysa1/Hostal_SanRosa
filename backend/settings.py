@@ -5,6 +5,9 @@ from datetime import timedelta
 import os
 import dj_database_url
 
+
+HOSTAL_WHATSAPP = config('HOSTAL_WHATSAPP', default='573242989045')
+
 # ==============================================================================
 # BASE SETTINGS
 # ==============================================================================

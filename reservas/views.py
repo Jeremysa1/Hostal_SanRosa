@@ -125,7 +125,7 @@ def pre_reserva(request):
 
     data = serializer.validated_data
 
-    hostal_whatsapp = "573001234567"  # <-- Si luego lo pones en .env, solo cambiamos aquí.
+    hostal_whatsapp = settings.HOSTAL_WHATSAPP  # Número de WhatsApp del hostal desde settings.py seguro en .env
 
     mensaje = (
         "Hola, deseo solicitar una reserva:%0A"
@@ -137,7 +137,7 @@ def pre_reserva(request):
         f"📅 *Entrada:* {data['checkInDate']}%0A"
         f"📆 *Salida:* {data['checkOutDate']}%0A"
         "------------------------------------%0A"
-        "Gracias 🙏"
+        "Gracias "
     )
 
     whatsapp_url = f"https://wa.me/{hostal_whatsapp}?text={mensaje}"
