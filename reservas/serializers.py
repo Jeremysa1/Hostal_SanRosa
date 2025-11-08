@@ -1,5 +1,6 @@
 
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
 from .models import Habitacion, Cliente, Reserva, SitioTuristico, InformacionHostal
 from .validators import (
     validar_fechas_reserva,
@@ -162,6 +163,15 @@ class ReservaCalendarioSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at']
     
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+            'nombre': {'type': 'string'},
+            'email': {'type': 'string'},
+            'telefono': {'type': 'string'}
+        }
+    })
     def get_cliente_info(self, obj):
         return {
             'id': obj.cliente.id,
@@ -170,6 +180,15 @@ class ReservaCalendarioSerializer(serializers.ModelSerializer):
             'telefono': obj.cliente.telefono
         }
     
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+            'nombre': {'type': 'string'},
+            'tipo': {'type': 'string'},
+            'capacidad': {'type': 'integer'}
+        }
+    })
     def get_habitacion_info(self, obj):
         return {
             'id': obj.habitacion.id,
@@ -177,6 +196,7 @@ class ReservaCalendarioSerializer(serializers.ModelSerializer):
             'tipo': obj.habitacion.get_tipo_display(),
             'capacidad': obj.habitacion.capacidad
         }
+
     
     def validate(self, data):
         """Validación completa de la reserva desde calendario"""

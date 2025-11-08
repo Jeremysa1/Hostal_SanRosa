@@ -1,3 +1,7 @@
+#carpeta reservas/views.py
+
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse
+from drf_spectacular.types import OpenApiTypes
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -170,8 +174,17 @@ class CalendarioView(APIView):
     GET /api/calendario/?mes=10&anio=2025
     SOLO ADMINISTRADORES
     """
-    permission_classes = [CanAccessCalendar]  # ← Solo admin
+    permission_classes = [CanAccessCalendar]
+    throttle_classes = [CalendarioThrottle]
     
+    @extend_schema(
+        parameters=[
+            OpenApiParameter('mes', OpenApiTypes.INT, description='Mes (1-12)'),
+            OpenApiParameter('anio', OpenApiTypes.INT, description='Año (ej: 2025)'),
+        ],
+        responses={200: CalendarioSerializer},
+        description='Obtiene el calendario mensual con disponibilidad de todas las habitaciones'
+    )
     def get(self, request):
         mes = request.query_params.get('mes')
         anio = request.query_params.get('anio')
@@ -205,9 +218,30 @@ class CalendarioHabitacionView(APIView):
     GET /api/calendario/habitacion/{id}/?fecha_inicio=2025-10-01&fecha_fin=2025-10-31
     SOLO ADMINISTRADORES
     """
-    permission_classes = [CanAccessCalendar]  # ← Solo admin
-    throttle_classes = [CalendarioThrottle]  # ← Limitar acceso al calendario
+    permission_classes = [CanAccessCalendar]
+    throttle_classes = [CalendarioThrottle]
     
+    @extend_schema(
+        parameters=[
+            OpenApiParameter('fecha_inicio', OpenApiTypes.DATE, description='Fecha inicio (YYYY-MM-DD)'),
+            OpenApiParameter('fecha_fin', OpenApiTypes.DATE, description='Fecha fin (YYYY-MM-DD)'),
+        ],
+        responses={
+            200: OpenApiResponse(
+                description='Disponibilidad de la habitación',
+                response={
+                    'type': 'object',
+                    'properties': {
+                        'habitacion_id': {'type': 'integer'},
+                        'fecha_inicio': {'type': 'string', 'format': 'date'},
+                        'fecha_fin': {'type': 'string', 'format': 'date'},
+                        'disponibilidad': {'type': 'array'}
+                    }
+                }
+            )
+        },
+        description='Obtiene la disponibilidad de una habitación en un rango de fechas'
+    )
     def get(self, request, habitacion_id):
         fecha_inicio = request.query_params.get('fecha_inicio')
         fecha_fin = request.query_params.get('fecha_fin')
@@ -267,15 +301,18 @@ class ReservaCalendarioViewSet(viewsets.ModelViewSet):
         
         return queryset.order_by('-fecha_entrada')
 
-
 class InformacionHostalView(APIView):
     """
     Vista para obtener la información del hostal
     GET /api/informacion-hostal/
     PÚBLICO
     """
-    permission_classes = [IsPublicEndpoint]  # ← Público
+    permission_classes = [IsPublicEndpoint]
     
+    @extend_schema(
+        responses={200: InformacionHostalSerializer},
+        description='Obtiene la información general del hostal'
+    )
     def get(self, request):
         info = InformacionHostal.get_info()
         serializer = InformacionHostalSerializer(info)
