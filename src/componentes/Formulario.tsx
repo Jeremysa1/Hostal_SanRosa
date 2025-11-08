@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Formulario.css';
 import logo from '../assets/LOGO-HOSTAL.svg';
 
@@ -11,6 +12,7 @@ interface Errors {
   roomType?: boolean;
 }
 
+
 function Formulario() {
   const [guestName, setGuestName] = useState('');
   const [numberOfPeople, setNumberOfPeople] = useState('');
@@ -19,22 +21,46 @@ function Formulario() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [roomType, setRoomType] = useState('');
   const [errors, setErrors] = useState<Errors>({});
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const newErrors: Errors = {};
 
     if (!guestName.trim()) newErrors.guestName = true;
-    if (!numberOfPeople) newErrors.numberOfPeople = true;
+    if (!numberOfPeople || isNaN(Number(numberOfPeople))) newErrors.numberOfPeople = true;
     if (!checkInDate) newErrors.checkInDate = true;
     if (!checkOutDate) newErrors.checkOutDate = true;
-    if (!phoneNumber.trim()) newErrors.phoneNumber = true;
+    if (!phoneNumber.trim() || !/^[0-9]+$/.test(phoneNumber)) newErrors.phoneNumber = true;
     if (!roomType) newErrors.roomType = true;
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert('¡Reserva enviada con éxito!');
+      setShowSuccess(true);
+    }
+  };
+
+  // Solo permitir números en los campos correspondientes
+  const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setNumberOfPeople(value);
+  };
+
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setPhoneNumber(value);
+  };
+
+  // Inicia la animación de cierre y finaliza (resetea y navega) después
+  const handleCloseSuccess = () => {
+    setIsClosing(true);
+    const ANIM_MS = 260; // debe coincidir con CSS transition-duration
+    setTimeout(() => {
+      setShowSuccess(false);
+      setIsClosing(false);
       // Reset form
       setGuestName('');
       setNumberOfPeople('');
@@ -43,14 +69,15 @@ function Formulario() {
       setPhoneNumber('');
       setRoomType('');
       setErrors({});
-    }
+      navigate('/');
+    }, ANIM_MS);
   };
 
   return (
-    <div className="App">
-      <form className="booking-form" onSubmit={handleSubmit} noValidate>
+    <div className="formulario-container">
+  <form className="booking-form" onSubmit={handleSubmit} noValidate autoComplete="off">
         <div className="title-container">
-          <img src={logo} alt="Turquesa Hostal Logo" className="logo" />
+          <img src={logo} alt="Turquesa Hostal Logo" className="logo-formulario" />
           <h1>Pre - reserva</h1>
         </div>
         <div className="form-group">
@@ -61,16 +88,20 @@ function Formulario() {
             value={guestName}
             onChange={(e) => setGuestName(e.target.value)}
             className={errors.guestName ? 'error' : ''}
+            required
           />
         </div>
         <div className="form-group">
           <label htmlFor="numberOfPeople">Número de personas:</label>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             id="numberOfPeople"
             value={numberOfPeople}
-            onChange={(e) => setNumberOfPeople(e.target.value)}
+            onChange={handleNumberInput}
             className={errors.numberOfPeople ? 'error' : ''}
+            required
           />
         </div>
         <div className="form-group">
@@ -81,6 +112,7 @@ function Formulario() {
             value={checkInDate}
             onChange={(e) => setCheckInDate(e.target.value)}
             className={errors.checkInDate ? 'error' : ''}
+            required
           />
         </div>
         <div className="form-group">
@@ -91,16 +123,20 @@ function Formulario() {
             value={checkOutDate}
             onChange={(e) => setCheckOutDate(e.target.value)}
             className={errors.checkOutDate ? 'error' : ''}
+            required
           />
         </div>
         <div className="form-group">
           <label htmlFor="phoneNumber">Celular:</label>
           <input
-            type="tel"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             id="phoneNumber"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={handlePhoneInput}
             className={errors.phoneNumber ? 'error' : ''}
+            required
           />
         </div>
         <div className="form-group">
@@ -110,6 +146,7 @@ function Formulario() {
             value={roomType}
             onChange={(e) => setRoomType(e.target.value)}
             className={errors.roomType ? 'error' : ''}
+            required
           >
             <option value="" disabled>Seleccione una habitación</option>
             <option value="doble">Doble</option>
@@ -120,8 +157,19 @@ function Formulario() {
             <option value="triple">Triple</option>
           </select>
         </div>
-        <button type="submit">Reservar</button>
+  <button type="submit">Reservar</button>
       </form>
+    {showSuccess && (
+      <div className={`modal-overlay ${isClosing ? 'closing' : 'show'}`} role="dialog" aria-modal="true">
+        <div className={`modal-box ${isClosing ? 'closing' : 'show'}`}>
+          <button className="modal-close" onClick={handleCloseSuccess} aria-label="Cerrar modal">×</button>
+          <div className="modal-body">
+            <h2>Formulario enviado</h2>
+            <p>Gracias, tu pre-reserva fue enviada correctamente.</p>
+          </div>
+        </div>
+      </div>
+    )}
     </div>
   );
 }

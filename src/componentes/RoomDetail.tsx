@@ -1,4 +1,3 @@
-import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { LuShowerHead } from "react-icons/lu";
 import { BsDashLg } from "react-icons/bs";
@@ -8,6 +7,7 @@ import { LiaCouchSolid } from "react-icons/lia";
 import { MdOutlineTableRestaurant } from "react-icons/md";
 import { FaWifi, FaTv, FaCheck, FaUserFriends, FaBed } from 'react-icons/fa';
 import './RoomDetail.css';
+import { Link } from 'react-router-dom';
 
 interface RoomDetailProps {
     visible: boolean;
@@ -110,7 +110,10 @@ export const RoomDetail = (props: RoomDetailProps) => {
                                     <p className="price-label">Precio por persona:</p>
                                     <p className="room-detail-price">${props.room.price.toLocaleString('es-CO')}</p>
                                 </div>
-                                <Button label="RESERVA" className="reserve-button" />
+                                <Link to="/pagformulario">
+                                    <button className="reserve-button">RESERVA</button>
+                                </Link>
+
                             </div>
                         </div>
                     </div>

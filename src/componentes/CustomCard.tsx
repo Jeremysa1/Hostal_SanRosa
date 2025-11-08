@@ -2,6 +2,7 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Rating } from 'primereact/rating';
 import './CustomCard.css';
+import { Link } from 'react-router-dom';
 
 // Interfaz de propiedades para el componente CustomCard.
 interface CustomCardProps {
@@ -21,11 +22,13 @@ export const CustomCard = (props: CustomCardProps) => {
     const header = (
         <img alt="Card" src={props.imageUrl} />
     );
-    
+
     // -- PIE DE LA TARJETA CON BOTONES --
     const footer = (
         <div className="flex flex-wrap justify-content-center gap-2">
-            <Button label="Reservar" />
+            <Link to="/pagformulario">
+                <button className="reserve-button">RESERVAR</button>
+            </Link>
             {/* Al hacer clic en "Ver más", se muestra la ventana emergente. */}
             <Button label="Ver más" className="p-button-outlined p-button-secondary" onClick={() => props.onCardClick()} />
         </div>

@@ -6,6 +6,7 @@
   padding: 10px 20px;
   background-color: #ffffff;
   position: relative;
+  transition: background-color 0.25s ease;
   /* Añadido para el posicionamiento del menú hamburguesa */
 }
 
@@ -57,6 +58,12 @@
   color: #bebebe;
   transition: color 0.3s;
   /* Transición solo para el color */
+}
+
+/* Estilo para el enlace activo (NavLink) */
+.menu-item a.active {
+  color: #2CB7A6;
+  font-weight: 700;
 }
 
 .menu-item a:hover {

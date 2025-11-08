@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CarruselInicio.css';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const slides = [
   {
@@ -34,19 +35,21 @@ const CarruselInicio: React.FC = () => {
     const newIndex = isLastImage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
-  
+
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
 
   return (
     <div className="carrusel-container">
-      <div className="carrusel-slide" style={{backgroundImage: `url(${slides[currentIndex].image})`}}>
-      <div className="overlay"></div>
+      <div className="carrusel-slide" style={{ backgroundImage: `url(${slides[currentIndex].image})` }}>
+        <div className="overlay"></div>
         <div className="slide-content">
           <h1 className="slide-title">{slides[currentIndex].title}</h1>
           <p className="slide-subtitle">{slides[currentIndex].subtitle}</p>
-          <button className="reserva-button">Reserva ya</button>
+          <Link to="/pagformulario">
+            <button className="reserva-button">Reserva ya</button>
+          </Link>
         </div>
       </div>
       <button onClick={goToPrevious} className="carrusel-button prev-button">
@@ -57,7 +60,7 @@ const CarruselInicio: React.FC = () => {
       </button>
       <div className='dots-container'>
         {slides.map((_, slideIndex) => (
-            <div key={slideIndex} className={`dot ${slideIndex === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(slideIndex)}></div>
+          <div key={slideIndex} className={`dot ${slideIndex === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(slideIndex)}></div>
         ))}
       </div>
     </div>

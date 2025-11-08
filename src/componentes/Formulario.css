@@ -1,4 +1,4 @@
-.App {
+.formulario-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@
   margin-bottom: 1rem;
 }
 
-.logo {
+.logo-formulario {
   width: 250px;
   margin-bottom: 0%;
 }
@@ -154,4 +154,87 @@ button:focus-visible {
     font-size: 0.9rem;
     padding: 0.6rem;
   }
+}
+
+/* Modal success styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  padding: 1.5rem 1.25rem 1.75rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+}
+.modal-overlay,
+.modal-box {
+  /* prepare for animations */
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(.2,.9,.3,1);
+  transition-duration: 260ms;
+}
+
+/* Open state */
+.modal-overlay.show {
+  opacity: 1;
+}
+.modal-overlay {
+  opacity: 0;
+}
+.modal-box {
+  transform: scale(0.96);
+  opacity: 0;
+}
+.modal-box.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Closing state: fade/scale down */
+.modal-overlay.closing {
+  opacity: 0;
+}
+.modal-box.closing {
+  transform: scale(0.96);
+  opacity: 0;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #444;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s, color 0.15s;
+}
+.modal-close:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+.modal-body h2 {
+  margin: 0 0 0.5rem 0;
+  color: #2CB7A6;
+}
+.modal-body p {
+  margin: 0;
+  color: #333;
 }
