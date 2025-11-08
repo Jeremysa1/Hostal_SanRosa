@@ -4,7 +4,7 @@ const Descripcion = () => {
   return (
     <div className="descripcion-container">
       <div className="descripcion-imagen">
-        <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Descripción" />
+        <img src="https://res.cloudinary.com/dfznn7pui/image/upload/v1762430793/habitacion_1_rbtxef.jpg" />
       </div>
       <div className="descripcion-texto">
         <h2> <strong>DESTINO FAMILIAR</strong> en el eje cafetero</h2>

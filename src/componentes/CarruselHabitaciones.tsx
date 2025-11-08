@@ -1,9 +1,11 @@
 
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick'; // Componente principal para el carrusel
 import { FaChevronLeft, FaChevronRight, FaStar, FaBed } from 'react-icons/fa'; // Iconos para la interfaz
 import './CarruselHabitaciones.css'; // Estilos específicos para este componente
+import { cardData } from './infoRooms';
+import { RoomDetail } from './RoomDetail';
 
 // Importación de los estilos base para react-slick, necesarios para que el carrusel funcione correctamente
 import "slick-carousel/slick/slick.css";
@@ -19,33 +21,33 @@ interface ArrowProps {
 // Array de objetos que contiene la información de cada habitación.
 const habitaciones = [
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_9_mhcbqn.png',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430763/habitacion_2_m1j14z.jpg',
     titulo: 'Habitación DOBLE',
     rating: 4.0,
   },
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_8_r3raa1.png',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430778/habitacion_6_kdylco.jpg',
     titulo: 'Habitación TRIPLE',
     rating: 4.5,
   },
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_4_xxw1ne.png',
-    titulo: 'Habitación PARA 5',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430793/habitacion_1_rbtxef.jpg',
+    titulo: 'Habitación FAMILIAR',
     rating: 5.0,
   },
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064532/habitacion_2_vatjj0.png',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430797/habitacion_4_yciotd.jpg',
     titulo: 'Habitación FAMILIAR',
     rating: 4.8,
   },
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760066812/habitacion_11_b4afjs.png',
-    titulo: 'SUITE DE LUJO',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762431492/habitacion_3_o5c5on.jpg',
+    titulo: 'Habitación SUITE',
     rating: 5.0,
   },
   {
-    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760064533/habitacion_8_r3raa1.png',
-    titulo: 'Habitación INDIVIDUAL',
+    imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430787/habitacion_5_njubuv.jpg',
+    titulo: 'Habitación DOBLE',
     rating: 4.2,
   },
 ];
@@ -72,6 +74,7 @@ const NextArrow = (props: ArrowProps) => {
 
 // Componente principal del carrusel de habitaciones.
 const CarruselHabitaciones: React.FC = () => {
+  const [selectedRoom, setSelectedRoom] = useState<any>(null);
   // Configuración del carrusel (react-slick).
   const settings = {
     dots: false, // No mostrar los puntos de navegación.
@@ -125,11 +128,41 @@ const CarruselHabitaciones: React.FC = () => {
                 <span>{habitacion.rating.toFixed(1)}</span>
               </div>
               <h3>{habitacion.titulo}</h3>
-              <button className="reservar-button">Reservar</button>
+              <button
+                className="reservar-button"
+                onClick={() => {
+                  // Try to find a matching room from cardData (used by the Habitaciones page)
+                  const found = cardData.find(c =>
+                    // match by subtitle contained in the carousel title or by exact image URLs
+                    (habitacion.titulo && c.subtitle && habitacion.titulo.toUpperCase().includes(c.subtitle.toUpperCase())) ||
+                    c.imageUrl === habitacion.imagen ||
+                    c.detailImageUrl === habitacion.imagen
+                  );
+
+                  if (found) {
+                    setSelectedRoom(found);
+                  } else {
+                    // Fallback: create a minimal room object compatible with RoomDetail
+                    setSelectedRoom({
+                      detailImageUrl: habitacion.imagen,
+                      subtitle: habitacion.titulo.replace(/Habitaci[oó]n\s*/i, '').toUpperCase(),
+                      services: [],
+                      price: 0,
+                    });
+                  }
+                }}
+              >
+                Reservar
+              </button>
             </div>
           </div>
         ))}
       </Slider>
+
+      {/* Reuse the same RoomDetail modal used on the Habitaciones page */}
+      {selectedRoom && (
+        <RoomDetail room={selectedRoom} visible={selectedRoom !== null} onHide={() => setSelectedRoom(null)} />
+      )}
 
       <div className="ver-mas-container">
         <Link to="/habitaciones">

@@ -5,19 +5,14 @@ import { Link } from 'react-router-dom';
 
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430748/corredor_ycog6j.jpg',
     title: 'TURQUESA HOSTAL',
     subtitle: 'UN ESPACIO ECOLÓGICO Y FAMILIAR, ideal para quienes buscan comodidad y descanso en Santa Rosa de Cabal',
   },
   {
-    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'HOSTAL DEL RÍO',
+    image: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430763/habitacion_2_m1j14z.jpg',
+    title: 'DISFRUTA EN FAMILIA',
     subtitle: 'Disfruta de la naturaleza y la tranquilidad a orillas del río. Un lugar para desconectar y recargar energías.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'CASA DE CAMPO',
-    subtitle: 'Vive una experiencia auténtica en un entorno rural. Comodidad y tradición en un solo lugar.',
   },
 ];
 
