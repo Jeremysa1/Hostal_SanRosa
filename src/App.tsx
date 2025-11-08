@@ -5,6 +5,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home';
 import Habitaciones from './pages/Habitaciones';
 import Turismo from './pages/Turismo';
+import SitioTurismo1 from './pages/Sitio-Turismo1';
 // Home-specific components were moved into the Home page so they don't render on every route
 
 const Layout = () => (
@@ -22,6 +23,7 @@ function App() {
         <Route path="home" element={<Home />} />
         <Route path="habitaciones" element={<Habitaciones />} />
         <Route path="turismo" element={<Turismo />} />
+        <Route path="Sitio-Turismo1" element={<SitioTurismo1 />} />
       </Route>
     </Routes>
   );

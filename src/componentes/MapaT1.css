@@ -1,0 +1,151 @@
+.hostel-description-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  gap: 30px; max-width: 1200px; 
+  margin: 40px auto; 
+  padding: 20px;
+  width: 100%;  
+  overflow: hidden;
+}
+
+/* CRÍTICO: El div 'mapa' debe tener una altura definida */
+.mapa {
+  
+  min-width: 50%; 
+  height: 500px; /* ¡ALTURA CRÍTICA para que el mapa se vea! */
+  border-radius: 12px;
+  overflow: hidden; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  max-width: 60%;
+
+  
+}
+
+.mapa-leaflet {
+  height: 100%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  
+}
+.mapa-info {
+  display: flex;
+  gap: 30px; 
+  justify-content: center;
+  
+  /* CRÍTICO: Reintroduce max-width para centrar el contenido */
+  max-width: 1000px; /* Define el ancho del contenido centrado */
+  margin: 0;
+  width: 100%; /* Permite que ocupe el espacio */
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+.info {
+  flex: 1; /* Ocupa la otra columna */
+  min-width: 300px; 
+  padding: 0 0 0 10px;
+}
+.ubi {
+  /* Estilo de la etiqueta de fondo blanco */
+  display: inline-flex; 
+  align-items: center; 
+  padding: 0px 15px; 
+  border-radius: 20px;
+  background-color: white; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px; 
+  
+}
+.ubi i {
+  color: #2CB7A6; /* Color del ícono */
+  font-size: 1.5rem; 
+  margin-right: 10px; 
+  padding-left: 20px;
+}
+.ubi h2 {
+  margin: 0; 
+  font-size: 30px;
+  font-weight: 700;
+  color: #2CB7A6; 
+  
+}
+.departamento {
+  color: #2CB7A6;
+  margin: 0 0 0 0;
+  font-size: 30px;
+  
+  
+}
+.municipio {
+  color: #2CB7A6;
+  margin: 0 0 5px 0;
+  font-size: 30px;
+}
+
+.info p {
+  
+  font-size: 16px;
+}
+.cuadro {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.btnubi {
+  display: flex;
+  font-size: 30px;
+}
+
+.mapa-fondo {
+  background-color: #ffffff; 
+  padding: 40px 0; 
+  width: 100%; 
+  margin: 0; 
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hostel-description-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .mapa {
+        width: 100%;
+        margin: 0 auto;
+       
+    }
+}
+
+@media (max-width: 480px) {
+  .hostel-description-container {
+      flex-direction: column;
+      padding: 10px;
+      gap: 20px;
+  }
+
+  .mapa {
+      height: 300px;
+   
+margin: 0px auto;
+
+  }
+
+  .info {
+      padding: 0;
+  }
+
+  .ubi h2,
+  .departamento,
+  .municipio {
+      font-size: 24px;
+  }
+
+  .info p {
+      font-size: 14px;
+      text-align: justify;
+  }
+  
+}

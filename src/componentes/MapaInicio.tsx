@@ -1,14 +1,14 @@
-import './Mapa.css';
+import './MapaInicio.css';
 import MapaHostal from './MapaHostal'; // Importamos el componente del mapa
 import { GrLocation } from "react-icons/gr";
 
-function HostelDescription() {
+function MapaInicio() {
   return (
     <>
-      <div className='mapa-fondo'>
+      <div className='mapa-fondo-inicio'>
         {/* SECCIÓN DEL MAPA Y LA INFORMACIÓN */}
-        <div className='mapa-info'>
-          <div className='mapa'>
+        <div className='mapa-info-inicio'>
+          <div className='mapa-inicio'>
             <MapaHostal />
           </div>
           <div className='info'>
@@ -30,4 +30,4 @@ function HostelDescription() {
   );
 }
 
-export default HostelDescription;
+export default MapaInicio;

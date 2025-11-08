@@ -1,5 +1,5 @@
 /* Contenedor principal con fondo de color */
-.mapa-fondo {
+.mapa-fondo-inicio {
   background-color: #f7fdfc; /* Un color de fondo suave */
   padding: 30px 30px; /* Padding vertical y horizontal */
   width: 100%;
@@ -7,7 +7,7 @@
 }
 
 /* Contenedor flex para el mapa y la información */
-.mapa-info {
+.mapa-info-inicio {
   display: flex;
   flex-direction: row; /* Por defecto, en fila para escritorio */
   gap: 30px;
@@ -17,7 +17,7 @@
 }
 
 /* Columna del mapa */
-.mapa {
+.mapa-inicio {
   flex: 1; /* Ocupa el 50% del espacio disponible */
   min-width: 300px; /* Ancho mínimo */
   height: 400px; /* Altura fija para el mapa */
@@ -89,11 +89,11 @@
 
 /* Para tablets (1024px) y dispositivos más pequeños */
 @media (max-width: 1024px) {
-  .mapa-info {
+  .mapa-info-inicio {
     flex-direction: column; /* Cambia la dirección a columna */
   }
 
-  .mapa {
+  .mapa-inicio {
     width: 90%; /* El mapa ocupa todo el ancho */
     height: 400px; /* Altura ajustada */
     flex: none; /* Resetea el flex-grow */
@@ -119,11 +119,11 @@
 
 /* Para teléfonos móviles (480px) y dispositivos más pequeños */
 @media (max-width: 480px) {
-  .mapa-fondo {
+  .mapa-fondo-inicio {
     padding: 20px 15px; /* Menos padding */
   }
-  
-  .mapa {
+
+  .mapa-inicio {
     height: 300px; /* Altura más reducida */
   }
 
