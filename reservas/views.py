@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from urllib.parse import quote
-
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, action
@@ -111,7 +111,7 @@ class HabitacionViewSet(viewsets.ReadOnlyModelViewSet):
 # -------------------------------------------------------------------
 # PRE-RESERVA (WhatsApp) ★ IMPORTANT ★
 # -------------------------------------------------------------------
-
+@csrf_exempt
 @api_view(['POST'])
 def pre_reserva(request):
     """
