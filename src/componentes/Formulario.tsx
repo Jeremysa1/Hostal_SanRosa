@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Formulario.css';
 import logo from '../assets/LOGO-HOSTAL.svg';
+import { enviarPreReserva } from "../services/reservas";
+
 
 interface Errors {
   guestName?: boolean;
@@ -25,25 +27,7 @@ function Formulario() {
   const [isClosing, setIsClosing] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const newErrors: Errors = {};
 
-    if (!guestName.trim()) newErrors.guestName = true;
-    if (!numberOfPeople || isNaN(Number(numberOfPeople))) newErrors.numberOfPeople = true;
-    if (!checkInDate) newErrors.checkInDate = true;
-    if (!checkOutDate) newErrors.checkOutDate = true;
-    if (!phoneNumber.trim() || !/^[0-9]+$/.test(phoneNumber)) newErrors.phoneNumber = true;
-    if (!roomType) newErrors.roomType = true;
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      setShowSuccess(true);
-    }
-  };
-
-  // Solo permitir números en los campos correspondientes
   const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, '');
     setNumberOfPeople(value);
@@ -54,7 +38,6 @@ function Formulario() {
     setPhoneNumber(value);
   };
 
-  // Inicia la animación de cierre y finaliza (resetea y navega) después
   const handleCloseSuccess = () => {
     setIsClosing(true);
     const ANIM_MS = 260; // debe coincidir con CSS transition-duration
@@ -73,9 +56,42 @@ function Formulario() {
     }, ANIM_MS);
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const newErrors: Errors = {};
+
+    if (!guestName.trim()) newErrors.guestName = true;
+    if (!numberOfPeople || isNaN(Number(numberOfPeople))) newErrors.numberOfPeople = true;
+    if (!checkInDate) newErrors.checkInDate = true;
+    if (!checkOutDate) newErrors.checkOutDate = true;
+    if (!phoneNumber.trim() || !/^[0-9]+$/.test(phoneNumber)) newErrors.phoneNumber = true;
+    if (!roomType) newErrors.roomType = true;
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
+    const data = {
+      guestName,
+      phoneNumber,
+      checkInDate,
+      checkOutDate,
+      numberOfPeople: Number(numberOfPeople),
+      roomType,
+    };
+
+    try {
+      const whatsapp_url = await enviarPreReserva(data);
+      window.open(whatsapp_url, "_blank");
+    } catch (error) {
+      console.error(error);
+      alert("Hubo un problema enviando la pre-reserva. Inténtalo nuevamente.");
+    }
+  };
+
   return (
     <div className="formulario-container">
-  <form className="booking-form" onSubmit={handleSubmit} noValidate autoComplete="off">
+      <form className="booking-form" onSubmit={handleSubmit} noValidate autoComplete="off">
         <div className="title-container">
           <img src={logo} alt="Turquesa Hostal Logo" className="logo-formulario" />
           <h1>Pre - reserva</h1>
@@ -157,21 +173,21 @@ function Formulario() {
             <option value="triple">Triple</option>
           </select>
         </div>
-  <button type="submit">Reservar</button>
+        <button type="submit">Reservar</button>
       </form>
-    {showSuccess && (
-      <div className={`modal-overlay ${isClosing ? 'closing' : 'show'}`} role="dialog" aria-modal="true">
-        <div className={`modal-box ${isClosing ? 'closing' : 'show'}`}>
-          <button className="modal-close" onClick={handleCloseSuccess} aria-label="Cerrar modal">×</button>
-          <div className="modal-body">
-            <h2>Formulario enviado</h2>
-            <p>Gracias, tu pre-reserva fue enviada correctamente.</p>
+      {showSuccess && (
+        <div className={`modal-overlay ${isClosing ? 'closing' : 'show'}`} role="dialog" aria-modal="true">
+          <div className={`modal-box ${isClosing ? 'closing' : 'show'}`}>
+            <button className="modal-close" onClick={handleCloseSuccess} aria-label="Cerrar modal">×</button>
+            <div className="modal-body">
+              <h2>Formulario enviado</h2>
+              <p>Gracias, tu pre-reserva fue enviada correctamente.</p>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
     </div>
   );
 }
 
-export default Formulario;
+  export default Formulario;
