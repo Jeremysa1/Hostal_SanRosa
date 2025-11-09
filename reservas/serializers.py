@@ -1,6 +1,7 @@
 
 # reservas/serializers.py
 
+from datetime import date
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
@@ -88,8 +89,7 @@ class ReservaCreateSerializer(serializers.ModelSerializer):
         )
         
         return Reserva.objects.create(cliente=cliente, **validated_data)
-
-
+    
 class ReservaListSerializer(serializers.ModelSerializer):
     """Serializer para listar reservas (usado en panel admin)."""
     
@@ -100,10 +100,9 @@ class ReservaListSerializer(serializers.ModelSerializer):
         model = Reserva
         fields = '__all__'
 
-
 # ---------------------------------------------------------
 # PRE-RESERVA (WHATSAPP)
-# ---------------------------------------------------------
+
 class PreReservaSerializer(serializers.Serializer):
     guestName = serializers.CharField()
     numberOfPeople = serializers.IntegerField()
@@ -112,6 +111,24 @@ class PreReservaSerializer(serializers.Serializer):
     phoneNumber = serializers.CharField()
     roomType = serializers.CharField()
 
+    def validate_numberOfPeople(self, value):
+        if value < 1:
+            raise serializers.ValidationError("El número de personas debe ser al menos 1.")
+        return value
+
+    def validate(self, data):
+        check_in = data.get('checkInDate')
+        check_out = data.get('checkOutDate')
+
+        # Verifica que la salida sea después de la llegada
+        if check_in and check_out and check_out <= check_in:
+            raise serializers.ValidationError("La fecha de salida debe ser posterior a la fecha de llegada.")
+
+        # Opcional: no permitir reservas en el pasado
+        if check_in and check_in < date.today():
+            raise serializers.ValidationError("La fecha de llegada no puede ser en el pasado.")
+
+        return data
 
 # ---------------------------------------------------------
 # SITIOS TURÍSTICOS

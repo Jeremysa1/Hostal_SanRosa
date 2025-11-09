@@ -130,12 +130,12 @@ def pre_reserva(request):
     mensaje = (
         "Hola, deseo solicitar una reserva:%0A"
         "------------------------------------%0A"
-        f"👤 *Nombre:* {data['guestName']}%0A"
-        f"📞 *Teléfono:* {data['phoneNumber']}%0A"
-        f"👥 *Personas:* {data['numberOfPeople']}%0A"
-        f"🛏️ *Habitación:* {data['roomType']}%0A"
-        f"📅 *Entrada:* {data['checkInDate']}%0A"
-        f"📆 *Salida:* {data['checkOutDate']}%0A"
+        f" *Nombre:* {data['guestName']}%0A"
+        f" *Teléfono:* {data['phoneNumber']}%0A"
+        f" *Personas:* {data['numberOfPeople']}%0A"
+        f" *Habitación:* {data['roomType']}%0A"
+        f" *Entrada:* {data['checkInDate']}%0A"
+        f" *Salida:* {data['checkOutDate']}%0A"
         "------------------------------------%0A"
         "Gracias "
     )
