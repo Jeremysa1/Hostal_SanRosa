@@ -247,3 +247,7 @@ CORS_ALLOW_HEADERS = [
     'dnt','origin','user-agent','x-csrftoken','x-requested-with',
 ]
 # ==============================================================================
+
+#para probar la configuración de cloudinary teporalmente
+import cloudinary
+print("Cloudinary Config:", cloudinary.config().cloud_name)

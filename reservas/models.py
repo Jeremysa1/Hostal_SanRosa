@@ -1,6 +1,8 @@
 
 from django.db import models
 from django.core.validators import MinValueValidator
+from cloudinary.models import CloudinaryField
+
 
 class Habitacion(models.Model):
     TIPO_CHOICES = [
@@ -16,7 +18,8 @@ class Habitacion(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField()
     disponible = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='habitaciones/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
     
     # Servicios
     wifi = models.BooleanField(default=True)
@@ -99,8 +102,9 @@ class SitioTuristico(models.Model):
     descripcion_completa = models.TextField(help_text="Descripción detallada")
     
     # Imágenes
-    imagen_principal = models.ImageField(upload_to='sitios_turisticos/', help_text="Imagen para lista")
-    imagen_detalle = models.ImageField(upload_to='sitios_turisticos/', null=True, blank=True, help_text="Imagen grande para página de detalle")
+    imagen_principal = CloudinaryField('imagen_principal')
+    imagen_detalle = CloudinaryField('imagen_detalle', null=True, blank=True)
+
     
     # Ubicación
     ubicacion = models.CharField(max_length=300, help_text="Ej: A 15 minutos en carro desde Turquesa Hostel")
@@ -185,8 +189,9 @@ class InformacionHostal(models.Model):
     politicas_fumar = models.TextField(blank=True, help_text="Políticas sobre fumar")
     
     # Imágenes
-    logo = models.ImageField(upload_to='hostal/', null=True, blank=True)
-    imagen_principal = models.ImageField(upload_to='hostal/', null=True, blank=True, help_text="Imagen para la home")
+    logo = CloudinaryField('logo', null=True, blank=True)
+    imagen_principal = CloudinaryField('imagen_principal', null=True, blank=True)
+
     
     # Copyright
     copyright_text = models.CharField(max_length=100, default="© 2025 Turquesa hostal")
