@@ -1,7 +1,7 @@
 export const cardData = [
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430793/habitacion_1_rbtxef.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430793/habitacion_1_rbtxef.jpg",
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762631165/Habitacion-9-personas_zyeepv.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762631165/Horizontal-9-personas_xzpmi9.png",
       title: "Habitación",
       subtitle: "FAMILIAR GRANDE",
       description: "Perfecta para familias o grupos pequeños.",
@@ -10,8 +10,8 @@ export const cardData = [
       price: 40000
     },
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430763/habitacion_2_m1j14z.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430763/habitacion_2_m1j14z.jpg",
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762635431/habitacion_naranja_ome2oc.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629814/Horizontal-2_bw2big.png",
       title: "Habitación",
       subtitle: "DOBLE",
       description: "Diseñada para parejas o viajeros que buscan comodidad.",
@@ -20,8 +20,8 @@ export const cardData = [
       price: 45000
     },
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762431492/habitacion_3_o5c5on.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762431492/habitacion_3_o5c5on.jpg",
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-1_ibttii.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629815/Horizontal-1_qmpvu2.png",
       title: "Habitación",
       subtitle: "FAMILIAR",
       description: "Amplia y cómoda, ideal para grupos grandes.",
@@ -30,8 +30,8 @@ export const cardData = [
       price: 35000
     },
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430797/habitacion_4_yciotd.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430797/habitacion_4_yciotd.jpg",
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-4_afjrlh.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629815/Horizontal-4_ilon4a.png",
       title: "Habitación",
       subtitle: "TRIPLE",
       description: "Espacio funcional y tranquilo, ideal para amigos o familias pequeñas.",
@@ -40,8 +40,8 @@ export const cardData = [
       price: 40000
     },
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430787/habitacion_5_njubuv.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430787/habitacion_5_njubuv.jpg", 
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-5_ibm1pp.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629816/Horizontal-5_enfgol.png", 
       title: "Habitación",
       subtitle: "DOBLE SENCILLA",
       description: "Acogedora y práctica, perfecta para descansar después de un día de viaje.",
@@ -50,8 +50,8 @@ export const cardData = [
       price: 45000
     },
     {
-      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430778/habitacion_6_kdylco.jpg",
-      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762430778/habitacion_6_kdylco.jpg",
+      imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629775/Habitacion-6_ommdkh.png",
+      detailImageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629817/Horizontal-6_dtgcuk.png",
       title: "Habitación",
       subtitle: "SUITE",
       description: "Nuestra habitación más completa, ideal para quienes buscan mayor confort.",
