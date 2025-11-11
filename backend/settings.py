@@ -1,49 +1,38 @@
 
 from pathlib import Path
-from decouple import config, Csv
 from datetime import timedelta
-import os
+from decouple import config, Csv
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import os
 
+# ==============================================================================
+# VARIABLES DE ENTORNO Y DEBUG
+# ==============================================================================
 
+print("DEBUG MODE:", config('DEBUG', default=True))
+print("CLOUDINARY CLOUD NAME:", config('CLOUDINARY_CLOUD_NAME', default=None))
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 HOSTAL_WHATSAPP = config('HOSTAL_WHATSAPP', default='573242989045')
 
 # ==============================================================================
-# BASE SETTINGS
+# SEGURIDAD Y CONFIGURACIÓN BÁSICA
 # ==============================================================================
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# SECRET KEY
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-cambiar-en-produccion')  # se cambiará en producción
-
-# DEBUG
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-cambiar-en-produccion')
 DEBUG = config('DEBUG', default=True, cast=bool)
-
-# Allowed Hosts
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
 
-# ==============================================================================
-# SECURITY SETTINGS
-# ==============================================================================y
-
 if not DEBUG:
-    # Django conoce el encabezado de proxy para HTTPS
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-    # Redirige HTTP a HTTPS
     SECURE_SSL_REDIRECT = True
-
-    # Cookies seguras
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-
-    # Políticas de seguridad adicionales
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-
-    # Orígenes de confianza para CSRF
     CSRF_TRUSTED_ORIGINS = config(
         'CSRF_TRUSTED_ORIGINS',
         default='https://hostalsanrosa-production.up.railway.app',
@@ -51,11 +40,11 @@ if not DEBUG:
     )
 
 # ==============================================================================
-# APPLICATION DEFINITION
+# APLICACIONES INSTALADAS
 # ==============================================================================
 
 INSTALLED_APPS = [
-    # Django apps
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,22 +52,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third party apps
+    # Terceros
     'rest_framework',
     'corsheaders',
     'drf_spectacular',
-
-    # Local apps
-    'reservas',
-
-    #cloudinary apps para manejo de imagenes media en la nube
     'cloudinary',
     'cloudinary_storage',
+
+    # Locales
+    'reservas',
 ]
+
+# ==============================================================================
+# MIDDLEWARE
+# ==============================================================================
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para servir archivos estáticos en producción
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,6 +80,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+
+# ==============================================================================
+# TEMPLATES
+# ==============================================================================
 
 TEMPLATES = [
     {
@@ -108,7 +103,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # ==============================================================================
-# DATABASE CONFIGURATION
+# BASE DE DATOS
 # ==============================================================================
 
 DATABASES = {
@@ -119,7 +114,6 @@ DATABASES = {
     )
 }
 
-# Fallback local PostgreSQL
 if not DATABASES['default']:
     DATABASES = {
         'default': {
@@ -133,18 +127,18 @@ if not DATABASES['default']:
     }
 
 # ==============================================================================
-# PASSWORD VALIDATION
+# VALIDACIÓN DE CONTRASEÑAS
 # ==============================================================================
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # ==============================================================================
-# INTERNATIONALIZATION
+# INTERNACIONALIZACIÓN
 # ==============================================================================
 
 LANGUAGE_CODE = 'es-es'
@@ -153,7 +147,7 @@ USE_I18N = True
 USE_TZ = True
 
 # ==============================================================================
-# STATIC AND MEDIA FILES
+# ARCHIVOS ESTÁTICOS Y MEDIA
 # ==============================================================================
 
 STATIC_URL = '/static/'
@@ -161,9 +155,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = None  # esto fuerza que se suban los archivos media a cloudinary en producción
+MEDIA_ROOT = None  # Cloudinary maneja los archivos media
 
-# Configuración de Cloudinary para archivos media en producción usando variables de entorno
+# ==============================================================================
+# CONFIGURACIÓN DE CLOUDINARY
+# ==============================================================================
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': config('CLOUDINARY_API_KEY'),
@@ -171,8 +168,19 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# 🔧 Inicializa la librería Cloudinary (esto es lo que antes faltaba)
+cloudinary.config( 
+    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
+    api_key=config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure=True
+)
+
+print("Cloudinary Config:", cloudinary.config().cloud_name)
+
 # ==============================================================================
-# DEFAULT PRIMARY KEY FIELD TYPE
+# CLAVE PRIMARIA POR DEFECTO
 # ==============================================================================
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -211,7 +219,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 # ==============================================================================
-# SIMPLE JWT CONFIGURATION
+# SIMPLE JWT
 # ==============================================================================
 
 SIMPLE_JWT = {
@@ -222,7 +230,6 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
@@ -232,7 +239,7 @@ SIMPLE_JWT = {
 }
 
 # ==============================================================================
-# CORS CONFIGURATION
+# CORS
 # ==============================================================================
 
 CORS_ALLOWED_ORIGINS = config(
@@ -241,13 +248,8 @@ CORS_ALLOWED_ORIGINS = config(
     cast=Csv()
 )
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_METHODS = ['DELETE','GET','OPTIONS','PATCH','POST','PUT']
+CORS_ALLOW_METHODS = ['DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT']
 CORS_ALLOW_HEADERS = [
-    'accept','accept-encoding','authorization','content-type',
-    'dnt','origin','user-agent','x-csrftoken','x-requested-with',
+    'accept', 'accept-encoding', 'authorization', 'content-type',
+    'dnt', 'origin', 'user-agent', 'x-csrftoken', 'x-requested-with',
 ]
-# ==============================================================================
-
-#para probar la configuración de cloudinary teporalmente
-import cloudinary
-print("Cloudinary Config:", cloudinary.config().cloud_name)
