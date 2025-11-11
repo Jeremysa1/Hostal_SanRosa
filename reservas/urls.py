@@ -1,19 +1,19 @@
 # carpeta reservas/urls.py
 
-from .views import pre_reserva
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
-    HabitacionViewSet, 
-    ReservaViewSet, 
-    ClienteViewSet, 
+    HabitacionViewSet,
+    ReservaViewSet,
+    ClienteViewSet,
     SitioTuristicoViewSet,
     CalendarioView,
     CalendarioHabitacionView,
     ReservaCalendarioViewSet,
-    InformacionHostalView
-    
+    InformacionHostalView,
+    pre_reserva
 )
+
 
 # Router de DRF (genera automáticamente las URLs)
 router = DefaultRouter()

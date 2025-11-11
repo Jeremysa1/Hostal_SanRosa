@@ -109,8 +109,13 @@ class HabitacionViewSet(viewsets.ReadOnlyModelViewSet):
         })
 
 # -------------------------------------------------------------------
-# PRE-RESERVA (WhatsApp) ★ IMPORTANT ★
+# PRE-RESERVA (WhatsApp) 
 # -------------------------------------------------------------------
+@extend_schema(
+    request=PreReservaSerializer,
+    responses={200: {"type": "object", "properties": {"whatsapp_url": {"type": "string"}}}}
+)
+
 @csrf_exempt
 @api_view(['POST'])
 def pre_reserva(request):
