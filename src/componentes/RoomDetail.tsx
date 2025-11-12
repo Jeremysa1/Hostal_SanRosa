@@ -1,6 +1,7 @@
 import { Dialog } from 'primereact/dialog';
 import { LuShowerHead } from "react-icons/lu";
 import { BsDashLg } from "react-icons/bs";
+import { PiToiletBold } from "react-icons/pi";
 import { BiCloset } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { LiaCouchSolid } from "react-icons/lia";
@@ -37,6 +38,10 @@ export const RoomDetail = (props: RoomDetailProps) => {
                 return <LiaCouchSolid />;
             case "Agua caliente":
                 return <LuShowerHead />;
+                case "Baño privado":
+                return <PiToiletBold />;
+                case "mesita de noche":
+                return <MdOutlineTableRestaurant  />;
             case "Mesa de trabajo":
                 return <MdOutlineTableRestaurant />;
             default:
@@ -59,21 +64,61 @@ export const RoomDetail = (props: RoomDetailProps) => {
                 </button>
 
                 <div className="room-detail-content grid">
-                    {/* ========= PANEL IZQUIERDO ========= */}
+                    {/* ========= PANEL IZQUIERDO: AHORA DINÁMICO ========= */}
                     <div className="col-12 md:col-6">
                         <h1 className="room-detail-title">HABITACIÓN {props.room.subtitle}</h1>
                         <div className="info-item">
                             <FaUserFriends className="icon" />
                             <div className="text-content">
-                                <p><b>Capacidad:</b> 5 personas</p>
+                                {/* Usamos props.room.capacity, y pluralizamos "persona" */}
+                                <p>
+                                    <b>Capacidad:</b> {props.room.capacity}{' '}
+                                    {props.room.capacity === 1 ? 'persona' : 'personas'}
+                                </p>
                             </div>
                         </div>
                         <div className="info-item">
                             <FaBed className="icon" />
                             <div className="text-content">
                                 <p><b>Camas:</b></p>
-                                <p className="light-text">1 camas dobles</p>
-                                <p className="light-text">3 camas individuales</p>
+                                {/* Mapea los detalles de las camas (bedDetails) */}
+                                {props.room.bedDetails.map((bed, index) => {
+
+                                    let displayText = "";
+
+                                    if (bed.count === 1) {
+                                        // Caso singular: si es 1, usamos el tipo de cama exacto (que debe ser singular: "cama doble")
+                                        displayText = `1 ${bed.type}`;
+                                    } else {
+                                        // Caso plural: si es más de 1, necesitamos pluralizar
+                                        let pluralizedType = bed.type;
+
+                                        // 1. Pluralizar CAMA INDIVIDUAL/DOBLE
+                                        if (bed.type.includes('cama individual')) {
+                                            pluralizedType = bed.type.replace('cama individual', 'camas individuales');
+                                        } else if (bed.type.includes('cama doble')) {
+                                            pluralizedType = bed.type.replace('cama doble', 'camas dobles');
+                                        }
+                                        // 2. Pluralizar SOFÁ CAMA
+                                        else if (bed.type.includes('sofá cama')) {
+                                            // Reemplaza "sofá cama" por "sofás cama"
+                                            pluralizedType = bed.type.replace('sofá cama', 'sofás cama');
+                                        }
+                                        // Si tienes otros tipos, puedes agregar una regla aquí o usar un plural genérico
+                                        else {
+                                            pluralizedType = bed.type + 's';
+                                        }
+
+                                        displayText = `${bed.count} ${pluralizedType}`;
+                                    }
+
+                                    return (
+                                        <p key={index} className="light-text">
+                                            {displayText}
+                                        </p>
+                                    );
+
+                                })}
                             </div>
                         </div>
                     </div>

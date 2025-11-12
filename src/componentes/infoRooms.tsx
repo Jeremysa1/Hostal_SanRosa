@@ -1,3 +1,4 @@
+
 export const cardData = [
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762631165/Habitacion-9-personas_zyeepv.png",
@@ -6,8 +7,14 @@ export const cardData = [
       subtitle: "FAMILIAR GRANDE",
       description: "Perfecta para familias o grupos pequeños.",
       rating: 3,
-      services: ["Wi-Fi", "Agua caliente"],
-      price: 40000
+      services: ["Wi-Fi", "Agua caliente", "Sofá cama", "Closet"],
+      price: 40000,
+      capacity: 9,
+        bedDetails: [
+            { type: "cama doble", count: 3 },
+            { type: "cama individual", count: 2 },
+            { type: "sofá cama", count: 1 }
+        ]
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762635431/habitacion_naranja_ome2oc.png",
@@ -17,7 +24,11 @@ export const cardData = [
       description: "Diseñada para parejas o viajeros que buscan comodidad.",
       rating: 4,
       services: ["Wi-Fi", "Agua caliente", "Televisión", "Mesa de trabajo"],
-      price: 45000
+      price: 45000,
+      capacity: 2,
+        bedDetails: [
+            { type: "cama doble", count: 1 }
+             ]
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-1_ibttii.png",
@@ -26,8 +37,13 @@ export const cardData = [
       subtitle: "FAMILIAR",
       description: "Amplia y cómoda, ideal para grupos grandes.",
       rating: 4,
-      services: ["Wi-Fi", "Agua caliente", "Sofá cama", "Closet" ],
-      price: 35000
+      services: ["Wi-Fi", "Agua caliente" ],
+      price: 35000,
+      capacity: 5,
+        bedDetails: [
+            { type: "cama doble", count: 1 },
+            { type: "cama individual", count: 3 }
+             ]
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-4_afjrlh.png",
@@ -36,8 +52,13 @@ export const cardData = [
       subtitle: "TRIPLE",
       description: "Espacio funcional y tranquilo, ideal para amigos o familias pequeñas.",
       rating: 3,
-      services: ["Wi-Fi", "Agua caliente" ],
-      price: 40000
+      services: ["Wi-Fi", "Agua caliente", "Repisa", "espejo" ],
+      price: 40000,
+      capacity: 3,
+        bedDetails: [
+            { type: "cama doble", count: 1 },
+            { type: "cama individual", count: 1 }
+             ]
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629773/Habitacion-5_ibm1pp.png",
@@ -46,8 +67,12 @@ export const cardData = [
       subtitle: "DOBLE SENCILLA",
       description: "Acogedora y práctica, perfecta para descansar después de un día de viaje.",
       rating: 4,
-      services: ["Wi-Fi", "Agua caliente" ],
-      price: 45000
+      services: ["Wi-Fi", "Agua caliente","Repisa" ],
+      price: 45000,
+      capacity: 2,
+        bedDetails: [
+            { type: "cama doble", count: 1 }
+             ]
     },
     {
       imageUrl: "https://res.cloudinary.com/dfznn7pui/image/upload/v1762629775/Habitacion-6_ommdkh.png",
@@ -56,7 +81,12 @@ export const cardData = [
       subtitle: "SUITE",
       description: "Nuestra habitación más completa, ideal para quienes buscan mayor confort.",
       rating: 5,
-      services: ["Wi-Fi", "Sofá cama", "Agua caliente", "Repisa", "Televisión", "Mesa de trabajo" ],
-      price: 65000
+      services: ["Wi-Fi", "Sofá cama", "Baño privado", "Televisión", "mesita de noche" ],
+      price: 65000,
+      capacity: 3,
+        bedDetails: [
+            { type: "cama doble", count: 1 },
+            { type: "sofá cama", count: 1 }
+             ]
     }
   ];
