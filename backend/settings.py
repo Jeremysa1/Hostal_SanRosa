@@ -70,7 +70,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    # 🔥 Whitenoise para servir archivos estáticos en Railway (sin S3 ni CDN)
+    #  Whitenoise para servir archivos estáticos en Railway (sin S3 ni CDN)
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -153,17 +153,17 @@ USE_TZ = True
 # ARCHIVOS ESTÁTICOS Y MEDIA
 # ==============================================================================
 
-# 🧱 Archivos estáticos (admin, CSS, JS)
+#  Archivos estáticos (admin, CSS, JS)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# 👉 Esto permite servir también archivos locales en modo DEBUG
+#  Esto permite servir también archivos locales en modo DEBUG
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# 🧩 Whitenoise optimiza los estáticos en Railway
+#  Whitenoise optimiza los estáticos en Railway
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# 🌩 Archivos subidos por usuarios (Cloudinary)
+#  Archivos subidos por usuarios (Cloudinary)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = None  # Cloudinary maneja los archivos media
 
