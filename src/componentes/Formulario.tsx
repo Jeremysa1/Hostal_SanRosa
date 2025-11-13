@@ -166,9 +166,9 @@ function Formulario() {
           >
             <option value="" disabled>Seleccione una habitación</option>
             <option value="doble">Doble</option>
-            <option value="doble-p">Doble P</option>
+            <option value="doble-p">Doble Sencilla</option>
             <option value="familiar">Familiar</option>
-            <option value="familiar-plus">Familiar Plus</option>
+            <option value="familiar-plus">Familiar Grande</option>
             <option value="suite">Suite</option>
             <option value="triple">Triple</option>
           </select>
