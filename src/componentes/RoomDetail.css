@@ -1,7 +1,22 @@
+/* RoomDetail.css */
+
+/* ... (tu CSS existente para pantallas grandes) ... */
+
 /* DIALOG Y CONTENEDOR PRINCIPAL */
 .room-detail-dialog .p-dialog-content { padding: 0; border-radius: 20px; overflow: hidden; background: #ffffff; max-width: 900px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
 .room-detail-container { position: relative; }
-.room-detail-image { width: 100%; display: block; }
+.room-image-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* El panel completo de la imagen ocupará la altura */
+}
+.room-detail-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    flex-grow: 1; /* La imagen crecerá para llenar el espacio */
+}
+
 
 /* BOTÓN DE CIERRE (X) */
 .close-button {
@@ -26,7 +41,14 @@
 .room-detail-content { padding: 2.5rem; }
 
 /* === PANELES === */
-.detail-right-panel { padding-left: 2.5rem !important; border-left: 1px solid #dee2e6; display: flex; flex-direction: column; }
+/* Estilos para pantallas grandes (desktop) */
+.detail-right-panel {
+    padding-left: 2.5rem !important;
+    border-left: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 .room-detail-title { color: #2CB7A6; font-weight: 800; font-size: 1.5rem; margin-top: 0; margin-bottom: 2.5rem; letter-spacing: 0.5px; }
 .info-item { display: flex; align-items: flex-start; margin-bottom: 2rem; }
 .info-item .icon { font-size: 1.75rem; margin-right: 1rem; color: #868e96; margin-top: 0.1rem; }
@@ -40,55 +62,172 @@
 
 .bottom-section { margin-top: auto; padding-top: 0.1rem; }
 
-.check-in-out-section { display: flex; flex-direction: column; justify-content: flex-end; }
+/* NUEVOS ESTILOS PARA CHECK-IN/OUT EN EL PANEL IZQUIERDO */
+.room-image-panel .check-in-out-section {
+    background-color: #f8f9fa; /* Un color de fondo ligero para destacarlo */
+    padding: 1.5rem 2.5rem; /* Padding similar al del content del panel derecho */
+    border-top: 1px solid #dee2e6; /* Un borde superior para separarlo visualmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .check-in-out-item { margin-bottom: 1rem; }
 .check-in-out-item:last-child { margin-bottom: 0; }
 .check-in-out-label { font-weight: 700; color: #495057; font-size: 0.9rem; margin: 0 0 0.1rem 0; }
 .check-in-out-item .light-text { color: #6c757d; font-size: 0.9rem; margin: 0; }
 
-.price-reserve-section { text-align: right; display: flex; flex-direction: column; justify-content: flex-end; }
+/* Antiguos estilos de price-reserve-section adaptados */
+.price-reserve-section { text-align: right; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; } /* Añadimos align-items para centrar el botón */
 .price-label { font-size: 1rem; font-weight: 500; margin: 0; color: #495057; }
 .room-detail-price { font-size: 2rem; font-weight: 700; color: #343a40; margin: 0.1rem 0 0.75rem 0; }
 .reserve-button { background-color: #2CB7A6 !important; border: none !important; color: white !important; font-weight: 700 !important; border-radius: 15px !important; padding: 0.8rem 1.5rem !important; font-size: 1rem !important; letter-spacing: 0.5px; align-self: flex-end; }
 
 
+/* --- Media query para pantallas medianas (tablets) --- */
+/* Nuevo rango de 769px a 991px */
+@media (min-width: 769px) and (max-width: 991px) {
+    /* 1. Ajuste del Dialog */
+    .room-detail-dialog .p-dialog-content {
+        max-width: 90vw;
+        height: auto;
+    }
+
+    /* 2. Reposicionamiento de Check-in/out (¡La magia de Flexbox!) */
+    /* Apila el layout principal (imagen a la izquierda, contenido a la derecha) */
+    .room-detail-container {
+        display: flex;
+        flex-wrap: wrap; /* Necesario para que las columnas p-col-md-6 funcionen */
+    }
+    
+    /* En tablet, la imagen ya no ocupa la mitad de la altura, pero sí el ancho */
+    .p-col-12.p-md-6 { 
+        width: 50% !important; 
+    }
+
+    /* 3. Estilos del Panel Derecho */
+    .detail-right-panel {
+        padding-left: 1.5rem !important;
+        border-left: 1px solid #dee2e6;
+        justify-content: space-between;
+    }
+
+    /* 4. Mover Check-in/out y Precio para que el Check-in/out parezca estar debajo de la imagen */
+    .bottom-section {
+        display: flex;
+        flex-direction: column; /* Apila el Check-in/out y el Precio */
+        margin-top: 1.5rem;
+    }
+
+    /* AHORA, MOVEREMOS EL ELEMENTO VISUALMENTE */
+    .check-in-out-section {
+        /* Para que parezca un banner debajo de la imagen, ocupamos el ancho de la columna derecha */
+        width: 100% !important; 
+        
+        /* 1. Usar 'order' para que aparezca arriba del precio en la columna derecha */
+        order: 1; 
+
+        /* 2. Añadir estilos de 'banner' */
+        padding: 1rem;
+        margin-bottom: 1.5rem; /* Separación del precio */
+        
+        /* 3. Estilos de contenido */
+        display: flex !important; /* Lo hacemos flex para colocarlo uno al lado del otro */
+        flex-direction: row !important;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .price-reserve-section {
+        order: 2; /* Asegura que el precio esté debajo del check-in/out */
+        width: 100% !important; 
+        text-align: right;
+        align-items: flex-end;
+    }
+    
+    /* Ajustes específicos para los items de Check-in/out */
+    .check-in-out-item { 
+        margin-bottom: 0; 
+        text-align: center;
+    }
+    .check-in-out-label, .check-in-out-item .light-text {
+        font-size: 0.85rem;
+    }
+    
+    /* Ajustes de tipografía para el resto del panel derecho (igual que la propuesta anterior) */
+    .room-detail-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.8rem;
+    }
+    .info-item {
+        margin-bottom: 1.5rem;
+    }
+    .info-item .icon {
+        font-size: 1.5rem;
+    }
+    .info-item .text-content p {
+        font-size: 0.9rem;
+    }
+    .amenity-item {
+        font-size: 0.85rem;
+    }
+    .room-detail-price {
+        font-size: 1.8rem;
+    }
+    .reserve-button {
+        padding: 0.7rem 1.2rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* --- Media query para pantallas extra pequeñas (móviles) --- */
 @media (max-width: 768px) {
-    /* --- El Dialog ocupa toda la pantalla --- */
     .room-detail-dialog.p-dialog {
         width: 100vw;
         height: 100vh;
-        max-height: 100vh; /* Previene que se haga más grande que la pantalla */
+        max-height: 100vh;
         top: 0 !important;
         left: 0 !important;
         margin: 0;
     }
 
-    /* --- El contenido se vuelve scrollable --- */
     .room-detail-dialog .p-dialog-content {
         height: 100%;
-        overflow-y: auto; /* ¡AQUÍ ESTÁ LA MAGIA! */
+        overflow-y: auto;
         border-radius: 0;
-        padding: 0; /* Controlamos el padding desde el contenedor interior */
-        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        padding: 0;
+        -webkit-overflow-scrolling: touch;
     }
 
+    .room-image-panel {
+        height: auto; /* En móvil, la altura del panel es auto */
+    }
     .room-detail-image {
-        max-height: 40vh; /* Limita la altura de la imagen */
+        max-height: 40vh;
         object-fit: cover;
+        flex-grow: 0; /* La imagen no debe crecer mucho en móvil */
+    }
+
+    /* Estilos específicos para check-in/out en móvil */
+    .room-image-panel .check-in-out-section {
+        background-color: transparent; /* Sin fondo extra en móvil */
+        border-top: none; /* Sin borde superior */
+        padding: 1.5rem; /* Padding para móvil */
+        text-align: center; /* Centramos el texto en móvil */
+        align-items: center; /* Centramos el contenido */
     }
 
     .room-detail-content {
-        padding: 1.5rem; /* Padding general para el contenido */
+        padding: 1.5rem;
     }
 
     .detail-right-panel {
         border-left: none;
         padding-left: 0 !important;
         margin-top: 1rem;
-        align-items: center; /* ¡ESTA ES LA LÍNEA CLAVE! */
+        align-items: center;
     }
 
-    /* --- Centrado y tipografía --- */
     .room-detail-title, .check-in-out-section { text-align: center; }
     .room-detail-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
 
@@ -116,14 +255,15 @@
     }
     .amenity-item svg { font-size: 1.2rem; }
 
-    .check-in-out-section { margin-top: 2rem; }
-    .check-in-out-item { margin-bottom: 1.2rem; }
-    .check-in-out-label { font-size: 1rem; }
-    .check-in-out-item .light-text { font-size: 1rem; }
+    /* La sección de check-in/out ahora vive en el panel izquierdo en móvil también */
+    /* Aquí puedes ajustar el margin-top si es necesario para separar de la imagen */
+    /* .room-image-panel .check-in-out-section { margin-top: 1rem; } */
+
 
     .price-reserve-section {
         text-align: center;
         margin-top: 2.5rem;
+        align-items: center; /* Centrar el botón y precio en móvil */
     }
     .price-label { font-size: 1.1rem; }
     .room-detail-price { font-size: 2.2rem; }
