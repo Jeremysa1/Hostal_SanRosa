@@ -1,7 +1,6 @@
 import React from 'react';
 import './Tarjeta.css';
 import { FaLocationDot } from "react-icons/fa6";
-// 1. Necesitas importar useNavigate
 import { useNavigate } from 'react-router-dom'; 
 
 // --- 1. Definición de Datos con la Propiedad 'ruta' ---
@@ -17,25 +16,25 @@ const lugaresTuristicos = [
     imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760907449/san-vicente_wlgeqh.jpg',
     titulo: 'Termales de San Vicente',
     descripcion: 'Los Termales de San Vicente son un refugio natural en medio del bosque andino, donde las aguas termales y cascadas crean un ambiente ideal para desconectarse y renovar energía.',
-    ruta: '/turismo/termales-san-vicente', // Ruta de destino para React Router
+    ruta: '/Sitio-Turismo2', // Ruta de destino para React Router
   },
   {
     imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760907729/parque-de-las-araucarias_dh6jhj.jpg',
     titulo: 'Parque de las Araucarias',
     descripcion: 'El Parque de las Araucarias es el punto de encuentro más emblemático de Santa Rosa, rodeado de árboles imponentes y arquitectura colonial que reflejan la esencia tradicional del pueblo.',
-    ruta: '/turismo/parque-araucarias', // Ruta de destino para React Router
+    ruta: '/Sitio-Turismo3', // Ruta de destino para React Router
   },
   {
     imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760908104/iglesia-milagrosa_umrlse.jpg',
     titulo: 'Iglesia de la Milagrosa',
     descripcion: 'La Iglesia de la Milagrosa es un símbolo de fe y devoción para los habitantes de Santa Rosa. Con su diseño sencillo y acogedor, invita a la reflexión y a conocer más sobre la historia religiosa del municipio.',
-    ruta: '/turismo/iglesia-milagrosa', // Ruta de destino para React Router
+    ruta: '/Sitio-Turismo4', // Ruta de destino para React Router
   },
   {
     imagen: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1760908339/parque-machete_los6gd.jpg',
     titulo: 'Parque del Machete',
     descripcion: 'El Parque del Machete rinde homenaje al trabajador santarrosano y su espíritu cafetero. Es un espacio lleno de vida y tradición, perfecto para conocer la cultura local y disfrutar de la gastronomía típica de la región.',
-    ruta: '/turismo/parque-machete', // Ruta de destino para React Router
+    ruta: '/Sitio-Turismo5', // Ruta de destino para React Router
   },
 ];
 
