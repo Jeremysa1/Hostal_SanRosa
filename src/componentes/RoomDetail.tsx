@@ -18,6 +18,8 @@ interface RoomDetailProps {
         subtitle: string;
         services: string[];
         price: number;
+        capacity: number;
+        bedDetails: Array<{ type: string; count: number }>;
     };
 }
 
