@@ -18,6 +18,11 @@ interface RoomDetailProps {
         subtitle: string;
         services: string[];
         price: number;
+        capacity: number;
+        bedDetails: {
+            type: string;
+            count: number;
+        }[];
     };
 }
 
@@ -82,7 +87,7 @@ export const RoomDetail = (props: RoomDetailProps) => {
                             <div className="text-content">
                                 <p><b>Camas:</b></p>
                                 {/* Mapea los detalles de las camas (bedDetails) */}
-                                {props.room.bedDetails.map((bed, index) => {
+                                {props.room.bedDetails.map((bed: { type: string; count: number }, index: number) => {
 
                                     let displayText = "";
 

@@ -7,12 +7,12 @@ const slides = [
   {
     image: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430748/corredor_ycog6j.jpg',
     title: 'TURQUESA HOSTAL',
-    subtitle: 'UN ESPACIO ECOLÓGICO Y FAMILIAR, ideal para quienes buscan comodidad y descanso en Santa Rosa de Cabal',
+    subtitle: 'UN ESPACIO FAMILIAR, ideal para quienes buscan comodidad y descanso en Santa Rosa de Cabal.',
   },
   {
     image: 'https://res.cloudinary.com/dfznn7pui/image/upload/v1762430763/habitacion_2_m1j14z.jpg',
     title: 'DISFRUTA EN FAMILIA',
-    subtitle: 'Disfruta de la naturaleza y la tranquilidad a orillas del río. Un lugar para desconectar y recargar energías.',
+    subtitle: 'Tranquilidad y comididad para todos, el lugar perfecto para crear recuerdos juntos.',
   },
 ];
 
