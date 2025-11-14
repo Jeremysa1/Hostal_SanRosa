@@ -4,8 +4,8 @@ const Pagina2 = () => {
     return (
         <>
             <div className="Pagina-imagen">
-                <img src="https://res.cloudinary.com/dfznn7pui/image/upload/v1762992407/san_vicente_qtjnup.jpg" className='imagen-escritorio' alt="Termales San vicente" />
-                <img src="https://res.cloudinary.com/dfznn7pui/image/upload/v1762992407/san_vicente_qtjnup.jpg"className='imagen-movil' />
+                <img src="https://res.cloudinary.com/dfznn7pui/image/upload/v1763076649/san-vicente_ntfc7q.jpg" className='imagen-escritorio' alt="Termales San vicente" />
+                <img src="https://res.cloudinary.com/dfznn7pui/image/upload/v1763076649/san-vicente_ntfc7q.jpg"className='imagen-movil' />
             </div>
             <div className="titulo">
                 <strong> <h1>TERMALES</h1>
