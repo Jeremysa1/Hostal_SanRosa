@@ -1,156 +1,211 @@
+from contextlib import contextmanager
 
-# reservas/serializers.py
-
-from datetime import date
 from django.core.exceptions import ValidationError as DjangoValidationError
-from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
+from rest_framework import serializers
 
-from .models import Habitacion, Cliente, Reserva, SitioTuristico, InformacionHostal
-from .validators import (
-    validar_fechas_reserva,
-    validar_capacidad_habitacion,
-    validar_disponibilidad_habitacion,
-    validar_rango_fechas
-)
+from . import services
+from .models import Cliente, Habitacion, InformacionHostal, Reserva, SitioTuristico
+from .validators import hoy
+
+
+@contextmanager
+def errores_como_drf():
+    """Traduce ValidationError de Django al formato de errores de DRF."""
+    try:
+        yield
+    except DjangoValidationError as error:
+        raise serializers.ValidationError(error.messages) from error
 
 
 # ---------------------------------------------------------
 # HABITACIONES
 # ---------------------------------------------------------
 class HabitacionSerializer(serializers.ModelSerializer):
-    """Serializer para mostrar habitaciones en la página pública."""
-    
+    """Habitaciones para la página pública."""
+
     class Meta:
         model = Habitacion
         fields = [
-            'id', 'nombre', 'tipo', 'capacidad', 'precio', 
+            'id', 'nombre', 'tipo', 'capacidad', 'precio',
             'descripcion', 'disponible', 'imagen', 'camas_info',
-            'wifi', 'tv', 'estacionamiento', 'mascotas', 
-            'closet', 'lavanderia', 'checkin_hora', 'checkout_hora'
+            'wifi', 'tv', 'estacionamiento', 'mascotas',
+            'closet', 'lavanderia', 'checkin_hora', 'checkout_hora',
         ]
         read_only_fields = ['id']
+
+
+class HabitacionResumenSerializer(serializers.ModelSerializer):
+    """Datos mínimos de una habitación (calendario / listados compactos)."""
+
+    tipo = serializers.CharField(source='get_tipo_display', read_only=True)
+
+    class Meta:
+        model = Habitacion
+        fields = ['id', 'nombre', 'tipo', 'capacidad']
 
 
 # ---------------------------------------------------------
 # CLIENTES
 # ---------------------------------------------------------
 class ClienteSerializer(serializers.ModelSerializer):
-    """Serializer para mostrar datos del cliente."""
-    
     class Meta:
         model = Cliente
         fields = ['id', 'nombre', 'email', 'telefono', 'fecha_registro']
         read_only_fields = ['id', 'fecha_registro']
 
 
+class ClienteResumenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = ['id', 'nombre', 'email', 'telefono']
+
+
 # ---------------------------------------------------------
-# RESERVA - CREACIÓN DESDE WEB
+# RESERVAS
 # ---------------------------------------------------------
-class ReservaCreateSerializer(serializers.ModelSerializer):
-    """Serializer para crear reservas reales (DB)."""
+class DatosClienteMixin(serializers.Serializer):
+    """Campos de cliente que llegan "planos" junto con la reserva."""
 
     cliente_nombre = serializers.CharField(write_only=True)
     cliente_email = serializers.EmailField(write_only=True)
     cliente_telefono = serializers.CharField(write_only=True)
-    
+
+    CAMPOS_CLIENTE = ('cliente_nombre', 'cliente_email', 'cliente_telefono')
+
+    def extraer_datos_cliente(self, validated_data):
+        return {campo: validated_data.pop(campo) for campo in self.CAMPOS_CLIENTE if campo in validated_data}
+
+    def crear_reserva(self, validated_data):
+        with errores_como_drf():
+            return services.crear_reserva(**validated_data)
+
+
+class ReservaCreateSerializer(DatosClienteMixin, serializers.ModelSerializer):
+    """Creación de reservas desde la web."""
+
     class Meta:
         model = Reserva
         fields = [
             'habitacion', 'fecha_entrada', 'fecha_salida',
             'numero_personas', 'mensaje', 'precio_total',
-            'cliente_nombre', 'cliente_email', 'cliente_telefono'
+            'cliente_nombre', 'cliente_email', 'cliente_telefono',
         ]
-    
+
     def validate(self, data):
-        habitacion = data.get('habitacion')
-        fecha_entrada = data.get('fecha_entrada')
-        fecha_salida = data.get('fecha_salida')
-        numero_personas = data.get('numero_personas')
-        
-        try:
-            validar_fechas_reserva(fecha_entrada, fecha_salida)
-            validar_rango_fechas(fecha_entrada, fecha_salida, dias_minimos=1, dias_maximos=30)
-            validar_capacidad_habitacion(habitacion, numero_personas)
-            validar_disponibilidad_habitacion(habitacion, fecha_entrada, fecha_salida)
-        except DjangoValidationError as e:
-            raise serializers.ValidationError(str(e))
-        
+        with errores_como_drf():
+            services.validar_datos_reserva(data)
         return data
-    
+
     def create(self, validated_data):
-        cliente_nombre = validated_data.pop('cliente_nombre')
-        cliente_email = validated_data.pop('cliente_email')
-        cliente_telefono = validated_data.pop('cliente_telefono')
-        
-        cliente, _ = Cliente.objects.get_or_create(
-            email=cliente_email,
-            defaults={'nombre': cliente_nombre, 'telefono': cliente_telefono}
-        )
-        
-        return Reserva.objects.create(cliente=cliente, **validated_data)
-    
+        return self.crear_reserva(validated_data)
+
+
 class ReservaListSerializer(serializers.ModelSerializer):
-    """Serializer para listar reservas (usado en panel admin)."""
-    
+    """Listado de reservas con cliente y habitación anidados (panel admin)."""
+
     cliente = ClienteSerializer(read_only=True)
     habitacion = HabitacionSerializer(read_only=True)
-    
+
     class Meta:
         model = Reserva
         fields = '__all__'
 
+
+class ReservaCalendarioSerializer(DatosClienteMixin, serializers.ModelSerializer):
+    """Gestión de reservas desde el calendario admin (app móvil)."""
+
+    cliente_nombre = serializers.CharField(write_only=True, required=False)
+    cliente_email = serializers.EmailField(write_only=True, required=False)
+    cliente_telefono = serializers.CharField(write_only=True, required=False)
+
+    cliente_info = serializers.SerializerMethodField()
+    habitacion_info = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reserva
+        fields = [
+            'id', 'habitacion', 'fecha_entrada', 'fecha_salida',
+            'numero_personas', 'mensaje', 'precio_total', 'estado',
+            'cliente_nombre', 'cliente_email', 'cliente_telefono',
+            'cliente_info', 'habitacion_info', 'created_at',
+        ]
+        read_only_fields = ['id', 'created_at']
+
+    @extend_schema_field(ClienteResumenSerializer)
+    def get_cliente_info(self, obj):
+        return ClienteResumenSerializer(obj.cliente).data
+
+    @extend_schema_field(HabitacionResumenSerializer)
+    def get_habitacion_info(self, obj):
+        return HabitacionResumenSerializer(obj.habitacion).data
+
+    def validate(self, data):
+        if self.instance is None:
+            faltantes = [campo for campo in self.CAMPOS_CLIENTE if not data.get(campo)]
+            if faltantes:
+                raise serializers.ValidationError(
+                    {campo: 'Este campo es requerido para crear una reserva.' for campo in faltantes}
+                )
+        with errores_como_drf():
+            services.validar_datos_reserva(data, reserva=self.instance)
+        return data
+
+    def create(self, validated_data):
+        return self.crear_reserva(validated_data)
+
+    def update(self, instance, validated_data):
+        # Los datos del cliente solo se usan al crear; al editar se ignoran.
+        self.extraer_datos_cliente(validated_data)
+        return super().update(instance, validated_data)
+
+
 # ---------------------------------------------------------
 # PRE-RESERVA (WHATSAPP)
-
+# ---------------------------------------------------------
 class PreReservaSerializer(serializers.Serializer):
+    """Datos del formulario web (nombres en camelCase por contrato con el frontend)."""
+
     guestName = serializers.CharField()
-    numberOfPeople = serializers.IntegerField()
+    numberOfPeople = serializers.IntegerField(
+        min_value=1,
+        error_messages={'min_value': 'El número de personas debe ser al menos 1.'},
+    )
     checkInDate = serializers.DateField()
     checkOutDate = serializers.DateField()
     phoneNumber = serializers.CharField()
     roomType = serializers.CharField()
 
-    def validate_numberOfPeople(self, value):
-        if value < 1:
-            raise serializers.ValidationError("El número de personas debe ser al menos 1.")
-        return value
-
     def validate(self, data):
-        check_in = data.get('checkInDate')
-        check_out = data.get('checkOutDate')
+        check_in = data['checkInDate']
+        check_out = data['checkOutDate']
 
-        # Verifica que la salida sea después de la llegada
-        if check_in and check_out and check_out <= check_in:
-            raise serializers.ValidationError("La fecha de salida debe ser posterior a la fecha de llegada.")
-
-        # Opcional: no permitir reservas en el pasado
-        if check_in and check_in < date.today():
+        if check_out <= check_in:
+            raise serializers.ValidationError(
+                "La fecha de salida debe ser posterior a la fecha de llegada."
+            )
+        if check_in < hoy():
             raise serializers.ValidationError("La fecha de llegada no puede ser en el pasado.")
-
         return data
+
 
 # ---------------------------------------------------------
 # SITIOS TURÍSTICOS
 # ---------------------------------------------------------
 class SitioTuristicoListSerializer(serializers.ModelSerializer):
-    """Serializer para listado tipo tarjetas."""
-    
     class Meta:
         model = SitioTuristico
         fields = ['id', 'nombre', 'descripcion_corta', 'imagen_principal', 'ubicacion']
 
 
 class SitioTuristicoDetailSerializer(serializers.ModelSerializer):
-    """Serializer para detalle completo."""
-    
     class Meta:
         model = SitioTuristico
         fields = [
             'id', 'nombre', 'descripcion_corta', 'descripcion_completa',
             'imagen_principal', 'imagen_detalle',
             'ubicacion', 'coordenadas_lat', 'coordenadas_lng',
-            'actividades', 'tips'
+            'actividades', 'tips',
         ]
 
 
@@ -166,58 +221,38 @@ class CalendarioSerializer(serializers.Serializer):
     dias = serializers.ListField()
 
 
-class ReservaCalendarioSerializer(serializers.ModelSerializer):
-    """Serializer para gestionar reservas desde el calendario admin (App móvil)."""
+class CalendarioQuerySerializer(serializers.Serializer):
+    """Parámetros ?mes=&anio= del calendario (por defecto, el mes actual)."""
 
-    cliente_nombre = serializers.CharField(write_only=True, required=False)
-    cliente_email = serializers.EmailField(write_only=True, required=False)
-    cliente_telefono = serializers.CharField(write_only=True, required=False)
-    
-    cliente_info = serializers.SerializerMethodField()
-    habitacion_info = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = Reserva
-        fields = [
-            'id', 'habitacion', 'fecha_entrada', 'fecha_salida',
-            'numero_personas', 'mensaje', 'precio_total', 'estado',
-            'cliente_nombre', 'cliente_email', 'cliente_telefono',
-            'cliente_info', 'habitacion_info', 'created_at'
-        ]
-        read_only_fields = ['id', 'created_at']
-    
-    @extend_schema_field({'type': 'object'})
-    def get_cliente_info(self, obj):
-        return {
-            'id': obj.cliente.id,
-            'nombre': obj.cliente.nombre,
-            'email': obj.cliente.email,
-            'telefono': obj.cliente.telefono
-        }
-    
-    @extend_schema_field({'type': 'object'})
-    def get_habitacion_info(self, obj):
-        return {
-            'id': obj.habitacion.id,
-            'nombre': obj.habitacion.nombre,
-            'tipo': obj.habitacion.get_tipo_display(),
-            'capacidad': obj.habitacion.capacidad
-        }
-    
+    mes = serializers.IntegerField(required=False, min_value=1, max_value=12)
+    anio = serializers.IntegerField(required=False, min_value=2020, max_value=2100)
+
     def validate(self, data):
-        habitacion = data.get('habitacion', self.instance.habitacion)
-        fecha_entrada = data.get('fecha_entrada', self.instance.fecha_entrada)
-        fecha_salida = data.get('fecha_salida', self.instance.fecha_salida)
-        numero_personas = data.get('numero_personas', self.instance.numero_personas)
-        
-        try:
-            validar_fechas_reserva(fecha_entrada, fecha_salida)
-            validar_rango_fechas(fecha_entrada, fecha_salida, dias_minimos=1, dias_maximos=30)
-            validar_capacidad_habitacion(habitacion, numero_personas)
-            validar_disponibilidad_habitacion(habitacion, fecha_entrada, fecha_salida, reserva_id=self.instance.id if self.instance else None)
-        except DjangoValidationError as e:
-            raise serializers.ValidationError(str(e))
-        
+        fecha_hoy = hoy()
+        data.setdefault('mes', fecha_hoy.month)
+        data.setdefault('anio', fecha_hoy.year)
+        return data
+
+
+class RangoFechasQuerySerializer(serializers.Serializer):
+    """Parámetros de un rango de fechas en query string (YYYY-MM-DD)."""
+
+    MAX_DIAS = 366
+
+    def __init__(self, *args, campo_inicio='fecha_inicio', campo_fin='fecha_fin', **kwargs):
+        super().__init__(*args, **kwargs)
+        self.campo_inicio = campo_inicio
+        self.campo_fin = campo_fin
+        mensaje = {'invalid': 'Formato de fecha inválido (YYYY-MM-DD)'}
+        self.fields[campo_inicio] = serializers.DateField(error_messages=mensaje)
+        self.fields[campo_fin] = serializers.DateField(error_messages=mensaje)
+
+    def validate(self, data):
+        inicio, fin = data[self.campo_inicio], data[self.campo_fin]
+        if fin < inicio:
+            raise serializers.ValidationError(f'{self.campo_fin} debe ser posterior a {self.campo_inicio}')
+        if (fin - inicio).days > self.MAX_DIAS:
+            raise serializers.ValidationError(f'El rango no puede superar {self.MAX_DIAS} días')
         return data
 
 
@@ -228,7 +263,7 @@ class InformacionHostalSerializer(serializers.ModelSerializer):
     espacios_comunes = serializers.SerializerMethodField()
     caracteristicas_destacadas = serializers.SerializerMethodField()
     ubicacion_completa = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = InformacionHostal
         fields = [
@@ -239,28 +274,16 @@ class InformacionHostalSerializer(serializers.ModelSerializer):
             'checkin_desde', 'checkout_hasta',
             'espacios_comunes', 'caracteristicas_destacadas',
             'politicas_cancelacion', 'politicas_mascotas', 'politicas_fumar',
-            'logo', 'imagen_principal', 'copyright_text'
+            'logo', 'imagen_principal', 'copyright_text',
         ]
-    
+
+    @extend_schema_field(serializers.ListField(child=serializers.DictField()))
     def get_espacios_comunes(self, obj):
-        espacios = []
-        if obj.sala_comun:
-            espacios.append({'nombre': 'Sala común', 'descripcion': obj.sala_comun_descripcion})
-        if obj.cocina_compartida:
-            espacios.append({'nombre': 'Cocina compartida', 'descripcion': obj.cocina_compartida_descripcion})
-        if obj.banos_compartidos:
-            espacios.append({'nombre': 'Baños compartidos', 'descripcion': obj.banos_compartidos_descripcion})
-        return espacios
-    
+        return obj.items_activos(InformacionHostal.ESPACIOS_COMUNES)
+
+    @extend_schema_field(serializers.ListField(child=serializers.DictField()))
     def get_caracteristicas_destacadas(self, obj):
-        caracteristicas = []
-        if obj.hogar_familiar:
-            caracteristicas.append({'nombre': 'Hogar familiar', 'descripcion': obj.hogar_familiar_descripcion})
-        if obj.ambiente_sano:
-            caracteristicas.append({'nombre': 'Ambiente sano', 'descripcion': obj.ambiente_sano_descripcion})
-        if obj.entorno_ecologico:
-            caracteristicas.append({'nombre': 'Entorno ecológico', 'descripcion': obj.entorno_ecologico_descripcion})
-        return caracteristicas
-    
-    def get_ubicacion_completa(self, obj):
+        return obj.items_activos(InformacionHostal.CARACTERISTICAS_DESTACADAS)
+
+    def get_ubicacion_completa(self, obj) -> str:
         return f"{obj.ciudad}, {obj.departamento}"

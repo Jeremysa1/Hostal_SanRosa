@@ -1,61 +1,36 @@
-
 from rest_framework import permissions
 
 
-class IsAdminOrReadOnly(permissions.BasePermission):
-    """
-    Permiso personalizado:
-    - Administradores (staff) pueden hacer cualquier cosa
-    - Usuarios anónimos solo pueden leer (GET)
-    """
-    
-    def has_permission(self, request, view):
-        # Permitir métodos de lectura (GET, HEAD, OPTIONS) a todos
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        # Para métodos de escritura (POST, PUT, PATCH, DELETE), 
-        # el usuario debe estar autenticado y ser staff
-        return request.user and request.user.is_staff
+def es_staff(user):
+    return bool(user and user.is_authenticated and user.is_staff)
 
 
 class IsAdminUser(permissions.BasePermission):
-    """
-    Permiso solo para administradores autenticados
-    """
-    
+    """Solo administradores (staff) autenticados."""
+
     def has_permission(self, request, view):
-        return request.user and request.user.is_authenticated and request.user.is_staff
+        return es_staff(request.user)
 
 
-class IsPublicEndpoint(permissions.BasePermission):
-    """
-    Permiso para endpoints completamente públicos
-    """
-    
+class IsAdminOrReadOnly(permissions.BasePermission):
+    """Lectura para todos; escritura solo para administradores."""
+
     def has_permission(self, request, view):
-        return True
+        return request.method in permissions.SAFE_METHODS or es_staff(request.user)
+
+
+class IsPublicEndpoint(permissions.AllowAny):
+    """Endpoint completamente público (alias explícito de AllowAny)."""
 
 
 class CanCreateReserva(permissions.BasePermission):
-    """
-    Permiso para crear reservas (público puede crear)
-    Solo admin puede ver todas las reservas
-    """
-    
+    """Cualquiera puede crear una reserva (POST); el resto solo administradores."""
+
     def has_permission(self, request, view):
-        # POST (crear reserva) está permitido para todos
-        if request.method == 'POST':
-            return True
-        # GET, PUT, PATCH, DELETE solo para administradores
-        return request.user and request.user.is_authenticated and request.user.is_staff
+        return request.method == 'POST' or es_staff(request.user)
 
 
-class CanAccessCalendar(permissions.BasePermission):
-    """
-    Permiso para acceder al calendario (solo administradores)
-    """
-    
-    def has_permission(self, request, view):
-        return request.user and request.user.is_authenticated and request.user.is_staff
-    
+class CanAccessCalendar(IsAdminUser):
+    """Calendario de ocupación: solo administradores."""
+
     message = "Solo los administradores pueden acceder al calendario"

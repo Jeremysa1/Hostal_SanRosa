@@ -1,37 +1,40 @@
+"""
+Configuración de Django para el backend del Hostal.
 
-from pathlib import Path
+Todos los valores sensibles o dependientes del entorno se leen de variables de
+entorno / archivo .env (ver .env.example).
+"""
+
 from datetime import timedelta
-from decouple import config, Csv
-import dj_database_url
+from pathlib import Path
+
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-import os
-
-# ==============================================================================
-# VARIABLES DE ENTORNO Y DEBUG
-# ==============================================================================
-
-print("DEBUG MODE:", config('DEBUG', default=True))
-print("CLOUDINARY CLOUD NAME:", config('CLOUDINARY_CLOUD_NAME', default=None))
+import dj_database_url
+from decouple import Csv, config
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-HOSTAL_WHATSAPP = config('HOSTAL_WHATSAPP', default='573242989045')
 
 # ==============================================================================
 # SEGURIDAD Y CONFIGURACIÓN BÁSICA
 # ==============================================================================
 
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-cambiar-en-produccion')
+SECRET_KEY_INSEGURA = 'django-insecure-cambiar-en-produccion'
+
+SECRET_KEY = config('SECRET_KEY', default=SECRET_KEY_INSEGURA)
 DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
 
+HOSTAL_WHATSAPP = config('HOSTAL_WHATSAPP', default='573242989045')
+
 if not DEBUG:
+    if SECRET_KEY == SECRET_KEY_INSEGURA:
+        raise ImproperlyConfigured('Define SECRET_KEY en el entorno cuando DEBUG=False.')
+
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     CSRF_TRUSTED_ORIGINS = config(
         'CSRF_TRUSTED_ORIGINS',
@@ -109,15 +112,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # BASE DE DATOS
 # ==============================================================================
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default=''),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
+# Prioridad: DATABASE_URL (Railway) → variables DB_* sueltas (desarrollo local).
+DATABASE_URL = config('DATABASE_URL', default='')
 
-if not DATABASES['default']:
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, conn_health_checks=True)
+    }
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -153,22 +155,27 @@ USE_TZ = True
 # ARCHIVOS ESTÁTICOS Y MEDIA
 # ==============================================================================
 
-#  Archivos estáticos (admin, CSS, JS)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-#  Esto permite servir también archivos locales en modo DEBUG
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-#  Whitenoise optimiza los estáticos en Railway
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-#  Archivos subidos por usuarios (Cloudinary)
+# Archivos subidos por usuarios: los gestiona Cloudinary.
 MEDIA_URL = '/media/'
-MEDIA_ROOT = None  # Cloudinary maneja los archivos media
+
+# Django 5.1+ ya no lee STATICFILES_STORAGE / DEFAULT_FILE_STORAGE: se usa STORAGES.
+# (Antes estaban definidos con los nombres antiguos y se ignoraban silenciosamente.)
+STORAGES = {
+    'default': {
+        'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+    },
+    'staticfiles': {
+        # Whitenoise comprime los estáticos. No se usa la variante "Manifest"
+        # para no exigir collectstatic en cada arranque.
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+    },
+}
 
 # ==============================================================================
-# CONFIGURACIÓN DE CLOUDINARY
+# CLOUDINARY
 # ==============================================================================
 
 CLOUDINARY_STORAGE = {
@@ -177,16 +184,12 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 cloudinary.config(
-    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
-    api_key=config('CLOUDINARY_API_KEY'),
-    api_secret=config('CLOUDINARY_API_SECRET'),
-    secure=True
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET'],
+    secure=True,
 )
-
-print("Cloudinary Config:", cloudinary.config().cloud_name)
 
 # ==============================================================================
 # CLAVE PRIMARIA POR DEFECTO
@@ -231,20 +234,12 @@ SPECTACULAR_SETTINGS = {
 # SIMPLE JWT
 # ==============================================================================
 
+# Solo se declaran los valores que difieren de los predeterminados de SimpleJWT.
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': False,
-    'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
 # ==============================================================================
@@ -262,3 +257,22 @@ CORS_ALLOW_HEADERS = [
     'accept', 'accept-encoding', 'authorization', 'content-type',
     'dnt', 'origin', 'user-agent', 'x-csrftoken', 'x-requested-with',
 ]
+
+# ==============================================================================
+# LOGGING
+# ==============================================================================
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {'format': '[{levelname}] {name}: {message}', 'style': '{'},
+    },
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'simple'},
+    },
+    'root': {'handlers': ['console'], 'level': 'INFO'},
+    'loggers': {
+        'django': {'handlers': ['console'], 'level': config('DJANGO_LOG_LEVEL', default='INFO'), 'propagate': False},
+    },
+}
