@@ -1,9 +1,7 @@
-import Tarjetas from '../componentes/Tarjetas';
+import TarjetasTurismo from '../componentes/turismo/TarjetasTurismo';
 
-export default function Contacto() {
-    return (
-    <>
-      <Tarjetas />
-    </>
-  );
-};
+function Turismo() {
+  return <TarjetasTurismo />;
+}
+
+export default Turismo;

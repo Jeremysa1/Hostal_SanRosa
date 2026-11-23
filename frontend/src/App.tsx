@@ -1,51 +1,36 @@
-
-import './App.css';
-import Menu from './componentes/Menu';
-import Footer from './componentes/Footer';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import Home from './pages/Home';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { LayoutPrincipal, LayoutSimple } from './componentes/layout/Layouts';
+import Inicio from './pages/Inicio';
 import Habitaciones from './pages/Habitaciones';
 import Turismo from './pages/Turismo';
-import SitioTurismo1 from './pages/Sitio-Turismo1';
-import SitioTurismo2 from './pages/Sitio-Turismo2';
-import SitioTurismo3 from './pages/Sitio-Turismo3';
-import SitioTurismo4 from './pages/Sitio-Turismo4';
-import SitioTurismo5 from './pages/Sitio-Turismo5';
-import PagFormulario from './pages/PagFormulario';
-// Home-specific components were moved into the Home page so they don't render on every route
+import SitioTuristico from './pages/SitioTuristico';
+import PreReserva from './pages/PreReserva';
+import { RUTAS } from './config';
+import { sitiosTuristicos } from './data/sitiosTuristicos';
 
-
-const Layout = () => (
-  <div className="App">
-    <Menu />
-    <Outlet />
-    <Footer />
-  </div>
-);
-
-// Layout sin menú ni footer para el formulario
-const LayoutNoMenuFooter = () => (
-  <div className="App">
-    <Outlet />
-  </div>
-);
-
+/**
+ * Las páginas de turismo antes vivían en /Sitio-Turismo1 ... /Sitio-Turismo5.
+ * Se redirigen a /turismo/:slug para no romper enlaces ya compartidos.
+ */
+const RUTAS_ANTIGUAS_TURISMO = sitiosTuristicos.map((sitio, indice) => ({
+  ruta: `Sitio-Turismo${indice + 1}`,
+  destino: RUTAS.sitioTuristico(sitio.slug),
+}));
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route path={RUTAS.inicio} element={<LayoutPrincipal />}>
+        <Route index element={<Inicio />} />
         <Route path="habitaciones" element={<Habitaciones />} />
         <Route path="turismo" element={<Turismo />} />
-        <Route path="Sitio-Turismo1" element={<SitioTurismo1 />} />
-        <Route path="Sitio-Turismo2" element={<SitioTurismo2 />} />
-        <Route path="Sitio-Turismo3" element={<SitioTurismo3 />} />
-        <Route path="Sitio-Turismo4" element={<SitioTurismo4 />} />
-        <Route path="Sitio-Turismo5" element={<SitioTurismo5 />} />
+        <Route path="turismo/:slug" element={<SitioTuristico />} />
+        {RUTAS_ANTIGUAS_TURISMO.map(({ ruta, destino }) => (
+          <Route key={ruta} path={ruta} element={<Navigate to={destino} replace />} />
+        ))}
       </Route>
-      <Route path="pagformulario" element={<LayoutNoMenuFooter />}>
-        <Route index element={<PagFormulario />} />
+      <Route path={RUTAS.preReserva} element={<LayoutSimple />}>
+        <Route index element={<PreReserva />} />
       </Route>
     </Routes>
   );

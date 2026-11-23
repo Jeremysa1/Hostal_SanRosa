@@ -7,22 +7,82 @@ Diseñada para integrarse con aplicaciones móviles y frontends en React o Flutt
 
 ---
 
+## 🗂️ Estructura del Repositorio
+
+```
+Hostal_SanRosa/
+├── backend/              # Proyecto Django (settings, urls, wsgi)
+├── reservas/             # App principal
+│   ├── models.py         # Modelos + ReservaQuerySet (activas / solapadas / ocupando)
+│   ├── services.py       # Lógica de negocio: crear reservas, disponibilidad, URL de WhatsApp
+│   ├── validators.py     # Reglas de validación de reservas
+│   ├── calendario.py     # Calendario de ocupación (consultas constantes)
+│   ├── signals.py        # Limpieza de imágenes en Cloudinary
+│   ├── serializers.py · views.py · urls.py · permissions.py · throttling.py · admin.py
+│   └── tests/            # Tests de dominio y de API
+├── frontend/             # Web pública (React + TypeScript + Vite)
+│   └── src/
+│       ├── componentes/  # layout/, comunes/, inicio/, habitaciones/, turismo/, reservas/
+│       ├── data/         # Contenido: habitaciones, sitios turísticos, datos del hostal
+│       ├── pages/        # Una página por ruta
+│       ├── services/     # Llamadas a la API
+│       ├── config.ts     # URL de la API (VITE_API_URL) y rutas
+│       └── types.ts
+├── requirements.txt
+└── .env.example
+```
+
+---
+
+## 🚀 Puesta en Marcha
+
+### Backend
+```bash
+python -m venv .venv
+.venv\Scripts\activate          # Windows  (Linux/macOS: source .venv/bin/activate)
+pip install -r requirements.txt
+copy .env.example .env          # y completa los valores
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+### Tests del backend
+```bash
+python manage.py test reservas
+```
+Para ejecutarlos sin PostgreSQL basta con `DATABASE_URL=sqlite:///test.sqlite3`.
+
+### Frontend
+```bash
+cd frontend
+npm install
+copy .env.example .env.local    # VITE_API_URL=http://localhost:8000/api
+npm run dev                     # también: npm run build · npm run lint · npm run typecheck
+```
+
+---
+
 ## ⚙️ Tecnologías Utilizadas
 
 ### Backend
 - **Python**: 3.12  
-- **Django**: 5.2.7  
+- **Django**: 5.2.8  
 - **Django REST Framework (DRF)**: 3.16.1  
 - **Base de datos**: PostgreSQL 16  
 
 ### Librerías Principales
 - `djangorestframework-simplejwt` → Autenticación JWT  
 - `django-cors-headers` → Manejo de CORS  
-- `django-ratelimit` → Control de peticiones  
-- `psycopg2-binary` → Conector PostgreSQL  
-- `Pillow` → Procesamiento de imágenes  
+- `psycopg2-binary` / `dj-database-url` → Conexión a PostgreSQL  
+- `cloudinary` / `django-cloudinary-storage` → Imágenes  
+- `whitenoise` → Archivos estáticos  
 - `python-decouple` → Variables de entorno  
 - `drf-spectacular` → Documentación Swagger / ReDoc  
+
+### Frontend
+- **React** 19 · **TypeScript** · **Vite** 6  
+- `react-router-dom`, `primereact`, `react-leaflet`, `react-slick`, `react-icons`  
 
 ---
 
@@ -76,8 +136,8 @@ Content-Type: application/json
 - `GET /api/habitaciones/{id}/` → Detalle de habitación  
 - `GET /api/habitaciones/{id}/disponibilidad/` → Verificar disponibilidad  
 - `GET /api/habitaciones/todas/` → Lista completa de habitaciones (sin paginar)  
-- `POST /api/reservas/` → Crear reserva (genera URL de WhatsApp)  
-- `POST /api/prereserva/` → Verificar y simular reserva sin crearla  
+- `POST /api/reservas/` → Crear reserva  
+- `POST /api/pre-reserva/` → Genera el enlace de WhatsApp (no guarda nada)  
 - `GET /api/sitios-turisticos/` → Lista de sitios turísticos  
 - `GET /api/sitios-turisticos/{id}/` → Detalle de sitio turístico  
 - `GET /api/informacion-hostal/` → Información general del hostal  
@@ -95,13 +155,13 @@ Content-Type: application/json
 ## ⏱️ Rate Limiting
 
 **Usuarios anónimos**
-- 100 peticiones/hora (general)
-- 5 reservas/hora por IP  
+- 5000 peticiones/hora (general)
+- 5 reservas creadas/hora por IP (`POST /api/reservas/`)  
 
 **Usuarios autenticados**
-- 1000 peticiones/hora  
-- 20 reservas/hora  
-- 100 peticiones/minuto al calendario  
+- 10000 peticiones/hora (general)  
+- 20 reservas creadas/hora  
+- 100 peticiones/minuto al calendario y al listado de reservas  
 
 **Ejemplo de respuesta al exceder el límite:**
 ```json
@@ -114,9 +174,7 @@ Content-Type: application/json
 
 ## 🌍 CORS
 
-**Orígenes permitidos (desarrollo):**
-- `http://localhost:3000`
-- `http://localhost:5173`
+**Orígenes permitidos:** variable `CORS_ALLOWED_ORIGINS` (por defecto `http://localhost:5173`).
 
 ---
 
@@ -178,30 +236,29 @@ Content-Type: application/json
     "estado": "pendiente",
     "precio_total": "300000.00"
   },
-  "whatsapp_url": "https://wa.me/573001234567?text=...",
-  "mensaje": "Reserva creada exitosamente"
+  "mensaje": "Reserva registrada exitosamente"
 }
 ```
 
-#### Pre-reserva (simulación sin guardar)
+#### Pre-reserva por WhatsApp (no guarda nada)
 ```http
-POST /api/prereserva/
+POST /api/pre-reserva/
 Content-Type: application/json
 
 {
-  "habitacion": 1,
-  "fecha_entrada": "2025-11-15",
-  "fecha_salida": "2025-11-17",
-  "numero_personas": 2
+  "guestName": "Juan Pérez",
+  "phoneNumber": "3001234567",
+  "numberOfPeople": 2,
+  "roomType": "Doble",
+  "checkInDate": "2025-11-15",
+  "checkOutDate": "2025-11-17"
 }
 ```
 
 **Respuesta:**
 ```json
 {
-  "disponible": true,
-  "precio_total_estimado": 300000,
-  "mensaje": "La habitación está disponible para las fechas seleccionadas"
+  "whatsapp_url": "https://wa.me/573242989045?text=Hola%2C%20deseo%20solicitar..."
 }
 ```
 
@@ -262,7 +319,7 @@ Authorization: Bearer {token}
 |--------|--------------|
 | `200` | Petición exitosa |
 | `201` | Recurso creado exitosamente |
-| `400` | Error de validación |
+| `400` | Error de validación (formato DRF: `{"campo": ["mensaje"]}` o `{"non_field_errors": ["mensaje"]}`) |
 | `401` | No autenticado |
 | `403` | Sin permisos |
 | `404` | Recurso no encontrado |

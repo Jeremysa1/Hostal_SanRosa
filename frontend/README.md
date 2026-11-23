@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Frontend · Turquesa Hostal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web pública del hostal hecha con React 19, TypeScript y Vite.
 
-Currently, two official plugins are available:
+## Comandos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev        # servidor de desarrollo
+npm run build      # typecheck + build de producción en dist/
+npm run lint       # ESLint
+npm run typecheck  # solo TypeScript
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Configuración
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Copia `.env.example` como `.env.local`:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Variable       | Descripción                                    | Por defecto                     |
+| -------------- | ---------------------------------------------- | ------------------------------- |
+| `VITE_API_URL` | URL base de la API del backend (sin `/` final) | La API de producción en Railway |
+
+## Organización
+
 ```
+src/
+├── componentes/
+│   ├── layout/        Menú, pie de página, layouts y ScrollToTop
+│   ├── comunes/       Piezas reutilizables: MapaLeaflet, FranjaIconos / IconoItem
+│   ├── inicio/        Secciones de la página de inicio
+│   ├── habitaciones/  Tarjeta, detalle (modal) y espacios comunes
+│   ├── turismo/       Tarjetas, encabezado y mapa de cada sitio
+│   └── reservas/      Formulario de pre-reserva
+├── data/              Contenido de la web (habitaciones, sitios turísticos, hostal)
+├── pages/             Una página por ruta
+├── services/          Llamadas a la API (api.ts maneja errores de DRF)
+├── utils/             Funciones puras (pluralización de camas)
+├── config.ts          URL de la API y rutas de la app
+└── types.ts           Tipos compartidos
+```
+
+### Rutas
+
+| Ruta              | Página                                                  |
+| ----------------- | ------------------------------------------------------- |
+| `/`               | Inicio                                                  |
+| `/habitaciones`   | Listado de habitaciones                                 |
+| `/turismo`        | Sitios turísticos                                       |
+| `/turismo/:slug`  | Detalle de un sitio (`/Sitio-Turismo1..5` redirige aquí) |
+| `/pagformulario`  | Formulario de pre-reserva (sin menú ni pie)             |
+
+### Añadir contenido
+
+- **Un sitio turístico nuevo:** agrega una entrada en `src/data/sitiosTuristicos.ts`. La tarjeta, la página y el mapa se generan solos.
+- **Una habitación:** agrégala en `src/data/habitaciones.ts`. Su `id` coincide con los tipos del backend (`doble`, `doble_sencilla`, ...).
+
+### Nota sobre estilos
+
+Todo el CSS es global y Vite lo une en el orden en que se importan los módulos. Si mueves imports de CSS o de componentes, revisa que la cascada no cambie. Por ejemplo, el tema de PrimeReact se importa en `pages/Habitaciones.tsx` después de los estilos propios.
